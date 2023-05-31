@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 const MaxPageLimit = 200

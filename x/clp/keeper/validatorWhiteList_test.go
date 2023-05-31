@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/Blackchain/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/test"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"testing"

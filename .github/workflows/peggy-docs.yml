@@ -14,7 +14,7 @@ jobs:
           github-token: ${{ secrets.GIT_PAT }}
           script: |
             await github.rest.actions.createWorkflowDispatch({
-              repo: 'blackchain/blackchain-chainops',
+              repo: 'offsideswap/offsideswap-chainops',
               workflow_id: 'peggy-deploy-docs-peggy-2.yml',
               ref: 'main'
             })

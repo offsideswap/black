@@ -9,9 +9,9 @@ import (
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 // Keeper of the clp store

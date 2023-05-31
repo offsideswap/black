@@ -14,7 +14,7 @@ import (
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/spf13/cobra"
 
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func AddGenesisCLPAdminCmd(defaultNodeHome string) *cobra.Command {

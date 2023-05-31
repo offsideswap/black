@@ -6,8 +6,8 @@ package cli_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/margin/client/cli"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/margin/client/cli"
 	testutilcli "github.com/cosmos/cosmos-sdk/testutil/cli"
 	testnetwork "github.com/cosmos/cosmos-sdk/testutil/network"
 	"github.com/stretchr/testify/require"

@@ -1,9 +1,9 @@
 package keeper
 
 import (
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	db "github.com/tendermint/tm-db"
 )

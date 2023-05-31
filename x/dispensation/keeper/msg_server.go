@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strconv"
 
-	dispensationUtils "github.com/Blackchain/blackfury/x/dispensation/utils"
+	dispensationUtils "github.com/Offsideswap/blackfury/x/dispensation/utils"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/pkg/errors"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 )
 
 type msgServer struct {

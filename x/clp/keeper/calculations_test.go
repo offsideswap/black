@@ -5,16 +5,16 @@ import (
 	"math/big"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 )
 
@@ -23,7 +23,7 @@ func TestKeeper_CheckBalances(t *testing.T) {
 	externalAmount, _ := sdk.NewIntFromString("500000000000000000000000")
 	const address = "black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd"
 
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		balances := []banktypes.Balance{
 			{
 				Address: address,
@@ -2201,7 +2201,7 @@ func TestKeeper_SwapOneFromGenesis(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{

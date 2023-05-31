@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func (k Keeper) CreatePool(ctx sdk.Context, poolUints sdk.Uint, msg *types.MsgCreatePool) (*types.Pool, error) {

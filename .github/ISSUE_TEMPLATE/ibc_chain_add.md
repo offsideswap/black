@@ -1,7 +1,7 @@
 ---
 name: "[Token Registry] Add new IBC chain channel and token"
 about: "[Token Registry] Add a new IBC chain, channel and token"
-title: '[Token Registry] Add ... chain on ... blackchain network'
+title: '[Token Registry] Add ... chain on ... offsideswap network'
 labels: 'Blackfury, Token Registry'
 assignees: '@blackfury'
 
@@ -11,7 +11,7 @@ assignees: '@blackfury'
 
 ### Details?
 
-Blackchain Chain ID: 
+Offsideswap Chain ID: 
 Counterparty Chain ID:
 Channel ID:
 Counterparty Channel ID:
@@ -22,7 +22,7 @@ Display Name:
 <!--
 Example:
 
-Blackchain Chain ID: blackchain-devnet-1  
+Offsideswap Chain ID: offsideswap-devnet-1  
 Counterparty Chain ID: cosmoshub-4
 Channel ID: channel-1
 Counterparty Channel ID: channel-36

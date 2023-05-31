@@ -3,8 +3,8 @@ package cli
 import (
 	"errors"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
-	whitelistutils "github.com/Blackchain/blackfury/x/tokenregistry/utils"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
+	whitelistutils "github.com/Offsideswap/blackfury/x/tokenregistry/utils"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"

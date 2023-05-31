@@ -1,12 +1,12 @@
 # List of available Node Operators
 
-Below is a consolidated list of the Node Operators who have expressed interest in running a node for Blackfury. We have consolidated information that they have provided below for easy reference. This is a summarized version of their responses. We collected information across numerous categories, including: Contact Details, Node Validator Experience, Emergency Response & Monitoring, Server Infrastructure & Security, and Contributions to Blackchain. For all answers across all of these categores, please reference our [google sheet here](https://docs.google.com/spreadsheets/d/1pq_0Ca7IBfUkIiIU8lpzYQ-uUGLbT8NK3SdRoma1KOc/edit?usp=sharing). Please feel free to also check our BlockExplorer as well for additional node operator details: https://blockexplorer.blackchain.finance/
+Below is a consolidated list of the Node Operators who have expressed interest in running a node for Blackfury. We have consolidated information that they have provided below for easy reference. This is a summarized version of their responses. We collected information across numerous categories, including: Contact Details, Node Validator Experience, Emergency Response & Monitoring, Server Infrastructure & Security, and Contributions to Offsideswap. For all answers across all of these categores, please reference our [google sheet here](https://docs.google.com/spreadsheets/d/1pq_0Ca7IBfUkIiIU8lpzYQ-uUGLbT8NK3SdRoma1KOc/edit?usp=sharing). Please feel free to also check our BlockExplorer as well for additional node operator details: https://blockexplorer.offsideswap.finance/
   
 If you are wondering with node to delegate to, keep in mind certain criteria for your selection: well known node operator, supporting a specific application or community run node, nodes run by large enterprises and so forth. To avoid any slashable activities and to maximize your potential staking reward, select nodes you believe will behave honestly and will have strong uptime.
   
 
 ## Node Operator list
-| Blackchain Address | Discord | Other blockchains I run Nodes for | How long do I plan on running a node? |
+| Offsideswap Address | Discord | Other blockchains I run Nodes for | How long do I plan on running a node? |
 |:-----------------|:--------|:----------------------------------|:--------------------------------------|
 black14tm9600fx088jw55gypcwkwh04j34e9jp68t8r | Danil Ushakov#5735 | Solana, Stafi, Darwinia, Oasis (Tendermint), Akash (Tendermint), Certik (Tendermint), Avalanche, Pocket (Tendermint) | at least 5 years | 
 black1fydtkmm7u6smh4rvae70n8y79lg6sarrqqz366 | stakely.io#9147 | Mainet: Certik, Stafi, marlin, fantom. Testnet: crypto.com, nym, bluzelle and others |  Years | 
@@ -16,7 +16,7 @@ black1madlfff36f0dtq0tzcjfstfkzt80cu83f6sgv0 | OranG3#1415 | Mainnet: Certik, Bl
 black1yxu747s6wj49q7rf7cav206mqcv2tjlqw2ays5 | Photon#4219 | NEAR, CertiK, Matic | As long as it will be possible |
 black1d7vvatc4rqwqf99z90rqf6dlc484p02qjsv2h9 | whataday2day#1271 | Solana, Mina Protocol, Akash Network, Plasm, Crust Spacemesh, NYM, Robonomics | Validator is a business. Any business makes sense as long as it is cost-effective | 
 black1dlhmeawzx72ll7x88k9e8llf2ggrz7u9yk28ch | slayer_hellraiser#5093 | Plasm, Certik, Solana, Oasis, Keep, Subsocial, Regen | 12+  months | 
-black1cx05z2y0kwg0t6kf2pvkqnzepq95eg0nfyug0v | B0ban#4075 | Graph, Kusama, Stafi, Darwinia, IPCI, Robonomics, Blackchain, Clover, Plasm, Cryptocom | All the time while the project is running | 
+black1cx05z2y0kwg0t6kf2pvkqnzepq95eg0nfyug0v | B0ban#4075 | Graph, Kusama, Stafi, Darwinia, IPCI, Robonomics, Offsideswap, Clover, Plasm, Cryptocom | All the time while the project is running | 
 black100ezpz94hxqzph3cfxejpaq2gkkrsfn523aqhp | TommyWesley#5661 | Casperlabs, Certik, Skale, Mobilecoin, Coda(Mina), Nucypher | 
 black15cacq7v7us0ykrqp0t79f6tgulrtkzw4mjhx4e | Tyler34214#4119 | AVA, Matic, Near, Bluzelle, Plasm, Dusty, Spacemesh | about 6-24 months | 
 black1rjylaeyxeswfdnhcpuzh3v60faapyjlge3lp3h |  | Kusama, Regen, Certik, PolyMath, Agoric, Dusty | 9+ mo | 
@@ -34,7 +34,7 @@ black1uq7nkerr8jkvtnc6nntml2yu068ardlvmn2afz | vanyok_kangaroo#0512 | Hopr testn
 black16t3g9kl26e58r4dd49qc0p70yqex4rymg76nus | OkunDima#7060 | Darwinia, Plasm, Certik, akash, casperlabs, Skale, XX | 
 black1ast0jm7uhp2y2xuns7f0wqh958xyqyhw9cvdek |  | CELO, KAVA, COSMOS, IRIS, MATIC, Polkadot, Kusama, NEAR, The Graph, SECRET-Network, Centrifuge, STAFI, PLASM Network, CERTIK, SOLANA | As long as the project exists | 
 black18upctdzw8kdsuk54z0ze7f4vv89wrqdjkuh8a0 | bestlet#9508 | Bluzelle, Akash Network, Certik, Mina | forever | 
-black1wvq855v7adaflq3e8l36l30n72y5msg48eud0m | aliefaisala#3118 | Genesis and Technical Ambassador of Mina Protocol, tAgoric, Nymtech, HOPR, Stafi, Dock, Meter DeFi, Near Protocol, Marlin Protocol, Pirl | I will keep maintain and help the Blackchain network node as long as Team give me reward to play as validator role | 
+black1wvq855v7adaflq3e8l36l30n72y5msg48eud0m | aliefaisala#3118 | Genesis and Technical Ambassador of Mina Protocol, tAgoric, Nymtech, HOPR, Stafi, Dock, Meter DeFi, Near Protocol, Marlin Protocol, Pirl | I will keep maintain and help the Offsideswap network node as long as Team give me reward to play as validator role | 
 black1un6rzuv5gpeul673jrgxvl4fr58wrw3jskmajc | DmitrievSerg#4760 | Near, meter, Certik, Skale, XX Network, Celo, AVA etc. | 
 black1fmsl5zcfhrlwlul4gvyht62vkdmu3eklqjqa0r |  | concordium, dock, near, marlin, akash, agoric, nucypher, matic, pocket | 
 black17kvern0jcm73uzaxy86e0rzpmyn66cnwhwgyxu | gladvlad#5053 | BlockStack, Kusama, Certik, Keep, Vega, Skale, Crypto.com, XX | 
@@ -71,6 +71,6 @@ black1kyx9g0nrtkt378mltstvatw3eddckye489u | dotslash | |
 black10ps0r8zym8f9pw4euvs9qgqxjrwyzpyugcvvgc | akshayalenchery#5574 | Casper | As long as the chain is alive | 
 black1vqysw7rv9lf6ryk8xx3t2t2r9pmc5nhmryvhdl | Perfect Stake#5940 | Celo, Kusama, Band, Solana, Crypto.com, Certik, Plasm, Centrifuge | as long as required | 
 black14xuftjs6k3hecsw3g63nelkwr3jff300wq6z6z | beny1234#4111 | oasis, nucypher, irisnet | forever | 
-black1chky4sqt0nqegd2cz8c2gtchtnw9ctu2f546fl | Breather#0955 | Solana, Robonomics, Bitsong, Oasis | as long as I receive the delegations from Blackchain foundation | 
+black1chky4sqt0nqegd2cz8c2gtchtnw9ctu2f546fl | Breather#0955 | Solana, Robonomics, Bitsong, Oasis | as long as I receive the delegations from Offsideswap foundation | 
 black1fdppshyftmfxsqy9ln66qkxc8q6faktd26nhrr | Eddie Nuta | Valid Blocks#0997 | Elrond, Solana, previoulsy did Cosmos, Kava) | No target set. We're in this for the long run. |
 black1n3mhyp9fvcmuu8l0q8qvjy07x0rql8q46qzf9w | jjangg96#7937 | Solana, Mina, Cosmos, Terra, Osmosis, Akash, Oasis Protocol, Band Protocol, Regen | Long term |

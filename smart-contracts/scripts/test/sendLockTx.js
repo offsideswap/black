@@ -3,14 +3,14 @@ const BN = require('bn.js');
 module.exports = async (cb) => {
     const Web3 = require("web3");
 
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
-    const argv = blackchainUtilities.processArgs(this, {
-        ...blackchainUtilities.sharedYargOptions,
-        ...blackchainUtilities.transactionYargOptions
+    const argv = offsideswapUtilities.processArgs(this, {
+        ...offsideswapUtilities.sharedYargOptions,
+        ...offsideswapUtilities.transactionYargOptions
     });
 
     try {
@@ -18,13 +18,13 @@ module.exports = async (cb) => {
 
         const bridgeBankContract = await contractUtilites.buildContract(this, argv, logging, "BridgeBank", argv.bridgebank_address);
 
-        let cosmosRecipient = Web3.utils.utf8ToHex(argv.blackchain_address);
+        let cosmosRecipient = Web3.utils.utf8ToHex(argv.offsideswap_address);
         let coinDenom = argv.symbol;
         let amount = new BN(argv.amount);
 
         let transactionParameters = {
             from: argv.ethereum_address,
-            value: coinDenom === blackchainUtilities.NULL_ADDRESS ? amount : 0,
+            value: coinDenom === offsideswapUtilities.NULL_ADDRESS ? amount : 0,
         };
 
         await contractUtilites.setAllowance(this, argv.symbol, argv.amount, argv, logging, transactionParameters);

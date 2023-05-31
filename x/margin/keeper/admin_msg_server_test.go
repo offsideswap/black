@@ -3,13 +3,13 @@ package keeper_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/margin/keeper"
-	"github.com/Blackchain/blackfury/x/margin/test"
-	"github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/margin/keeper"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	"github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/assert"
@@ -62,7 +62,7 @@ func TestMsgServer_AdminCloseAll(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			asset := clptypes.Asset{Symbol: tt.poolAsset}
 
-			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				gs1 := &admintypes.GenesisState{
 					AdminAccounts: []*admintypes.AdminAccount{
 						{

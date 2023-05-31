@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 	"github.com/google/uuid"
 
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
-	"github.com/Blackchain/blackfury/x/dispensation/utils"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/utils"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/assert"

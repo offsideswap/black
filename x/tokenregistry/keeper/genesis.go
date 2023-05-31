@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 func (k keeper) InitGenesis(ctx sdk.Context, state types.GenesisState) []abci.ValidatorUpdate {

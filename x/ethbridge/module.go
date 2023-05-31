@@ -18,9 +18,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/client"
-	"github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/client"
+	"github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 var (

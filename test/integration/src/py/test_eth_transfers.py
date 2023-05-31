@@ -4,10 +4,10 @@ import pytest
 import burn_lock_functions
 import test_utilities
 from pytest_utilities import generate_test_account, generate_minimal_test_account
-from test_utilities import EthereumToBlackchainTransferRequest, BlackchaincliCredentials
+from test_utilities import EthereumToOffsideswapTransferRequest, OffsideswapcliCredentials
 
 def test_eth_to_ceth(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         source_ethereum_address: str,
 ):
     basic_transfer_request.ethereum_address = source_ethereum_address
@@ -18,14 +18,14 @@ def test_eth_to_ceth(
     )
 
 def test_eth_to_ceth_and_back_to_eth(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         source_ethereum_address: str,
-        fury_source_integrationtest_env_credentials: BlackchaincliCredentials,
-        fury_source_integrationtest_env_transfer_request: EthereumToBlackchainTransferRequest,
+        fury_source_integrationtest_env_credentials: OffsideswapcliCredentials,
+        fury_source_integrationtest_env_transfer_request: EthereumToOffsideswapTransferRequest,
         ethereum_network,
         smart_contracts_dir,
         bridgetoken_address,
-        blackchain_fees_int,
+        offsideswap_fees_int,
 ):
     basic_transfer_request.ethereum_address = source_ethereum_address
     basic_transfer_request.check_wait_blocks = True
@@ -37,29 +37,29 @@ def test_eth_to_ceth_and_back_to_eth(
         fury_source_integrationtest_env_transfer_request,
         fury_source_integrationtest_env_credentials,
         target_ceth_balance=test_utilities.burn_gas_cost + test_utilities.lock_gas_cost + small_amount,
-        target_fury_balance=blackchain_fees_int * 2 + small_amount
+        target_fury_balance=offsideswap_fees_int * 2 + small_amount
     )
     # send some test account ceth back to a new ethereum address
     request.ethereum_address, _ = test_utilities.create_ethereum_address(
         smart_contracts_dir, ethereum_network
     )
-    request.blackchain_symbol = "fury"
+    request.offsideswap_symbol = "fury"
     request.ethereum_symbol = bridgetoken_address
     request.amount = small_amount
-    burn_lock_functions.transfer_blackchain_to_ethereum(request, credentials)
+    burn_lock_functions.transfer_offsideswap_to_ethereum(request, credentials)
     test_utilities.get_eth_balance(request)
 
     logging.info("send eth back to ethereum chain")
-    request.blackchain_symbol = "ceth"
+    request.offsideswap_symbol = "ceth"
     request.ethereum_symbol = "eth"
     request.amount = small_amount
-    burn_lock_functions.transfer_blackchain_to_ethereum(request, credentials)
+    burn_lock_functions.transfer_offsideswap_to_ethereum(request, credentials)
 
 def test_transfer_eth_to_ceth_over_limit(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         source_ethereum_address: str,
-        fury_source_integrationtest_env_credentials: BlackchaincliCredentials,
-        fury_source_integrationtest_env_transfer_request: EthereumToBlackchainTransferRequest,
+        fury_source_integrationtest_env_credentials: OffsideswapcliCredentials,
+        fury_source_integrationtest_env_transfer_request: EthereumToOffsideswapTransferRequest,
 ):
     basic_transfer_request.ethereum_symbol = "eth"
     basic_transfer_request.ethereum_address = source_ethereum_address

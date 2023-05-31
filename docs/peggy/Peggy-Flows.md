@@ -19,8 +19,8 @@ Both scenarios 1 and 2 can be summarized with this image.
 Note that the next type of transactions require approving the BridgeBank contract to spend your tokens before calling either the lock or burn function. The only exception to this rule is ethereum, you do not need to call approve on ethereum, because it is not an ERC20 token.
 
 
-3. Ethereum Native Asset on Ethereum Being Transferred to Blackchain
-- A user sends a lock tx on ethereum to the BridgeBank contract specifying the token address, the amount of tokens to send, and the desired address of the blackchain recipient. This TX emits an ethereum event with all of these data fields.
+3. Ethereum Native Asset on Ethereum Being Transferred to Offsideswap
+- A user sends a lock tx on ethereum to the BridgeBank contract specifying the token address, the amount of tokens to send, and the desired address of the offsideswap recipient. This TX emits an ethereum event with all of these data fields.
 
 ```
 event LogLock(
@@ -36,8 +36,8 @@ event LogLock(
 - Once enough relayers have signed off on this Oracle Claim on cosmos, then pegged assets are minted on cosmos to the recipient.
 
 
-4. Cosmos Native Pegged Asset on Ethereum Being Transferred Back to Blackchain
-- A user sends a burn tx on ethereum to the BridgeBank contract specifying the token address, the amount of tokens to send, and the desired address of the blackchain recipient. This TX emits an ethereum event with all of these data fields.
+4. Cosmos Native Pegged Asset on Ethereum Being Transferred Back to Offsideswap
+- A user sends a burn tx on ethereum to the BridgeBank contract specifying the token address, the amount of tokens to send, and the desired address of the offsideswap recipient. This TX emits an ethereum event with all of these data fields.
 ```
 event LogBurn(
     address _from,

@@ -10,8 +10,8 @@ import (
 	sdktransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v2/modules/core/04-channel/types"
 
-	sctransfertypes "github.com/Blackchain/blackfury/x/ibctransfer/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	sctransfertypes "github.com/Offsideswap/blackfury/x/ibctransfer/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 // ConvertCoinsForTransfer Converts the coins requested for transfer into an amount that should be deducted from requested denom,
@@ -25,7 +25,7 @@ func ConvertCoinsForTransfer(msg *sdktransfertypes.MsgTransfer, sendRegistryEntr
 	decAmount := sdk.NewDecFromInt(msg.Token.Amount)
 	convAmountDec := ReducePrecision(decAmount, po)
 	convAmount := sdk.NewIntFromBigInt(convAmountDec.TruncateInt().BigInt())
-	// create converted and Blackchain tokens with corresponding denoms and amounts
+	// create converted and Offsideswap tokens with corresponding denoms and amounts
 	convToken := sdk.NewCoin(sendRegistryEntry.IbcCounterpartyDenom, convAmount)
 	// increase convAmount precision to ensure amount deducted from address is the same that gets sent
 	tokenAmountDec := IncreasePrecision(sdk.NewDecFromInt(convAmount), po)

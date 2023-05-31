@@ -3,7 +3,7 @@ package keeper
 import (
 	"math/big"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

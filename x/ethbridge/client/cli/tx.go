@@ -2,7 +2,7 @@ package cli
 
 import (
 	"encoding/json"
-	"github.com/Blackchain/blackfury/x/ethbridge/utils"
+	"github.com/Offsideswap/blackfury/x/ethbridge/utils"
 	"io/ioutil"
 	"path/filepath"
 	"regexp"
@@ -17,7 +17,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 // GetCmdCreateEthBridgeClaim is the CLI command for creating a claim on an ethereum prophecy
@@ -301,7 +301,7 @@ func GetCmdUpdateWhiteListValidator() *cobra.Command {
 	return cmd
 }
 
-// GetCmdUpdateCethReceiverAccount is the CLI command to update the blackchain account that receives the ceth proceeds
+// GetCmdUpdateCethReceiverAccount is the CLI command to update the offsideswap account that receives the ceth proceeds
 func GetCmdUpdateCethReceiverAccount() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "update_ceth_receiver_account [cosmos-sender-address] [ceth_receiver_account]",

@@ -19,7 +19,7 @@ export BRIDGE_REGISTRY_ADDRESS=$(cat $SOLIDITY_JSON_PATH/BridgeRegistry.json | j
 export BRIDGE_TOKEN_ADDRESS=$(cat $SOLIDITY_JSON_PATH/BridgeToken.json | jq -r ".networks[\"$ETHEREUM_NETWORK_ID\"].address")
 export BRIDGE_BANK_ADDRESS=$(cat $SOLIDITY_JSON_PATH/BridgeBank.json | jq -r ".networks[\"$ETHEREUM_NETWORK_ID\"].address")
 
-cp $BASEDIR/smart-contracts/build/contracts/BlackchainTestToken.json $SOLIDITY_JSON_PATH
+cp $BASEDIR/smart-contracts/build/contracts/OffsideswapTestToken.json $SOLIDITY_JSON_PATH
 
 echo ========== Sample commands ==========
 
@@ -53,7 +53,7 @@ echo yarn -s --cwd /home/james/workspace/blackfury/smart-contracts integrationte
   --amount 100000000000000000000000000
 
 echo; echo == lock eth
-echo yarn -s --cwd $BASEDIR/smart-contracts integrationtest:sendLockTx --blackchain_address $FURY_SOURCE \
+echo yarn -s --cwd $BASEDIR/smart-contracts integrationtest:sendLockTx --offsideswap_address $FURY_SOURCE \
   --symbol eth \
   --ethereum_private_key_env_var "ETHEREUM_PRIVATE_KEY" \
   --json_path $BASEDIR/smart-contracts/deployments/$DEPLOYMENT_NAME \
@@ -72,7 +72,7 @@ echo yarn -s --cwd $BASEDIR/smart-contracts integrationtest:sendBurnTx \
   --ethereum_network $ETHEREUM_NETWORK \
   --bridgebank_address $BRIDGE_BANK_ADDRESS \
   --ethereum_address $ETHEREUM_ADDRESS \
-  --blackchain_address $FURY_SOURCE \
+  --offsideswap_address $FURY_SOURCE \
   --amount 17
 
 echo; echo == burn efury from operator account
@@ -84,7 +84,7 @@ echo yarn -s --cwd /home/james/workspace/blackfury/smart-contracts integrationte
   --ethereum_network $ETHEREUM_NETWORK \
   --bridgebank_address $BRIDGE_BANK_ADDRESS \
   --ethereum_address $OPERATOR_ADDRESS \
-  --blackchain_address $FURY_SOURCE \
+  --offsideswap_address $FURY_SOURCE \
   --amount 100000000000000000000000000
 
 echo; echo == whitelisted tokens
@@ -96,10 +96,10 @@ echo yarn -s --cwd $BASEDIR/smart-contracts \
 
 blackfurycmd=blackfuryd
 
-echo; echo == blackchain balance
+echo; echo == offsideswap balance
 echo $blackfurycmd q auth account --node $BLACKFURY $FURY_SOURCE
 
-echo; echo == blackchain transaction
+echo; echo == offsideswap transaction
 echo $blackfurycmd q tx --node $BLACKFURY --chain-id $DEPLOYMENT_NAME 193EFB4A5D20BEC58ADE8BACEB38264870ADD8BAFEA9D6DAABE554B0ACBC0C93
 
 echo; echo == all account balances
@@ -128,6 +128,6 @@ echo; echo == Simple test run against $DEPLOYMENT_NAME:
 echo python3 -m pytest --color=yes -x -olog_cli=true -olog_level=DEBUG -v -olog_file=vagrant/data/pytest.log -v src/py/test_eth_transfers.py
 
 echo; echo == Load test run against $DEPLOYMENT_NAME - change NTRANSFERS to a large number:
-echo TOKENS=ceth,fury NTRANSFERS=2 python3 -m pytest -olog_level=DEBUG -olog_file=vagrant/data/pytest.log -v src/py/test_bulk_transfers_to_ethereum.py::test_bulk_transfers_from_blackchain
+echo TOKENS=ceth,fury NTRANSFERS=2 python3 -m pytest -olog_level=DEBUG -olog_file=vagrant/data/pytest.log -v src/py/test_bulk_transfers_to_ethereum.py::test_bulk_transfers_from_offsideswap
 
 echo; echo

@@ -8,13 +8,13 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	clptest "github.com/Blackchain/blackfury/x/clp/test"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	marginkeeper "github.com/Blackchain/blackfury/x/margin/keeper"
-	"github.com/Blackchain/blackfury/x/margin/test"
-	"github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	clptest "github.com/Offsideswap/blackfury/x/clp/test"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	marginkeeper "github.com/Offsideswap/blackfury/x/margin/keeper"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	"github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -1057,13 +1057,13 @@ func TestSQBeginBlocker(t *testing.T) {
 	require.Equal(t, uint64(0), marginKeeper.GetSQBeginBlock(ctx, &pool))
 }
 
-func initKeeper(t testing.TB) (sdk.Context, *blackapp.BlackchainApp, types.Keeper) {
+func initKeeper(t testing.TB) (sdk.Context, *blackapp.OffsideswapApp, types.Keeper) {
 	ctx, app := test.CreateTestAppMargin(false)
 	marginKeeper := app.MarginKeeper
 	require.NotNil(t, marginKeeper)
 	return ctx, app, marginKeeper
 }
-func addMTPKey(t testing.TB, ctx sdk.Context, app *blackapp.BlackchainApp, marginKeeper types.Keeper, collateralAsset string, custodyAsset string, address string, position types.Position, id uint64, health sdk.Dec) types.MTP {
+func addMTPKey(t testing.TB, ctx sdk.Context, app *blackapp.OffsideswapApp, marginKeeper types.Keeper, collateralAsset string, custodyAsset string, address string, position types.Position, id uint64, health sdk.Dec) types.MTP {
 	storeKey := app.GetKey(types.StoreKey)
 	store := ctx.KVStore(storeKey)
 	key := types.GetMTPKey(address, id)

@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Blackchain/blackfury/app"
+	"github.com/Offsideswap/blackfury/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	"github.com/stretchr/testify/require"
 )

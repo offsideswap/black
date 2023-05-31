@@ -8,8 +8,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 // EventProcessed check if the event processed by relayer

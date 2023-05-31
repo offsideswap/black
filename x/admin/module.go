@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Blackchain/blackfury/x/admin/client/cli"
+	"github.com/Offsideswap/blackfury/x/admin/client/cli"
 
 	sdkclient "github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -16,9 +16,9 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	//"github.com/Blackchain/blackfury/x/tokenregistry/handler"
-	"github.com/Blackchain/blackfury/x/admin/keeper"
-	"github.com/Blackchain/blackfury/x/admin/types"
+	//"github.com/Offsideswap/blackfury/x/tokenregistry/handler"
+	"github.com/Offsideswap/blackfury/x/admin/keeper"
+	"github.com/Offsideswap/blackfury/x/admin/types"
 )
 
 var (

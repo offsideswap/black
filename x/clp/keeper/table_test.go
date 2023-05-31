@@ -4,7 +4,7 @@ package keeper_test
 //	return tokenregistrytypes.InitialRegistry()
 //}
 //
-//func createTestAppForTestTables() (sdk.Context, *blackapp.BlackchainApp) {
+//func createTestAppForTestTables() (sdk.Context, *blackapp.OffsideswapApp) {
 //	wl := getDenomWhiteListEntries()
 //	ctx, app := clptest.CreateTestAppClp(false)
 //	for _, entry := range wl.Entries {

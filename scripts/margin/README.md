@@ -61,7 +61,7 @@ now calling the following commands should display all the available pools in loc
 Setup the node with `blackgen`
 
 ```
-blackgen node create blackchain-1 blackfury1 "connect rocket hat athlete kind fall auction measure wage father bridge tackle midnight athlete benefit faculty shove okay win entire reveal kit era truly" \
+blackgen node create offsideswap-1 blackfury1 "connect rocket hat athlete kind fall auction measure wage father bridge tackle midnight athlete benefit faculty shove okay win entire reveal kit era truly" \
 --admin-clp-addresses="black1mxv2xmhm9r25cdxpwp4n43fd98t8xz97mg6xyt|black1rkl3p87fanf8srn44lp9xrxx8smtux4mfjhwf2" \
 --admin-oracle-address=black1mxv2xmhm9r25cdxpwp4n43fd98t8xz97mg6xyt \
 --standalone --with-cosmovisor

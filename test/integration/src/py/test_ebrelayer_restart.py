@@ -8,11 +8,11 @@ import pytest
 import test_utilities
 from pytest_utilities import create_new_blackaddr
 from pytest_utilities import generate_test_account, generate_minimal_test_account
-from test_utilities import EthereumToBlackchainTransferRequest
+from test_utilities import EthereumToOffsideswapTransferRequest
 
 
 def test_ebrelayer_restart(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         source_ethereum_address: str,
 ):
     basic_transfer_request.ethereum_address = source_ethereum_address
@@ -20,18 +20,18 @@ def test_ebrelayer_restart(
         base_transfer_request=basic_transfer_request,
         target_ceth_balance=10 ** 15
     )
-    balance = test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node, "ceth")
+    balance = test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node, "ceth")
     logging.info("restart ebrelayer normally, leaving the last block db in place")
     test_utilities.start_ebrelayer()
     test_utilities.advance_n_ethereum_blocks(test_utilities.n_wait_blocks * 2, request.smart_contracts_dir)
     time.sleep(5)
-    assert balance == test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node,
+    assert balance == test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node,
                                                                "ceth")
 
 
 @pytest.mark.usefixtures("ensure_relayer_restart")
 def test_ethereum_transactions_with_offline_relayer(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         smart_contracts_dir,
         source_ethereum_address,
         bridgebank_address,
@@ -51,11 +51,11 @@ def test_ethereum_transactions_with_offline_relayer(
     amount = 9000
     new_addresses = list(map(lambda x: create_new_blackaddr(), range(3)))
     logging.debug(f"new_addresses: {new_addresses}")
-    request: EthereumToBlackchainTransferRequest = copy.deepcopy(basic_transfer_request)
+    request: EthereumToOffsideswapTransferRequest = copy.deepcopy(basic_transfer_request)
     requests = list(map(lambda addr: {
         "amount": amount,
         "symbol": test_utilities.NULL_ADDRESS,
-        "blackchain_address": addr
+        "offsideswap_address": addr
     }, new_addresses))
     json_requests = json.dumps(requests)
 
@@ -67,7 +67,7 @@ def test_ethereum_transactions_with_offline_relayer(
             f"--amount {amount}",
             f"--symbol eth",
             f"--json_path {request.solidity_json_path}",
-            f"--blackchain_address {new_addresses[0]}",
+            f"--offsideswap_address {new_addresses[0]}",
             f"--transactions \'{json_requests}\'",
             f"--ethereum_address {source_ethereum_address}",
             f"--bridgebank_address {bridgebank_address}"
@@ -82,14 +82,14 @@ def test_ethereum_transactions_with_offline_relayer(
         test_utilities.advance_n_ethereum_blocks(test_utilities.n_wait_blocks, request.smart_contracts_dir)
     for a in new_addresses:
         test_utilities.wait_for_black_account(a, basic_transfer_request.blackfuryd_node, 90)
-        test_utilities.wait_for_blackchain_addr_balance(a, "ceth", amount, basic_transfer_request.blackfuryd_node, 90)
+        test_utilities.wait_for_offsideswap_addr_balance(a, "ceth", amount, basic_transfer_request.blackfuryd_node, 90)
 
 
 @pytest.mark.usefixtures("ensure_relayer_restart")
-def test_blackchain_transactions_with_offline_relayer(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
-        fury_source_integrationtest_env_credentials: test_utilities.BlackchaincliCredentials,
-        fury_source_integrationtest_env_transfer_request: EthereumToBlackchainTransferRequest,
+def test_offsideswap_transactions_with_offline_relayer(
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
+        fury_source_integrationtest_env_credentials: test_utilities.OffsideswapcliCredentials,
+        fury_source_integrationtest_env_transfer_request: EthereumToOffsideswapTransferRequest,
         fury_source,
         smart_contracts_dir,
         source_ethereum_address,
@@ -116,17 +116,17 @@ def test_blackchain_transactions_with_offline_relayer(
     )
 
     request.amount = amount
-    request.blackchain_symbol = "ceth"
+    request.offsideswap_symbol = "ceth"
     request.ethereum_symbol = "eth"
 
     logging.info("send transactions while ebrelayer is offline")
 
     for a in new_eth_addrs:
         request.ethereum_address = a["address"]
-        blackchain_balance = test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node,
+        offsideswap_balance = test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node,
                                                                     "ceth")
-        logging.info(f"blackchain balance is {blackchain_balance}, request is {request}")
-        test_utilities.send_from_blackchain_to_ethereum(
+        logging.info(f"offsideswap balance is {offsideswap_balance}, request is {request}")
+        test_utilities.send_from_offsideswap_to_ethereum(
             transfer_request=request,
             credentials=credentials
         )

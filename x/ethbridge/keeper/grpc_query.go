@@ -4,8 +4,8 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

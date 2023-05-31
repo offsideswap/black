@@ -15,10 +15,10 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/clp/client/cli"
-	"github.com/Blackchain/blackfury/x/clp/client/rest"
-	"github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/client/cli"
+	"github.com/Offsideswap/blackfury/x/clp/client/rest"
+	"github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 // Type check to ensure the interface is properly implemented

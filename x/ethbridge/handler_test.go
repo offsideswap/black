@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 
 	"github.com/cosmos/cosmos-sdk/testutil/testdata"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -16,12 +16,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/ethbridge"
-	ethbridgekeeper "github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
-	oraclekeeper "github.com/Blackchain/blackfury/x/oracle/keeper"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge"
+	ethbridgekeeper "github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
+	oraclekeeper "github.com/Offsideswap/blackfury/x/oracle/keeper"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 const (

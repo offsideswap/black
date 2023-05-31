@@ -1,18 +1,18 @@
-# Blackchain's Security Policy
+# Offsideswap's Security Policy
 
-Blackchain looks forward to working with the security community to find vulnerabilities in order to keep our businesses and customers safe.  We are a public open source, decentralized blockchain and omni-chain DEX where most information is publicly queryable to the entire internet.  Our primary concern is any vulnerability where an attacker can siphon assets from our users in an unintended way.  Secondarily, any vulnerability that could affect or compromise the availability or performance of our blockchain.  Any issues beyond that will be considered Low severity at best.
+Offsideswap looks forward to working with the security community to find vulnerabilities in order to keep our businesses and customers safe.  We are a public open source, decentralized blockchain and omni-chain DEX where most information is publicly queryable to the entire internet.  Our primary concern is any vulnerability where an attacker can siphon assets from our users in an unintended way.  Secondarily, any vulnerability that could affect or compromise the availability or performance of our blockchain.  Any issues beyond that will be considered Low severity at best.
 
 ## Responsible Disclosure
 
-For all security related issues refer to our [Bug Bounty Program](https://immunefi.com/bounty/blackchain/). **Do not open up a GitHub issue if the bug is a security vulnerability**
+For all security related issues refer to our [Bug Bounty Program](https://immunefi.com/bounty/offsideswap/). **Do not open up a GitHub issue if the bug is a security vulnerability**
 
-**Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/Blackchain/blackfury/issues).
+**Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/Offsideswap/blackfury/issues).
 
 ## Vulnerability Handling
 
 ### Response Time
 
-Blackchain will make a best effort to meet the following response times for reported vulnerabilities:
+Offsideswap will make a best effort to meet the following response times for reported vulnerabilities:
 
 * Time to first response (from report submit) - 2 days
 * Time to triage (from report submit) - 3 - 5 days
@@ -23,7 +23,7 @@ We’ll try to keep you informed about our progress throughout the process.
 ### Disclosure Policy
 
 * Vulnerabilities should be disclosed through the Immunefi platform. Immunefi will then handle bug bounty communications.
-* Public disclosure of a vulnerability makes it ineligible for a bounty. If the user reports the vulnerability to other security teams (e.g. Ethereum or Cosmos) but reports to Blackchain with considerable delay, then Blackchain may reduce or cancel the bounty.
+* Public disclosure of a vulnerability makes it ineligible for a bounty. If the user reports the vulnerability to other security teams (e.g. Ethereum or Cosmos) but reports to Offsideswap with considerable delay, then Offsideswap may reduce or cancel the bounty.
 * Users who violate the rules of participation will not receive bug bounty payouts and may be temporarily suspended or banned from the bug bounty program.
 
-For more information check Blackchain bounty program policy at [ImmuneFi](https://immunefi.com/bounty/blackchain/)
+For more information check Offsideswap bounty program policy at [ImmuneFi](https://immunefi.com/bounty/offsideswap/)

@@ -2,8 +2,8 @@ package dispensation
 
 import (
 	"fmt"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/pkg/errors"
 	abci "github.com/tendermint/tendermint/abci/types"

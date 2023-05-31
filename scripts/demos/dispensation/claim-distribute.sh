@@ -12,7 +12,7 @@ blackfuryd tx dispensation claim ValidatorSubsidy --from black --keyring-backend
 sleep 8
 blackfuryd q dispensation claims-by-type ValidatorSubsidy -o json
 sleep 8
-blackfuryd tx dispensation create ValidatorSubsidy output.json black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --gas 200064128 --from black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --keyring-backend test --fees 100000fury --yes --chain-id blackchain-devnet-042 --node tcp://rpc-devnet-042.blackchain.finance:80
+blackfuryd tx dispensation create ValidatorSubsidy output.json black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --gas 200064128 --from black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --keyring-backend test --fees 100000fury --yes --chain-id offsideswap-devnet-042 --node tcp://rpc-devnet-042.offsideswap.finance:80
 
 sleep 8
 blackfuryd q dispensation distributions-all --chain-id localnet -o json

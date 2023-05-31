@@ -2,7 +2,7 @@ syntax = "proto3";
 package blackfury.tokenregistry.v1;
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/tokenregistry/types";
+option go_package = "github.com/Offsideswap/blackfury/x/tokenregistry/types";
 
 message GenesisState {
   Registry registry = 2;

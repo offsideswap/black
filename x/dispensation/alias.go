@@ -1,8 +1,8 @@
 package dispensation
 
 import (
-	"github.com/Blackchain/blackfury/x/dispensation/keeper"
-	types "github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	types "github.com/Offsideswap/blackfury/x/dispensation/types"
 )
 
 const (

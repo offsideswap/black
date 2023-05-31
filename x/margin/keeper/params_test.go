@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/margin/test"
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )

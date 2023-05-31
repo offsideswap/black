@@ -2,8 +2,8 @@ package cli
 
 import (
 	"fmt"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
-	dispensationUtils "github.com/Blackchain/blackfury/x/dispensation/utils"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
+	dispensationUtils "github.com/Offsideswap/blackfury/x/dispensation/utils"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"

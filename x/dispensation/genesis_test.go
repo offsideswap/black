@@ -3,9 +3,9 @@ package dispensation_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/dispensation"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

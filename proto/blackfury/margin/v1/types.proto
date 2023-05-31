@@ -2,7 +2,7 @@ syntax = "proto3";
 package blackfury.margin.v1;
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/margin/types";
+option go_package = "github.com/Offsideswap/blackfury/x/margin/types";
 
 message GenesisState { Params params = 1; }
 

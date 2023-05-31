@@ -11,8 +11,8 @@ import (
 	transfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	"github.com/spf13/cobra"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
-	whitelistutils "github.com/Blackchain/blackfury/x/tokenregistry/utils"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
+	whitelistutils "github.com/Offsideswap/blackfury/x/tokenregistry/utils"
 )
 
 func GetQueryCmd() *cobra.Command {
@@ -207,7 +207,7 @@ func GetCmdGenerateEntry() *cobra.Command {
 		},
 	}
 	cmd.Flags().String(flagDenom, "",
-		"The IBC hash / denom  stored on blackchain - to generate this hash for IBC token, leave blank and specify base_denom and ibc_channel_id")
+		"The IBC hash / denom  stored on offsideswap - to generate this hash for IBC token, leave blank and specify base_denom and ibc_channel_id")
 	cmd.Flags().String(flagBaseDenom, "",
 		"The base denom native to our chain, or native to an original chain (ie not the ibc hash)")
 	cmd.Flags().String(flagIbcChannelID, "",

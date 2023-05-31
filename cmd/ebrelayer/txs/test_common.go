@@ -11,8 +11,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 const (
@@ -88,7 +88,7 @@ func CreateTestCosmosMsg(t *testing.T, claimType types.Event) types.CosmosMsg {
 
 	var symbol string
 	if claimType == types.MsgBurn {
-		res := strings.SplitAfter(strings.ToLower(TestSymbol), defaultBlackchainPrefix)
+		res := strings.SplitAfter(strings.ToLower(TestSymbol), defaultOffsideswapPrefix)
 		symbol = strings.Join(res[1:], "")
 	} else {
 		symbol = TestSymbol

@@ -23,7 +23,7 @@ func getDefaultArgs() Args {
 		panic(toAddr)
 	}
 
-	kr, err := keyring.New("blackchain", "test", os.TempDir(), nil)
+	kr, err := keyring.New("offsideswap", "test", os.TempDir(), nil)
 	if err != nil {
 		panic(err)
 	}
@@ -38,13 +38,13 @@ func getDefaultArgs() Args {
 	}
 
 	return Args{
-		ChainID:          "blackchain-devnet-1",
+		ChainID:          "offsideswap-devnet-1",
 		GasPrice:         "",
 		GasAdjustment:    0,
 		Keybase:          kr,
 		ChannelID:        "",
 		Sender:           accInfo.GetAddress(),
-		BlackchainReceiver: toAddr,
+		OffsideswapReceiver: toAddr,
 		CosmosReceiver:   "",
 		Amount:           sdk.NewCoins(sdk.NewCoin("fury", amount)),
 		TimeoutTimestamp: 0,
@@ -66,11 +66,11 @@ func setNetwork(args *Args, network Network) {
 	args.Network = network
 	switch args.Network {
 	case Devnet:
-		args.ChainID = "blackchain-devnet"
+		args.ChainID = "offsideswap-devnet"
 	case TestNet:
-		args.ChainID = "blackchain-testnet"
+		args.ChainID = "offsideswap-testnet"
 	case MainNet:
-		args.ChainID = "blackchain"
+		args.ChainID = "offsideswap"
 	case LocalNet:
 		args.ChainID = "localnet"
 	default:

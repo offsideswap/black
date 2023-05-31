@@ -11,11 +11,11 @@ If the dispensation contains 3000 records, the authorized runner would need to s
 
 The CLI command 
 ```shell
-blackfuryd tx dispensation run [Distribution_Name] [Distribution Type Airdrop/ValidatorSubsidy/LiquidityMining] --from [Authorised runner neeeds to sign the transaction] --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.blackchain.finance:80 --chain-id blackchain
+blackfuryd tx dispensation run [Distribution_Name] [Distribution Type Airdrop/ValidatorSubsidy/LiquidityMining] --from [Authorised runner neeeds to sign the transaction] --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.offsideswap.finance:80 --chain-id offsideswap
 ```
 sample CLI command
 ```shell
-blackfuryd tx dispensation run 2_black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd LiquidityMining --from black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.blackchain.finance:80 --chain-id blackchain
+blackfuryd tx dispensation run 2_black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd LiquidityMining --from black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.offsideswap.finance:80 --chain-id offsideswap
 ```
 sample output
 ```json
@@ -27,7 +27,7 @@ sample output
 ```
 The Tx hash can then be used to query the blockchain to get the related events
 ```shell
-blackfuryd q tx A9D019E1080ECD6A012B20B3058534AC6643BD17634F181FBE7F8F5C43B94D8E --node tcp://rpc.blackchain.finance:80 --chain-id blackchain
+blackfuryd q tx A9D019E1080ECD6A012B20B3058534AC6643BD17634F181FBE7F8F5C43B94D8E --node tcp://rpc.offsideswap.finance:80 --chain-id offsideswap
 ```
 The relevant event 
 ```json

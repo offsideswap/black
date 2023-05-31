@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 )
 
 func TestTypes_GetMTPKey(t *testing.T) {

@@ -2,8 +2,8 @@ import * as hardhat from "hardhat";
 import {container} from "tsyringe";
 import {DeployedBridgeBank, DeployedCosmosBridge, requiredEnvVar} from "../src/contractSupport";
 import {DeploymentName, HardhatRuntimeEnvironmentToken} from "../src/tsyringe/injectionTokens";
-import {setupRopstenDeployment, setupBlackchainMainnetDeployment} from "../src/hardhatFunctions";
-import {BlackchainContractFactories} from "../src/tsyringe/contracts";
+import {setupRopstenDeployment, setupOffsideswapMainnetDeployment} from "../src/hardhatFunctions";
+import {OffsideswapContractFactories} from "../src/tsyringe/contracts";
 import * as dotenv from "dotenv";
 
 // Usage
@@ -16,7 +16,7 @@ import * as dotenv from "dotenv";
 // MAINNET_URL=https://eth-mainnet.alchemyapi.io/v2/...
 // ROPSTEN_URL=https://eth-ropsten.alchemyapi.io/v2/...
 // ROPSTEN_PROXY_ADMIN_PRIVATE_KEY=aaaa...
-// DEPLOYMENT_NAME="blackchain-testnet-042-ibc"
+// DEPLOYMENT_NAME="offsideswap-testnet-042-ibc"
 
 async function main() {
     const [proxyAdmin] = await hardhat.ethers.getSigners();
@@ -32,14 +32,14 @@ async function main() {
             await setupRopstenDeployment(container, hardhat, deploymentName)
             break
         case "mainnet":
-            await setupBlackchainMainnetDeployment(container, hardhat)
+            await setupOffsideswapMainnetDeployment(container, hardhat)
             break
     }
 
     // upgradeProxy wants two things: a ContractFactory to build the new logic contract,
     // and an existing contract that will be replaced.
 
-    const factories = await container.resolve(BlackchainContractFactories) as BlackchainContractFactories
+    const factories = await container.resolve(OffsideswapContractFactories) as OffsideswapContractFactories
     const bridgeBankFactory = await factories.bridgeBank
     const cosmosBridgeFactory = await factories.cosmosBridge
 

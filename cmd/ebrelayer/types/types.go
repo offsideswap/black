@@ -7,7 +7,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

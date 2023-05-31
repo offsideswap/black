@@ -17,17 +17,17 @@ highest_gas_cost = max(burn_gas_cost, lock_gas_cost)
 blackfuryd_binary = "blackfuryd"
 
 @dataclass
-class EthereumToBlackchainTransferRequest:
-    blackchain_address: str = ""
-    blackchain_destination_address: str = ""
+class EthereumToOffsideswapTransferRequest:
+    offsideswap_address: str = ""
+    offsideswap_destination_address: str = ""
     ethereum_address: str = ""
     ethereum_private_key_env_var: str = "not required for localnet"
-    blackchain_symbol: str = "ceth"
+    offsideswap_symbol: str = "ceth"
     ethereum_symbol: str = "eth"
     ethereum_network: str = ""  # mainnet, ropsten, http:// for localnet
     amount: int = 0
     ceth_amount: int = 0
-    blackchain_fees: str = ""  # Deprecated, see https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+    offsideswap_fees: str = ""  # Deprecated, see https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
     smart_contracts_dir: str = ""
     ethereum_chain_id: str = "5777"
     chain_id: str = "localnet"  # cosmos chain id
@@ -50,11 +50,11 @@ class EthereumToBlackchainTransferRequest:
 
     @staticmethod
     def from_args(args):
-        return EthereumToBlackchainTransferRequest(
-            blackchain_address=args.blackchain_address[0],
-            blackchain_destination_address=args.blackchain_destination_address[0],
+        return EthereumToOffsideswapTransferRequest(
+            offsideswap_address=args.offsideswap_address[0],
+            offsideswap_destination_address=args.offsideswap_destination_address[0],
             ethereum_address=args.ethereum_address[0],
-            blackchain_symbol=args.blackchain_symbol[0],
+            offsideswap_symbol=args.offsideswap_symbol[0],
             ethereum_symbol=args.ethereum_symbol[0],
             bridgebank_address=args.bridgebank_address[0],
             amount=int(args.amount[0]),
@@ -66,7 +66,7 @@ class EthereumToBlackchainTransferRequest:
 
 
 @dataclass
-class BlackchaincliCredentials:
+class OffsideswapcliCredentials:
     keyring_passphrase: str = None
     keyring_backend: str = "test"
     from_key: str = None
@@ -81,8 +81,8 @@ class BlackchaincliCredentials:
 
 @dataclass
 class RequestAndCredentials:
-    transfer_request: EthereumToBlackchainTransferRequest
-    credentials: BlackchaincliCredentials
+    transfer_request: EthereumToOffsideswapTransferRequest
+    credentials: OffsideswapcliCredentials
     args: object
 
 
@@ -184,7 +184,7 @@ def kill_ebrelayer():
 
 def start_ebrelayer():
     integration_dir = get_required_env_var("TEST_INTEGRATION_DIR")
-    return get_shell_output(f"{integration_dir}/blackchain_start_ebrelayer.sh")
+    return get_shell_output(f"{integration_dir}/offsideswap_start_ebrelayer.sh")
 
 
 # converts a key to a black address.
@@ -200,7 +200,7 @@ def get_password(network_definition_file_json):
     return password
 
 
-def get_eth_balance(transfer_request: EthereumToBlackchainTransferRequest):
+def get_eth_balance(transfer_request: EthereumToOffsideswapTransferRequest):
     network_element = f"--ethereum_network {transfer_request.ethereum_network} " if transfer_request.ethereum_network else ""
     symbol_element = f"--symbol {transfer_request.ethereum_symbol} " if transfer_request.ethereum_symbol else ""
     private_element = f"--ethereum_private_key_env_var \"{transfer_request.ethereum_private_key_env_var}\"" if transfer_request.ethereum_private_key_env_var else ""
@@ -217,7 +217,7 @@ def get_eth_balance(transfer_request: EthereumToBlackchainTransferRequest):
     return int(result["balanceWei"])
 
 
-def get_whitelisted_tokens(transfer_request: EthereumToBlackchainTransferRequest):
+def get_whitelisted_tokens(transfer_request: EthereumToOffsideswapTransferRequest):
     network_element = f"--ethereum_network {transfer_request.ethereum_network} " if transfer_request.ethereum_network else ""
     symbol_element = f"--symbol {transfer_request.ethereum_symbol} " if transfer_request.ethereum_symbol else ""
     private_element = f"--ethereum_private_key_env_var \"{transfer_request.ethereum_private_key_env_var}\"" if transfer_request.ethereum_private_key_env_var else ""
@@ -244,7 +244,7 @@ def get_token_ethereum_address(
     return None
 
 
-def mint_tokens(transfer_request: EthereumToBlackchainTransferRequest, operator_address):
+def mint_tokens(transfer_request: EthereumToOffsideswapTransferRequest, operator_address):
     network_element = f"--ethereum_network {transfer_request.ethereum_network} " if transfer_request.ethereum_network else ""
     symbol_element = f"--symbol {transfer_request.ethereum_symbol} " if transfer_request.ethereum_symbol else ""
     private_element = f"--ethereum_private_key_env_var \"{transfer_request.ethereum_private_key_env_var}\"" if transfer_request.ethereum_private_key_env_var else ""
@@ -263,7 +263,7 @@ def mint_tokens(transfer_request: EthereumToBlackchainTransferRequest, operator_
     return run_yarn_command(command_line)
 
 
-def get_blackchain_addr_balance(blackaddress, blackfuryd_node, denom):
+def get_offsideswap_addr_balance(blackaddress, blackfuryd_node, denom):
     node = f"--node {blackfuryd_node}" if blackfuryd_node else ""
     command_line = f"{blackfuryd_binary} query bank balances {node} {blackaddress} --output json --limit 100000000"
     json_str = get_shell_output_json(command_line)
@@ -327,7 +327,7 @@ def wait_for_balance(balance_fn, target_balance, max_seconds=80, debug_prefix=""
                 time.sleep(1)
 
 
-def wait_for_eth_balance(transfer_request: EthereumToBlackchainTransferRequest, target_balance, max_seconds=80):
+def wait_for_eth_balance(transfer_request: EthereumToOffsideswapTransferRequest, target_balance, max_seconds=80):
     wait_for_balance(
         lambda: get_eth_balance(transfer_request),
         int(target_balance),
@@ -340,20 +340,20 @@ def normalize_symbol(symbol: str):
     return symbol.lower()
 
 
-def wait_for_blackchain_addr_balance(
-        blackchain_address,
+def wait_for_offsideswap_addr_balance(
+        offsideswap_address,
         symbol,
         target_balance,
-        blackchaincli_node,
+        offsideswapcli_node,
         max_seconds=30,
         debug_prefix=""
 ):
     normalized_symbol = normalize_symbol(symbol)
     if not max_seconds:
         max_seconds = 90
-    logging.debug(f"wait_for_blackchain_addr_balance for node {blackchaincli_node}, {normalized_symbol}, {target_balance}")
+    logging.debug(f"wait_for_offsideswap_addr_balance for node {offsideswapcli_node}, {normalized_symbol}, {target_balance}")
     return wait_for_balance(
-        lambda: int(get_blackchain_addr_balance(blackchain_address, blackchaincli_node, normalized_symbol)),
+        lambda: int(get_offsideswap_addr_balance(offsideswap_address, offsideswapcli_node, normalized_symbol)),
         int(target_balance),
         max_seconds,
         debug_prefix
@@ -368,27 +368,27 @@ def detect_errors_in_blackfuryd_output(result):
             raise Exception(f"should not have error in output: {result}")
 
 
-def send_from_blackchain_to_blackchain_cmd(
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials
+def send_from_offsideswap_to_offsideswap_cmd(
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials
 ):
-    logging.debug(f"send_from_blackchain_to_blackchain {transfer_request} {credentials}")
+    logging.debug(f"send_from_offsideswap_to_offsideswap {transfer_request} {credentials}")
     yes_entry = f"yes {credentials.keyring_passphrase} | " if credentials.keyring_passphrase else ""
     keyring_backend_entry = f"--keyring-backend {credentials.keyring_backend}" if credentials.keyring_backend else ""
     chain_id_entry = f"--chain-id {transfer_request.chain_id}" if transfer_request.chain_id else ""
     node = f"--node {transfer_request.blackfuryd_node}" if transfer_request.blackfuryd_node else ""
-    blackchain_fees_entry = f"--fees {transfer_request.blackchain_fees}" if transfer_request.blackchain_fees else ""  # Deprecated, see https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+    offsideswap_fees_entry = f"--fees {transfer_request.offsideswap_fees}" if transfer_request.offsideswap_fees else ""  # Deprecated, see https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
     home_entry = f"--home {credentials.blackfuryd_homedir}" if credentials.blackfuryd_homedir else ""
     cmd = " ".join([
         yes_entry,
         f"{blackfuryd_binary} tx bank send",
-        transfer_request.blackchain_address,
-        transfer_request.blackchain_destination_address,
+        transfer_request.offsideswap_address,
+        transfer_request.offsideswap_destination_address,
         keyring_backend_entry,
         chain_id_entry,
         node,
-        f"{transfer_request.amount}{transfer_request.blackchain_symbol}",
-        blackchain_fees_entry,
+        f"{transfer_request.amount}{transfer_request.offsideswap_symbol}",
+        offsideswap_fees_entry,
         home_entry,
         "--gas auto",
         "-y -o json",
@@ -396,11 +396,11 @@ def send_from_blackchain_to_blackchain_cmd(
     return cmd
 
 
-def send_from_blackchain_to_blackchain(
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials
+def send_from_offsideswap_to_offsideswap(
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials
 ):
-    cmd = send_from_blackchain_to_blackchain_cmd(transfer_request, credentials)
+    cmd = send_from_offsideswap_to_offsideswap_cmd(transfer_request, credentials)
     result = get_shell_output_json(cmd)
     # detect_errors_in_blackfuryd_output(result)
     time.sleep(4)
@@ -408,12 +408,12 @@ def send_from_blackchain_to_blackchain(
     return result
 
 
-def send_from_blackchain_to_ethereum_cmd(
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials,
+def send_from_offsideswap_to_ethereum_cmd(
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials,
 ):
     """
-    Sends from Blackchain to Ethereum.
+    Sends from Offsideswap to Ethereum.
 
     Picks a lock or a burn based on the token (fury, anything else).
     """
@@ -421,8 +421,8 @@ def send_from_blackchain_to_ethereum_cmd(
     yes_entry = f"yes {credentials.keyring_passphrase} | " if credentials.keyring_passphrase else ""
     keyring_backend_entry = f"--keyring-backend {credentials.keyring_backend}" if credentials.keyring_backend else ""
     node = f"--node {transfer_request.blackfuryd_node}" if transfer_request.blackfuryd_node else ""
-    blackchain_fees_entry = f"--fees {transfer_request.blackchain_fees}" if transfer_request.blackchain_fees else ""  # Deprecated, see https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
-    direction = "lock" if transfer_request.blackchain_symbol == "fury" else "burn"
+    offsideswap_fees_entry = f"--fees {transfer_request.offsideswap_fees}" if transfer_request.offsideswap_fees else ""  # Deprecated, see https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
+    direction = "lock" if transfer_request.offsideswap_symbol == "fury" else "burn"
     home_entry = f"--home {credentials.blackfuryd_homedir}" if credentials.blackfuryd_homedir else ""
     from_entry = f"--from {credentials.from_key} " if credentials.from_key else ""
     if not transfer_request.ceth_amount:
@@ -432,13 +432,13 @@ def send_from_blackchain_to_ethereum_cmd(
             ceth_charge = burn_gas_cost
     command_line = f"{yes_entry} " \
                    f"{blackfuryd_binary} tx ethbridge {direction} {node} " \
-                   f"{transfer_request.blackchain_address} " \
+                   f"{transfer_request.offsideswap_address} " \
                    f"{transfer_request.ethereum_address} " \
                    f"{int(transfer_request.amount):0} " \
-                   f"{transfer_request.blackchain_symbol} " \
+                   f"{transfer_request.offsideswap_symbol} " \
                    f"{ceth_charge} " \
                    f"{keyring_backend_entry} " \
-                   f"{blackchain_fees_entry} " \
+                   f"{offsideswap_fees_entry} " \
                    f"--ethereum-chain-id={transfer_request.ethereum_chain_id} " \
                    f"--chain-id={transfer_request.chain_id} " \
                    f"{home_entry} " \
@@ -447,19 +447,19 @@ def send_from_blackchain_to_ethereum_cmd(
     return command_line
 
 
-def send_from_blackchain_to_ethereum(transfer_request: EthereumToBlackchainTransferRequest,
-                                   credentials: BlackchaincliCredentials):
-    command_line = send_from_blackchain_to_ethereum_cmd(transfer_request, credentials)
+def send_from_offsideswap_to_ethereum(transfer_request: EthereumToOffsideswapTransferRequest,
+                                   credentials: OffsideswapcliCredentials):
+    command_line = send_from_offsideswap_to_ethereum_cmd(transfer_request, credentials)
     result = get_shell_output(command_line)
     detect_errors_in_blackfuryd_output(result)
     return result
 
 
 # this does not wait for the transaction to complete
-def send_from_ethereum_to_blackchain(transfer_request: EthereumToBlackchainTransferRequest) -> int:
-    direction = "sendBurnTx" if transfer_request.blackchain_symbol == "fury" else "sendLockTx"
+def send_from_ethereum_to_offsideswap(transfer_request: EthereumToOffsideswapTransferRequest) -> int:
+    direction = "sendBurnTx" if transfer_request.offsideswap_symbol == "fury" else "sendLockTx"
     command_line = f"yarn -s --cwd {transfer_request.smart_contracts_dir} integrationtest:{direction} " \
-                   f"--blackchain_address {transfer_request.blackchain_address} " \
+                   f"--offsideswap_address {transfer_request.offsideswap_address} " \
                    f"--symbol {transfer_request.ethereum_symbol} " \
                    f"--amount {int(transfer_request.amount):0} " \
                    f"--bridgebank_address {transfer_request.bridgebank_address} " \
@@ -488,10 +488,10 @@ def mirror_of(currency):
     return currency_pairs.get(currency)
 
 
-def wait_for_black_account(black_addr, blackchaincli_node, max_seconds=90):
+def wait_for_black_account(black_addr, offsideswapcli_node, max_seconds=90):
     def fn():
         try:
-            get_blackchain_addr_balance(black_addr, blackchaincli_node, "eth")
+            get_offsideswap_addr_balance(black_addr, offsideswapcli_node, "eth")
             return True
         except:
             return False
@@ -537,7 +537,7 @@ def current_ethereum_block_number(smart_contracts_dir: str):
     return advance_n_ethereum_blocks(0, smart_contracts_dir)["currentBlockNumber"]
 
 
-def wait_for_ethereum_block_number(block_number: int, transfer_request: EthereumToBlackchainTransferRequest):
+def wait_for_ethereum_block_number(block_number: int, transfer_request: EthereumToOffsideswapTransferRequest):
     network_element = f"--ethereum_network {transfer_request.ethereum_network} " if transfer_request.ethereum_network else ""
     command_line = f"yarn --cwd {transfer_request.smart_contracts_dir} " \
                    f"integrationtest:waitForBlock " \
@@ -579,7 +579,7 @@ def whitelist_token(token: str, smart_contracts_dir: str, setting: bool = True):
     return get_shell_output(f"yarn --cwd {smart_contracts_dir} peggy:whiteList {token} {setting}")
 
 
-def approve_token_amount(token_request: EthereumToBlackchainTransferRequest):
+def approve_token_amount(token_request: EthereumToOffsideswapTransferRequest):
     cmd = f"yarn --cwd {token_request.smart_contracts_dir} " \
           f"integrationtest:approve " \
           f"--amount {token_request.amount} " \
@@ -686,7 +686,7 @@ def ganache_private_key(ganache_private_keys_file: str, address):
     return pks[address]
 
 
-def blackchain_symbol_to_ethereum_symbol(s: str):
+def offsideswap_symbol_to_ethereum_symbol(s: str):
     if s == "fury":
         return "efury"
     elif s == "ceth":
@@ -698,10 +698,10 @@ def blackchain_symbol_to_ethereum_symbol(s: str):
 def update_ceth_receiver_account(
         receiver_account: str,
         admin_account: str,
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials
 ):
-    cmd = build_blackchain_command(
+    cmd = build_offsideswap_command(
         f"{blackfuryd_binary} tx ethbridge update_ceth_receiver_account -y {admin_account} {receiver_account}",
         transfer_request=transfer_request,
         credentials=credentials
@@ -714,10 +714,10 @@ def rescue_ceth(
         receiver_account: str,
         admin_account: str,
         amount: int,
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials
 ):
-    cmd = build_blackchain_command(
+    cmd = build_offsideswap_command(
         f"{blackfuryd_binary} tx ethbridge rescue_ceth -y {admin_account} {receiver_account} {amount:d}",
         transfer_request=transfer_request,
         credentials=credentials
@@ -725,10 +725,10 @@ def rescue_ceth(
     return get_shell_output(cmd)
 
 
-def build_blackchain_command(
+def build_offsideswap_command(
         command_contents: str,
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials
 ):
     yes_entry = f"yes {credentials.keyring_passphrase} | " if credentials.keyring_passphrase else ""
     keyring_backend_entry = f"--keyring-backend {credentials.keyring_backend}" if credentials.keyring_backend else ""
@@ -736,7 +736,7 @@ def build_blackchain_command(
     node_entry = f"--node {transfer_request.blackfuryd_node}" if transfer_request.blackfuryd_node else ""
     home_entry = f"--home {credentials.blackfuryd_homedir}" if credentials.blackfuryd_homedir else ""
     from_entry = f"--from {credentials.from_key} " if credentials.from_key else ""
-    blackchain_fees_entry = f"--fees {transfer_request.blackchain_fees}" if transfer_request.blackchain_fees else ""  # Deprecated, see https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+    offsideswap_fees_entry = f"--fees {transfer_request.offsideswap_fees}" if transfer_request.offsideswap_fees else ""  # Deprecated, see https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
     return " ".join([
         yes_entry,
         command_contents,
@@ -745,5 +745,5 @@ def build_blackchain_command(
         node_entry,
         home_entry,
         from_entry,
-        blackchain_fees_entry,
+        offsideswap_fees_entry,
     ])

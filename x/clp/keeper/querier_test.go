@@ -7,11 +7,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdkQuery "github.com/cosmos/cosmos-sdk/types/query"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -21,7 +21,7 @@ import (
 
 // createTestInput Returns a simapp with custom StakingKeeper
 // to avoid messing with the hooks.
-func createTestInput() (*codec.LegacyAmino, *blackapp.BlackchainApp, sdk.Context) { //nolint
+func createTestInput() (*codec.LegacyAmino, *blackapp.OffsideswapApp, sdk.Context) { //nolint
 	blackapp.SetConfig(false)
 	app := blackapp.Setup(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})

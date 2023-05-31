@@ -8,10 +8,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Blackchain/blackfury/x/clp"
-	"github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp"
+	"github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func TestExportGenesis(t *testing.T) {

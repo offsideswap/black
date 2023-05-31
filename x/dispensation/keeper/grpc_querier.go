@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

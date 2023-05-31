@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 )

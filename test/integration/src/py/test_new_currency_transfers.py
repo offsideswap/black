@@ -2,19 +2,19 @@ import copy
 import pytest
 
 import burn_lock_functions
-from burn_lock_functions import EthereumToBlackchainTransferRequest
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
 from integration_env_credentials import create_new_blackaddr_and_credentials
 from test_utilities import get_shell_output, amount_in_wei, \
     create_new_currency
 
 
-def build_request_for_new_blackchain_address(basic_transfer_request, source_ethereum_address, new_currency, amount):
+def build_request_for_new_offsideswap_address(basic_transfer_request, source_ethereum_address, new_currency, amount):
     blackaddress, _ = create_new_blackaddr_and_credentials()
     request = copy.deepcopy(basic_transfer_request)
     request.ethereum_symbol = new_currency["newtoken_address"]
     request.ethereum_address = source_ethereum_address
-    request.blackchain_symbol = "c" + new_currency["newtoken_symbol"]
-    request.blackchain_address = blackaddress
+    request.offsideswap_symbol = "c" + new_currency["newtoken_symbol"]
+    request.offsideswap_address = blackaddress
     request.amount = amount
     return request
 
@@ -23,7 +23,7 @@ def build_request_for_new_blackchain_address(basic_transfer_request, source_ethe
 @pytest.mark.usefixtures("operator_private_key")
 def test_can_create_a_new_token_and_peg_it(
         token_length: int,
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         smart_contracts_dir,
         bridgebank_address,
         solidity_json_path,
@@ -45,10 +45,10 @@ def test_can_create_a_new_token_and_peg_it(
         operator_address=operator_address,
         ethereum_network=ethereum_network
     )
-    request = build_request_for_new_blackchain_address(
+    request = build_request_for_new_offsideswap_address(
         basic_transfer_request,
         source_ethereum_address,
         new_currency,
         amount / 10
     )
-    burn_lock_functions.transfer_ethereum_to_blackchain(request)
+    burn_lock_functions.transfer_ethereum_to_offsideswap(request)

@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	blackAnte "github.com/Blackchain/blackfury/app/ante"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	blackAnte "github.com/Offsideswap/blackfury/app/ante"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
@@ -134,7 +134,7 @@ func TestAnte_CalculateRedelegateProjectedVotingPower(t *testing.T) {
 	}
 }
 
-func createValidator(app *blackapp.BlackchainApp, ctx sdk.Context, delegateAmount sdk.Int, status stakingtypes.BondStatus, delegatorAddress sdk.AccAddress, valPubKey cryptotypes.PubKey) sdk.ValAddress {
+func createValidator(app *blackapp.OffsideswapApp, ctx sdk.Context, delegateAmount sdk.Int, status stakingtypes.BondStatus, delegatorAddress sdk.AccAddress, valPubKey cryptotypes.PubKey) sdk.ValAddress {
 	pkAny, err := codectypes.NewAnyWithValue(valPubKey)
 	if err != nil {
 		panic(err)

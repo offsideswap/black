@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/Blackchain/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/admin/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"

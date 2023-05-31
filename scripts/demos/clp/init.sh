@@ -5,7 +5,7 @@ rm -rf blackfury.log
 rm -rf testlog.log
 
 
-blackfuryd init test --chain-id=blackchain -o
+blackfuryd init test --chain-id=offsideswap -o
 
 echo "Generating deterministic account - black"
 echo "race draft rival universe maid cheese steel logic crowd fork comic easy truth drift tomorrow eye buddy head time cash swing swift midnight borrow" | blackfuryd keys add black --recover

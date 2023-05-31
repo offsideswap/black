@@ -7,9 +7,9 @@ import (
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/margin/types"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"

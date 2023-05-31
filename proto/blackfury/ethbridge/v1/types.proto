@@ -3,7 +3,7 @@ package blackfury.ethbridge.v1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/ethbridge/types";
+option go_package = "github.com/Offsideswap/blackfury/x/ethbridge/types";
 
 // EthBridgeClaim is a structure that contains all the data for a particular
 // bridge claim

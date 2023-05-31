@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )

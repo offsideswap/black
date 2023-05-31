@@ -29,7 +29,7 @@ blackfuryd tx ethbridge burn $(blackfuryd keys show user2 -a) 0x11111111262b236c
 blackfuryd q auth account $(blackfuryd keys show user2 -a)
 
 ## Case 3
-## 1. lock user2 rwn in blackchain
+## 1. lock user2 rwn in offsideswap
 blackfuryd tx ethbridge lock $(blackfuryd keys show user2 -a) 0x11111111262b236c9ac9a9a8c8e4276b5cf6b2c9 \
 10 rwn  --ethereum-chain-id=3 --from=user2 --yes
 

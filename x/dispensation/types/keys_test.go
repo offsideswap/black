@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/stretchr/testify/assert"
 )

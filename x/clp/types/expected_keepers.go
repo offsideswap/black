@@ -1,8 +1,8 @@
 package types
 
 import (
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	tokenregistryTypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	tokenregistryTypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"

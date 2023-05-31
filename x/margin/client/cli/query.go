@@ -9,7 +9,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/spf13/cobra"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 )
 
 func GetQueryCmd() *cobra.Command {

@@ -3,18 +3,18 @@ package test
 import (
 	"bytes"
 	"encoding/hex"
-	tokenregistryTypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	tokenregistryTypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	"math/rand"
 	"time"
 
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
 
 	"strconv"
 	"testing"
 
-	"github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/ethbridge/keeper"
 
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
@@ -38,9 +38,9 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
-	oraclekeeper "github.com/Blackchain/blackfury/x/oracle/keeper"
-	oracleTypes "github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
+	oraclekeeper "github.com/Offsideswap/blackfury/x/oracle/keeper"
+	oracleTypes "github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 const (
@@ -161,13 +161,13 @@ func CreateTestKeepers(t *testing.T, consensusNeeded float64, validatorAmounts [
 	return ctx, ethbridgeKeeper, bankKeeper, accountKeeper, oracleKeeper, encCfg, valAddrs
 }
 
-func CreateTestApp(isCheckTx bool) (*app.BlackchainApp, sdk.Context) {
-	blackchainApp := app.Setup(isCheckTx)
-	ctx := blackchainApp.BaseApp.NewContext(isCheckTx, tmproto.Header{})
-	blackchainApp.AccountKeeper.SetParams(ctx, authtypes.DefaultParams())
+func CreateTestApp(isCheckTx bool) (*app.OffsideswapApp, sdk.Context) {
+	offsideswapApp := app.Setup(isCheckTx)
+	ctx := offsideswapApp.BaseApp.NewContext(isCheckTx, tmproto.Header{})
+	offsideswapApp.AccountKeeper.SetParams(ctx, authtypes.DefaultParams())
 	initTokens := sdk.TokensFromConsensusPower(1000, sdk.DefaultPowerReduction)
-	_ = app.AddTestAddrs(blackchainApp, ctx, 6, initTokens)
-	return blackchainApp, ctx
+	_ = app.AddTestAddrs(offsideswapApp, ctx, 6, initTokens)
+	return offsideswapApp, ctx
 }
 
 // nolint: unparam
@@ -225,10 +225,10 @@ const (
 )
 
 //// returns context and app with params set on account keeper
-func CreateSimulatorApp(isCheckTx bool) (sdk.Context, *app.BlackchainApp) {
-	blackchainApp := app.Setup(isCheckTx)
-	ctx := blackchainApp.BaseApp.NewContext(isCheckTx, tmproto.Header{})
-	blackchainApp.TokenRegistryKeeper.SetRegistry(ctx, tokenregistryTypes.Registry{
+func CreateSimulatorApp(isCheckTx bool) (sdk.Context, *app.OffsideswapApp) {
+	offsideswapApp := app.Setup(isCheckTx)
+	ctx := offsideswapApp.BaseApp.NewContext(isCheckTx, tmproto.Header{})
+	offsideswapApp.TokenRegistryKeeper.SetRegistry(ctx, tokenregistryTypes.Registry{
 		Entries: []*tokenregistryTypes.RegistryEntry{
 			{Denom: "ceth", Decimals: 18, Permissions: []tokenregistryTypes.Permission{tokenregistryTypes.Permission_CLP}},
 			{Denom: "cdash", Decimals: 18, Permissions: []tokenregistryTypes.Permission{tokenregistryTypes.Permission_CLP}},
@@ -239,7 +239,7 @@ func CreateSimulatorApp(isCheckTx bool) (sdk.Context, *app.BlackchainApp) {
 			{Denom: "cusdc", Decimals: 18, Permissions: []tokenregistryTypes.Permission{tokenregistryTypes.Permission_CLP}},
 		},
 	})
-	return ctx, blackchainApp
+	return ctx, offsideswapApp
 }
 
 func CreateTestAppEthBridge(isCheckTx bool) (sdk.Context, keeper.Keeper) {

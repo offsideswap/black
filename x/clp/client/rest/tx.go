@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/gorilla/mux"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func registerTxRoutes(cliCtx client.Context, r *mux.Router) {

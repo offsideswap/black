@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"testing"
 
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"log"
@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/relayer"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/relayer"
 )
 
 // RunReplayEthereumCmd executes replayEthereumCmd

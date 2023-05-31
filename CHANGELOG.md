@@ -1,3 +1,3 @@
 # Changelog
 
-See [here](https://github.com/Blackchain/blackfury/releases).
+See [here](https://github.com/Offsideswap/blackfury/releases).

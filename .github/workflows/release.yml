@@ -15,8 +15,8 @@ jobs:
 
       - uses: convictional/trigger-workflow-and-wait@v1.6.1
         with:
-          owner: blackchain
-          repo: blackchain-chainops
+          owner: offsideswap
+          repo: offsideswap-chainops
           github_token: ${{ secrets.GIT_PAT }}
           workflow_file_name: blackfury-release.yml
           client_payload: '{ "release_tag": "${{ steps.release_tag.outputs.name }}" }'

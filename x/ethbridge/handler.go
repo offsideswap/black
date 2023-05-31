@@ -7,8 +7,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 // NewHandler returns a handler for "ethbridge" type messages.

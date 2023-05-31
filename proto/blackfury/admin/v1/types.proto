@@ -2,7 +2,7 @@ syntax = "proto3";
 package blackfury.admin.v1;
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/admin/types";
+option go_package = "github.com/Offsideswap/blackfury/x/admin/types";
 
 message GenesisState {
   repeated AdminAccount admin_accounts = 1;

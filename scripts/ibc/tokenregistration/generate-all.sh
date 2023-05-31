@@ -4,43 +4,43 @@
 
 . ./envs/$1.sh 
 
-mkdir -p ./$BLACKCHAIN_ID
-rm -f ./$BLACKCHAIN_ID/temp.json
-rm -f ./$BLACKCHAIN_ID/temp2.json
-rm -f ./$BLACKCHAIN_ID/tokenregistry.json
+mkdir -p ./$OFFSIDESWAP_ID
+rm -f ./$OFFSIDESWAP_ID/temp.json
+rm -f ./$OFFSIDESWAP_ID/temp2.json
+rm -f ./$OFFSIDESWAP_ID/tokenregistry.json
 
-blackfuryd q tokenregistry add-all ./$BLACKCHAIN_ID/registry.json | jq > $BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/cosmos.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/akash.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/sentinel.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/iris.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/persistence.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/crypto-org.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/regen.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/terra.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/osmosis.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/juno.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/ixo.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/emoney.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/likecoin.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/bitsong.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/band.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/tokenregistry.json ./$BLACKCHAIN_ID/emoney-eeur.json | jq > $BLACKCHAIN_ID/temp.json
-rm ./$BLACKCHAIN_ID/tokenregistry.json
-blackfuryd q tokenregistry add ./$BLACKCHAIN_ID/temp.json ./$BLACKCHAIN_ID/terra-uusd.json | jq > $BLACKCHAIN_ID/tokenregistry.json
-rm ./$BLACKCHAIN_ID/temp.json
+blackfuryd q tokenregistry add-all ./$OFFSIDESWAP_ID/registry.json | jq > $OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/cosmos.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/akash.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/sentinel.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/iris.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/persistence.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/crypto-org.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/regen.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/terra.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/osmosis.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/juno.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/ixo.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/emoney.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/likecoin.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/bitsong.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/band.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/tokenregistry.json ./$OFFSIDESWAP_ID/emoney-eeur.json | jq > $OFFSIDESWAP_ID/temp.json
+rm ./$OFFSIDESWAP_ID/tokenregistry.json
+blackfuryd q tokenregistry add ./$OFFSIDESWAP_ID/temp.json ./$OFFSIDESWAP_ID/terra-uusd.json | jq > $OFFSIDESWAP_ID/tokenregistry.json
+rm ./$OFFSIDESWAP_ID/temp.json

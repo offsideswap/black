@@ -4,7 +4,7 @@ package blackfury.ethbridge.v1;
 import "gogoproto/gogo.proto";
 import "blackfury/ethbridge/v1/types.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/ethbridge/types";
+option go_package = "github.com/Offsideswap/blackfury/x/ethbridge/types";
 
 // Msg service for messages
 service Msg {

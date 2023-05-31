@@ -1,7 +1,7 @@
 package types
 
 import (
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 // query endpoints supported by the oracle Querier

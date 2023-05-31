@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/clp"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/clp"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/require"
@@ -56,7 +56,7 @@ func TestScenarios(t *testing.T) {
 
 	for _, tc := range scenarios {
 		tc := tc
-		ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+		ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 			trGs := &tokenregistrytypes.GenesisState{
 				Registry: &tokenregistrytypes.Registry{
 					Entries: []*tokenregistrytypes.RegistryEntry{

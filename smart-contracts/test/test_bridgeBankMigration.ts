@@ -1,7 +1,7 @@
 import chai, {expect} from "chai"
 import {solidity} from "ethereum-waffle"
 import {container} from "tsyringe";
-import {BlackchainContractFactories} from "../src/tsyringe/contracts";
+import {OffsideswapContractFactories} from "../src/tsyringe/contracts";
 import {BridgeBank, CosmosBridge} from "../build";
 import {BridgeBankMainnetUpgradeAdmin, HardhatRuntimeEnvironmentToken} from "../src/tsyringe/injectionTokens";
 import * as hardhat from "hardhat";
@@ -9,10 +9,10 @@ import {DeployedBridgeBank, DeployedBridgeToken, DeployedCosmosBridge} from "../
 import {
     getProxyAdmin,
     impersonateAccount,
-    setupBlackchainMainnetDeployment,
+    setupOffsideswapMainnetDeployment,
     startImpersonateAccount
 } from "../src/hardhatFunctions"
-import {BlackchainAccountsPromise} from "../src/tsyringe/blackchainAccounts";
+import {OffsideswapAccountsPromise} from "../src/tsyringe/offsideswapAccounts";
 import web3 from "web3";
 import {BigNumber, BigNumberish, ContractTransaction} from "ethers";
 import {SignerWithAddress} from "@nomiclabs/hardhat-ethers/signers";
@@ -27,13 +27,13 @@ describe("BridgeBank and CosmosBridge - updating to latest smart contracts", () 
     })
 
     before('use mainnet data', async () => {
-        await setupBlackchainMainnetDeployment(container, hardhat)
+        await setupOffsideswapMainnetDeployment(container, hardhat)
     })
 
     describe("upgraded BridgeBank", async () => {
         it("should maintain existing stored values", async () => {
             const existingBridgeBank = await container.resolve(DeployedBridgeBank).contract
-            const bridgeBankFactory = await container.resolve(BlackchainContractFactories).bridgeBank
+            const bridgeBankFactory = await container.resolve(OffsideswapContractFactories).bridgeBank
             const upgradeAdmin = container.resolve(BridgeBankMainnetUpgradeAdmin) as string
 
             const existingOperator = await existingBridgeBank.operator()
@@ -68,15 +68,15 @@ describe("BridgeBank and CosmosBridge - updating to latest smart contracts", () 
 
             await impersonateAccount(hardhat, upgradeAdmin, hardhat.ethers.utils.parseEther("10"), async fakeDeployer => {
                 const amount = BigNumber.from(100)
-                const accounts = await container.resolve(BlackchainAccountsPromise).accounts
-                const bridgeBankFactory = await container.resolve(BlackchainContractFactories).bridgeBank
+                const accounts = await container.resolve(OffsideswapAccountsPromise).accounts
+                const bridgeBankFactory = await container.resolve(OffsideswapContractFactories).bridgeBank
                 const signedBBFactory = bridgeBankFactory.connect(fakeDeployer)
                 const existingBridgeBank = await container.resolve(DeployedBridgeBank).contract
                 const operator = await startImpersonateAccount(hardhat, await existingBridgeBank.operator())
                 const newBridgeBank = (await hardhat.upgrades.upgradeProxy(existingBridgeBank, signedBBFactory) as BridgeBank).connect(operator)
-                const cosmosBridgeFactory = (await container.resolve(BlackchainContractFactories).cosmosBridge).connect(fakeDeployer)
+                const cosmosBridgeFactory = (await container.resolve(OffsideswapContractFactories).cosmosBridge).connect(fakeDeployer)
                 const newCosmosBridge = (await hardhat.upgrades.upgradeProxy(existingCosmosBridge, cosmosBridgeFactory, {unsafeAllowCustomTypes: true}) as CosmosBridge).connect(operator)
-                const testTokenFactory = (await container.resolve(BlackchainContractFactories).bridgeToken).connect(operator)
+                const testTokenFactory = (await container.resolve(OffsideswapContractFactories).bridgeToken).connect(operator)
                 const testToken = await testTokenFactory.deploy("test")
                 await testToken.mint(operator.address, amount)
                 await testToken.connect(operator).approve(newBridgeBank.address, amount)

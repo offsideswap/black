@@ -10,7 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"go.uber.org/zap"
 
-	bridgeregistry "github.com/Blackchain/blackfury/cmd/ebrelayer/contract/generated/bindings/bridgeregistry"
+	bridgeregistry "github.com/Offsideswap/blackfury/cmd/ebrelayer/contract/generated/bindings/bridgeregistry"
 )
 
 // TODO: Update BridgeRegistry contract so that all bridge contract addresses can be queried

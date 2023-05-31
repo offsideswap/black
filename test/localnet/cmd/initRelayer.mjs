@@ -22,7 +22,7 @@ Usage:
 
   yarn initRelayer [options]
 
-Initiate a new relayer locally to pair a foreign IBC chain to blackchain.
+Initiate a new relayer locally to pair a foreign IBC chain to offsideswap.
 
 Options:
 

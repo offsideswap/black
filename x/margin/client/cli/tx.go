@@ -5,7 +5,7 @@ import (
 	"errors"
 	"io/ioutil"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	"github.com/spf13/viper"
 
 	"github.com/cosmos/cosmos-sdk/client"

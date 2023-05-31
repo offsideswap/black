@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
 )
 
 const (

@@ -3,7 +3,7 @@ package types
 import (
 	"encoding/json"
 	"fmt"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	"strconv"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

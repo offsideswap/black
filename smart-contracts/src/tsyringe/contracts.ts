@@ -4,7 +4,7 @@ import {BigNumber, ContractFactory} from "ethers";
 import {HardhatRuntimeEnvironment} from "hardhat/types";
 import {EthereumAddress, NotNativeCurrencyAddress} from "../ethereumAddress";
 import {HardhatRuntimeEnvironmentToken,} from "./injectionTokens";
-import {BlackchainAccounts, BlackchainAccountsPromise} from "./blackchainAccounts";
+import {OffsideswapAccounts, OffsideswapAccountsPromise} from "./offsideswapAccounts";
 import {
     BridgeBank,
     BridgeBank__factory,
@@ -16,7 +16,7 @@ import {
 } from "../../build";
 
 @singleton()
-export class BlackchainContractFactories {
+export class OffsideswapContractFactories {
     bridgeBank: Promise<BridgeBank__factory>
     cosmosBridge: Promise<CosmosBridge__factory>
     bridgeRegistry: Promise<BridgeRegistry__factory>
@@ -60,10 +60,10 @@ export class CosmosBridgeProxy {
 
     constructor(
         @inject(HardhatRuntimeEnvironmentToken) hardhatRuntimeEnvironment: HardhatRuntimeEnvironment,
-        blackchainContractFactories: BlackchainContractFactories,
+        offsideswapContractFactories: OffsideswapContractFactories,
         cosmosBridgeArgumentsPromise: CosmosBridgeArgumentsPromise,
     ) {
-        this.contract = blackchainContractFactories.cosmosBridge.then(async cosmosBridgeFactory => {
+        this.contract = offsideswapContractFactories.cosmosBridge.then(async cosmosBridgeFactory => {
             const args = await cosmosBridgeArgumentsPromise.cosmosBridgeArguments
             const cosmosBridgeProxy = await hardhatRuntimeEnvironment.upgrades.deployProxy(cosmosBridgeFactory, args.asArray())
             await cosmosBridgeProxy.deployed()
@@ -72,13 +72,13 @@ export class CosmosBridgeProxy {
     }
 }
 
-export function defaultCosmosBridgeArguments(blackchainAccounts: BlackchainAccounts, power: number = 100): CosmosBridgeArguments {
-    const powers = blackchainAccounts.validatatorAccounts.map(_ => power)
+export function defaultCosmosBridgeArguments(offsideswapAccounts: OffsideswapAccounts, power: number = 100): CosmosBridgeArguments {
+    const powers = offsideswapAccounts.validatatorAccounts.map(_ => power)
     const threshold = powers.reduce((acc, x) => acc + x)
     return new CosmosBridgeArguments(
-        new NotNativeCurrencyAddress(blackchainAccounts.operatorAccount.address),
+        new NotNativeCurrencyAddress(offsideswapAccounts.operatorAccount.address),
         threshold,
-        blackchainAccounts.validatatorAccounts.map(x => new NotNativeCurrencyAddress(x.address)),
+        offsideswapAccounts.validatatorAccounts.map(x => new NotNativeCurrencyAddress(x.address)),
         powers
     )
 }
@@ -87,7 +87,7 @@ export function defaultCosmosBridgeArguments(blackchainAccounts: BlackchainAccou
     {
         token: CosmosBridgeArgumentsPromise,
         useFactory: instanceCachingFactory<CosmosBridgeArgumentsPromise>(c => {
-            const accountsPromise = c.resolve(BlackchainAccountsPromise)
+            const accountsPromise = c.resolve(OffsideswapAccountsPromise)
             return new CosmosBridgeArgumentsPromise(accountsPromise.accounts.then(accts => {
                 return defaultCosmosBridgeArguments(accts)
             }))
@@ -99,13 +99,13 @@ export function defaultCosmosBridgeArguments(blackchainAccounts: BlackchainAccou
 export class BridgeBankArguments {
     constructor(
         private readonly cosmosBridgeProxy: CosmosBridgeProxy,
-        private readonly blackchainAccountsPromise: BlackchainAccountsPromise
+        private readonly offsideswapAccountsPromise: OffsideswapAccountsPromise
     ) {
     }
 
     async asArray() {
         const cosmosBridge = await this.cosmosBridgeProxy.contract
-        const accts = await this.blackchainAccountsPromise.accounts
+        const accts = await this.offsideswapAccountsPromise.accounts
         const result = [
             accts.operatorAccount.address,
             cosmosBridge.address,
@@ -122,10 +122,10 @@ export class BridgeBankProxy {
 
     constructor(
         @inject(HardhatRuntimeEnvironmentToken) h: HardhatRuntimeEnvironment,
-        private blackchainContractFactories: BlackchainContractFactories,
+        private offsideswapContractFactories: OffsideswapContractFactories,
         private bridgeBankArguments: BridgeBankArguments,
     ) {
-        this.contract = blackchainContractFactories.bridgeBank.then(async bridgeBankFactory => {
+        this.contract = offsideswapContractFactories.bridgeBank.then(async bridgeBankFactory => {
             const bridgeBankArguments = await this.bridgeBankArguments.asArray()
             const bridgeBankProxy = await h.upgrades.deployProxy(bridgeBankFactory, bridgeBankArguments, {initializer: "initialize(address,address,address,address)"}) as BridgeBank
             await bridgeBankProxy.deployed()
@@ -142,11 +142,11 @@ export class BridgeRegistryProxy {
 
     constructor(
         @inject(HardhatRuntimeEnvironmentToken) h: HardhatRuntimeEnvironment,
-        private blackchainContractFactories: BlackchainContractFactories,
+        private offsideswapContractFactories: OffsideswapContractFactories,
         private cosmosBridgeProxy: CosmosBridgeProxy,
         private bridgeBankProxy: BridgeBankProxy,
     ) {
-        this.contract = blackchainContractFactories.bridgeRegistry.then(async bridgeRegistryFactory => {
+        this.contract = offsideswapContractFactories.bridgeRegistry.then(async bridgeRegistryFactory => {
             const bridgeRegistryProxy = await h.upgrades.deployProxy(bridgeRegistryFactory, [
                 (await cosmosBridgeProxy.contract).address,
                 (await bridgeBankProxy.contract).address
@@ -165,9 +165,9 @@ export class FuryContract {
     readonly contract: Promise<BridgeToken>
 
     constructor(
-        private blackchainContractFactories: BlackchainContractFactories,
+        private offsideswapContractFactories: OffsideswapContractFactories,
     ) {
-        this.contract = blackchainContractFactories.bridgeToken.then(async bridgeToken => {
+        this.contract = offsideswapContractFactories.bridgeToken.then(async bridgeToken => {
             return await (bridgeToken as BridgeToken__factory).deploy("efury") as BridgeToken
         })
     }
@@ -180,15 +180,15 @@ export class BridgeTokenSetup {
     private async build(
         fury: FuryContract,
         bridgeBankProxy: BridgeBankProxy,
-        blackchainAccounts: BlackchainAccountsPromise
+        offsideswapAccounts: OffsideswapAccountsPromise
     ) {
         const efury = await fury.contract
-        const owner = (await blackchainAccounts.accounts).ownerAccount
+        const owner = (await offsideswapAccounts.accounts).ownerAccount
         const bridgebank = (await bridgeBankProxy.contract).connect(owner)
         await bridgebank.addExistingBridgeToken(efury.address)
         await efury.approve(bridgebank.address, "10000000000000000000")
         await efury.addMinter(owner.address)
-        const accounts = await blackchainAccounts.accounts
+        const accounts = await offsideswapAccounts.accounts
         const muchFury = BigNumber.from(100000000).mul(BigNumber.from(10).pow(18))
         await efury.mint(accounts.operatorAccount.address, muchFury)
         return true
@@ -197,8 +197,8 @@ export class BridgeTokenSetup {
     constructor(
         fury: FuryContract,
         bridgeBankProxy: BridgeBankProxy,
-        blackchainAccounts: BlackchainAccountsPromise
+        offsideswapAccounts: OffsideswapAccountsPromise
     ) {
-        this.complete = this.build(fury, bridgeBankProxy, blackchainAccounts)
+        this.complete = this.build(fury, bridgeBankProxy, offsideswapAccounts)
     }
 }

@@ -3,9 +3,9 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/keeper"
-	"github.com/Blackchain/blackfury/x/tokenregistry/test"
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/keeper"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 )

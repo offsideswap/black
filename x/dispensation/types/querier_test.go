@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	"github.com/stretchr/testify/assert"
 )
 

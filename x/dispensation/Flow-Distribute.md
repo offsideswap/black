@@ -158,12 +158,12 @@ blackfuryd keys add mkey --multisig amara,zane --multisig-threshold 2
 ```
 - Zane decides to create the offline tx . He has the mkey in his local wallet. He runs the following command.Note the tx creator will have to pay for the gas fee
 ```shell
-blackfuryd tx dispensation create mkey airdrop-1 Airdrop input.json output.json --gas 200064128 --gas-prices 1.0fury --generate-only --from zane --keyring-backend file --node tcp://rpc-mainnet.blackchain.finance:80 --chain-id blackchain-mainnet >> offlinetx.json
+blackfuryd tx dispensation create mkey airdrop-1 Airdrop input.json output.json --gas 200064128 --gas-prices 1.0fury --generate-only --from zane --keyring-backend file --node tcp://rpc-mainnet.offsideswap.finance:80 --chain-id offsideswap-mainnet >> offlinetx.json
 ```
 
 ### Zane Signs the transaction 
 ```shell
-blackfuryd tx sign --multisig black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --from zane offlinetx.json --keyring-backend file --node tcp://rpc-mainnet.blackchain.finance:80 --chain-id blackchain-mainnet >> sig-zane.json
+blackfuryd tx sign --multisig black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --from zane offlinetx.json --keyring-backend file --node tcp://rpc-mainnet.offsideswap.finance:80 --chain-id offsideswap-mainnet >> sig-zane.json
 ```
 Sample sig-zane.json
 ```json
@@ -181,7 +181,7 @@ Sample sig-zane.json
 - Zane then sends the offlinetx.json to amara
 - Amara creates her signature 
 ```shell
-blackfuryd tx sign --multisig black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --from amara offlinetx.json --keyring-backend file --node tcp://rpc-mainnet.blackchain.finance:80 --chain-id blackchain-mainnet >> sig-amara.json
+blackfuryd tx sign --multisig black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd --from amara offlinetx.json --keyring-backend file --node tcp://rpc-mainnet.offsideswap.finance:80 --chain-id offsideswap-mainnet >> sig-amara.json
 ```
 Sample sig-amara.json
 ```json
@@ -197,12 +197,12 @@ Sample sig-amara.json
 ### Create multi-sig 
 - Either amara or zane can do this step . They just need the two signature files , multi-sig key and the unsigned transaction.
 ```shell
-blackfuryd tx multisign offlinetx.json mkey sig1.json sig2.json --keyring-backend file --node tcp://rpc-mainnet.blackchain.finance:80 --chain-id blackchain-mainnet >> signedtx.json
+blackfuryd tx multisign offlinetx.json mkey sig1.json sig2.json --keyring-backend file --node tcp://rpc-mainnet.offsideswap.finance:80 --chain-id offsideswap-mainnet >> signedtx.json
 ```
 
 ### Broadcast transaction to network
 ```shell
-blackfuryd tx broadcast signedtx.json --node tcp://rpc-mainnet.blackchain.finance:80 --chain-id blackchain-mainnet 
+blackfuryd tx broadcast signedtx.json --node tcp://rpc-mainnet.offsideswap.finance:80 --chain-id offsideswap-mainnet 
 ```
 Sample output
 ```json

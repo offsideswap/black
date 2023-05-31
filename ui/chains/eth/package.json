@@ -2,7 +2,7 @@
   "name": "ethereum",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Blackchain",
+  "author": "Offsideswap",
   "license": "UNLICENSED",
   "scripts": {
     "migrate": "truffle migrate --reset"

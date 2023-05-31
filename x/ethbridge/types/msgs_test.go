@@ -7,8 +7,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 	"github.com/stretchr/testify/assert"
 )
 

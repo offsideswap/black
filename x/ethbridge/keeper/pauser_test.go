@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 	"github.com/stretchr/testify/assert"
 )
 

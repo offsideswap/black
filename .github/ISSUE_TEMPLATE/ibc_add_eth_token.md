@@ -1,7 +1,7 @@
 ---
 name: "[Token Registry] Add new ETH token to registry"
 about: "[Token Registry] Add a new ETH token to registry"
-title: '[Token Registry] Add ... ETH token on ...blackchain network'
+title: '[Token Registry] Add ... ETH token on ...offsideswap network'
 labels: 'Blackfury, Token Registry'
 assignees: '@blackfury'
 ---
@@ -10,7 +10,7 @@ assignees: '@blackfury'
 
 ### Details?
 
-Blackchain Chain ID: 
+Offsideswap Chain ID: 
 Denom: 
 Denom:
 Decimals:
@@ -20,7 +20,7 @@ Network:
 <!--
 Example:
 
-Blackchain Chain ID: blackchain-devnet-1
+Offsideswap Chain ID: offsideswap-devnet-1
 Denom: ceth
 Decimals: 18
 Display Name: ETH

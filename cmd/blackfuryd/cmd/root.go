@@ -30,7 +30,7 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/Blackchain/blackfury/app"
+	"github.com/Offsideswap/blackfury/app"
 )
 
 func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
@@ -191,7 +191,7 @@ func createSimappAndExport(logger log.Logger, db dbm.DB, traceStore io.Writer, h
 	jailAllowedAddrs []string, appOpts servertypes.AppOptions) (servertypes.ExportedApp, error) {
 	encCfg := app.MakeTestEncodingConfig() // Ideally, we would reuse the one created by NewRootCmd.
 	encCfg.Marshaler = codec.NewProtoCodec(encCfg.InterfaceRegistry)
-	var blackApp *app.BlackchainApp
+	var blackApp *app.OffsideswapApp
 	if height != -1 {
 		blackApp = app.NewBlackApp(logger, db, traceStore, false, map[int64]bool{}, "", cast.ToUint(appOpts.Get(server.FlagInvCheckPeriod)), encCfg, appOpts)
 		if err := blackApp.LoadHeight(height); err != nil {

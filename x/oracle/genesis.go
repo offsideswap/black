@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/oracle/keeper"
-	"github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/oracle/keeper"
+	"github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 func InitGenesis(ctx sdk.Context, keeper keeper.Keeper, data types.GenesisState) (res []abci.ValidatorUpdate) {

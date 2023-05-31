@@ -1,6 +1,6 @@
 # ui-stack
 
-Take a blackfury binary and build a docker image that forms the basis of the [`ui-stack`](https://github.com/orgs/Blackchain/packages/container/package/blackfury%2Fui-stack) image that our frontend UI is based on. This is the primary way we keep our repositories in sync.
+Take a blackfury binary and build a docker image that forms the basis of the [`ui-stack`](https://github.com/orgs/Offsideswap/packages/container/package/blackfury%2Fui-stack) image that our frontend UI is based on. This is the primary way we keep our repositories in sync.
 
 This code is managed by the frontend team.
 
@@ -22,13 +22,13 @@ We need to have a different deployment cadence for `ui` code compared to our `bl
 
 ### Docker registry
 
-We tie our repos together using a docker image generated on this repo and consumed by the frontend repo. You can view the latest docker repository uploads here: https://github.com/orgs/Blackchain/packages/container/package/blackfury%2Fui-stack
+We tie our repos together using a docker image generated on this repo and consumed by the frontend repo. You can view the latest docker repository uploads here: https://github.com/orgs/Offsideswap/packages/container/package/blackfury%2Fui-stack
 
 You can pull the repo using the following although you should never have to as it is built in to the scripts on the ui repo:
 
 ```
 # raw command for pulling the image
-docker pull ghcr.io/blackchain/blackfury/ui-stack:develop
+docker pull ghcr.io/offsideswap/blackfury/ui-stack:develop
 ```
 
 Example of running a particular ui-stack built from a commit in the UI repo:
@@ -83,7 +83,7 @@ if we had written these scripts in javascript each chain would probably be a cla
 
 Here is a recipe for how to work with the `ui` scripts in `blackfury`.
 
-### I want to change the blackchain genesis information within the ui-stack.
+### I want to change the offsideswap genesis information within the ui-stack.
 
 It is rare to have to touch this but if you do, the following outlines how to go about it. You will want to do this because of a need within the e2e branch you will probably have a branch on the ui repo that requires a change to genesis amounts.
 
@@ -91,7 +91,7 @@ It is rare to have to touch this but if you do, the following outlines how to go
 1. Create a new branch on the `blackfury` repo branching off `develop`.
 1. Now you can make your changes which will probably be in one of the folowing places:
 
-   1. The blackchain genesis code is located here: `./ui/chains/black/launch.sh` here we specify genesis tokens and amounts. Set up your tokens and amounts in this file.
+   1. The offsideswap genesis code is located here: `./ui/chains/black/launch.sh` here we specify genesis tokens and amounts. Set up your tokens and amounts in this file.
    1. The CLP pool genesis code is located here: `./ui/chains/black/migrate.sh` here we specify the default pools that are created and included in the ui-stack image.
    1. Lastly the whitelist and burn limits for ethereum tokens is specified in the post migrate hook here: `./ui/chains/post_migrate.sh`
 
@@ -127,7 +127,7 @@ Initially we were not using docker to create snapshots and when we added docker 
 
 #### What happens when the backend has breaking changes for the frontend?
 
-In this case the backend will merge their breaking change to develop. Our GHA will run building the stack based on the latest change. After this the blackchain-ui repo will be checked out and its tests applied to the built ui-stack within the github action. If this fails then the backend team know they have broken frontend.
+In this case the backend will merge their breaking change to develop. Our GHA will run building the stack based on the latest change. After this the offsideswap-ui repo will be checked out and its tests applied to the built ui-stack within the github action. If this fails then the backend team know they have broken frontend.
 
 #### How do we know the frontend that is about to be deployed is compatible with master?
 

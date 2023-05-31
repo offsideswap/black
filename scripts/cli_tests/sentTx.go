@@ -15,7 +15,7 @@ func getSendTxArgs() Args { //nolint
 
 func (SentTx) GetMsgAndArgs(_ CommonArgs) (sdk.Msg, Args) {
 	args := getSendTxArgs()
-	sendReq := bank.NewMsgSend(args.Sender, args.BlackchainReceiver, args.Amount)
+	sendReq := bank.NewMsgSend(args.Sender, args.OffsideswapReceiver, args.Amount)
 	return sendReq, args
 
 }

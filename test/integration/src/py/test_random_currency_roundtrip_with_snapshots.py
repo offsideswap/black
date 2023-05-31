@@ -3,18 +3,18 @@ import logging
 import pytest
 import burn_lock_functions
 import test_utilities
-from burn_lock_functions import EthereumToBlackchainTransferRequest
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
 from pytest_utilities import generate_test_account
-from test_utilities import get_shell_output, amount_in_wei, BlackchaincliCredentials
+from test_utilities import get_shell_output, amount_in_wei, OffsideswapcliCredentials
 
 
 def do_currency_test(
     ctx,
     new_currency_symbol,
-    basic_transfer_request: EthereumToBlackchainTransferRequest,
+    basic_transfer_request: EthereumToOffsideswapTransferRequest,
     source_ethereum_address: str,
-    fury_source_integrationtest_env_credentials: BlackchaincliCredentials,
-    fury_source_integrationtest_env_transfer_request: EthereumToBlackchainTransferRequest,
+    fury_source_integrationtest_env_credentials: OffsideswapcliCredentials,
+    fury_source_integrationtest_env_transfer_request: EthereumToOffsideswapTransferRequest,
 ):
     amount = amount_in_wei(9)
     logging.info(f"create new currency")
@@ -36,17 +36,17 @@ def do_currency_test(
         target_ceth_balance=10**17,
         target_fury_balance=10**18)
     test_amount = 39000
-    logging.info(f"transfer some of the new currency {new_currency_symbol} to the test blackchain address")
+    logging.info(f"transfer some of the new currency {new_currency_symbol} to the test offsideswap address")
     request.ethereum_symbol = new_currency["newtoken_address"]
-    request.blackchain_symbol = ("c" + new_currency["newtoken_symbol"]).lower()
+    request.offsideswap_symbol = ("c" + new_currency["newtoken_symbol"]).lower()
     request.amount = test_amount
-    burn_lock_functions.transfer_ethereum_to_blackchain(request)
+    burn_lock_functions.transfer_ethereum_to_offsideswap(request)
 
     logging.info("send some new currency to ethereum")
     request.ethereum_address, _ = test_utilities.create_ethereum_address(
         ctx.smart_contracts_dir, ctx.ethereum_network)
     request.amount = test_amount - 1
-    burn_lock_functions.transfer_blackchain_to_ethereum(request, credentials)
+    burn_lock_functions.transfer_offsideswap_to_ethereum(request, credentials)
 
 
 @pytest.mark.usefixtures("with_snapshot")

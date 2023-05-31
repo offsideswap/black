@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	tkrtypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	tkrtypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

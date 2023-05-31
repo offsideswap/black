@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/margin/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

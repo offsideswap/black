@@ -3,19 +3,19 @@ package clp_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/clp"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func TestHandler(t *testing.T) {
@@ -508,7 +508,7 @@ func TestUnlockLiquidity(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func UnlockAllliquidity(app *blackapp.BlackchainApp, ctx sdk.Context, asset clptypes.Asset, lp sdk.AccAddress, t *testing.T) {
+func UnlockAllliquidity(app *blackapp.OffsideswapApp, ctx sdk.Context, asset clptypes.Asset, lp sdk.AccAddress, t *testing.T) {
 	nlp, err := app.ClpKeeper.GetLiquidityProvider(ctx, asset.Symbol, lp.String())
 	assert.NoError(t, err)
 	nlp.Unlocks = append(nlp.Unlocks, &clptypes.LiquidityUnlock{

@@ -12,7 +12,7 @@
 This ADR contains a summary of decisions taken during the implementation of the clp module and a summary of the final outcome
 ### Summary
 
-For the Blackchain MVP, CLP module provides the following functionalities 
+For the Offsideswap MVP, CLP module provides the following functionalities 
 - Create New Liquidity Pool
 - Add Liquidity to an Existing Liquidity pool 
 - Remove Liquidity from an Existing Liquidity pool 
@@ -197,6 +197,6 @@ liquidityProviderAddress: black15tyrwghfcjszj7sckxvqh0qpzprup9mhksmuzm
 
 
   ## References
- https://github.com/Blackchain/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
+ https://github.com/Offsideswap/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
  https://docs.thorchain.org/how-it-works/continuous-liquidity-pools
  

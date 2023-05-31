@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 )
 
 func TestKeeper_SetValidatorWhiteList(t *testing.T) {

@@ -1,15 +1,15 @@
 module.exports = async (cb) => {
     const Web3 = require("web3");
 
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
     try {
-        const argv = blackchainUtilities.processArgs(this, {
-            ...blackchainUtilities.sharedYargOptions,
-            ...blackchainUtilities.transactionYargOptions,
+        const argv = offsideswapUtilities.processArgs(this, {
+            ...offsideswapUtilities.sharedYargOptions,
+            ...offsideswapUtilities.transactionYargOptions,
         });
 
         logging.info(`sendBurnTx: ${JSON.stringify(argv, undefined, 2)}`);
@@ -27,7 +27,7 @@ module.exports = async (cb) => {
         logging.info(`sendBurnTx ${JSON.stringify(argv)}}`);
 
         result.burn = await bridgeBankContract.burn(
-            Web3.utils.utf8ToHex(argv.blackchain_address),
+            Web3.utils.utf8ToHex(argv.offsideswap_address),
             argv.symbol,
             argv.amount,
             transactionParameters,

@@ -36,8 +36,8 @@ If applicable, add screenshots to help explain your problem.
 **Ethereum (If applicable) : Please provide relevant info**
 Eg. Your Ethereum address, tx hash (EtherScan link)
 
-**Blackchain (If applicable) : Please provide relevant info**
-Eg. Your Blackchain address, link to tx on block explorer
+**Offsideswap (If applicable) : Please provide relevant info**
+Eg. Your Offsideswap address, link to tx on block explorer
 
 **Additional context**
 Add any other context about the problem here.

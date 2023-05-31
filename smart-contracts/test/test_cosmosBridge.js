@@ -153,7 +153,7 @@ contract("CosmosBridge", function (accounts) {
       this.token = await BridgeToken.new(this.actualSymbol);
       this.amount = 100;
 
-      // blackchain address
+      // offsideswap address
       this.cosmosRecipient = web3.utils.utf8ToHex(
         "black1nx650s8q9w28f2g3t9ztxyg48ugldptuwzpace"
       );

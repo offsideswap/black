@@ -24,7 +24,7 @@ async function createAssetRewardsFileFromParams({
 }) {
   const entries = (
     await (
-      await fetch("https://api.blackchain.finance/tokenregistry/entries")
+      await fetch("https://api.offsideswap.finance/tokenregistry/entries")
     ).json()
   ).result.registry.entries;
 

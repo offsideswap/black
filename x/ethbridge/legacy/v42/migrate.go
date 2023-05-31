@@ -1,8 +1,8 @@
 package v42
 
 import (
-	v039ethbridge "github.com/Blackchain/blackfury/x/ethbridge/legacy/v39"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	v039ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/legacy/v39"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 func Migrate(state v039ethbridge.GenesisState) *types.GenesisState {

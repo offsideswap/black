@@ -6,14 +6,14 @@ NOW=$(shell date +'%Y-%m-%d_%T')
 COMMIT:=$(shell git log -1 --format='%H')
 VERSION:=$(shell cat version)
 IMAGE_TAG?=latest
-HTTPS_GIT := https://github.com/blackchain/blackfury.git
+HTTPS_GIT := https://github.com/offsideswap/blackfury.git
 DOCKER ?= docker
 DOCKER_BUF := $(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace bufbuild/buf
 
 GOFLAGS:=""
 GOTAGS:=ledger
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=blackchain \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=offsideswap \
 		  -X github.com/cosmos/cosmos-sdk/version.ServerName=blackfuryd \
 		  -X github.com/cosmos/cosmos-sdk/version.ClientName=blackfuryd \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
@@ -67,13 +67,13 @@ run:
 	GOFLAGS=$(GOFLAGS) go run ./cmd/blackfuryd start
 
 build-image:
-	docker build -t blackchain/$(BINARY):$(IMAGE_TAG) -f ./cmd/$(BINARY)/Dockerfile .
+	docker build -t offsideswap/$(BINARY):$(IMAGE_TAG) -f ./cmd/$(BINARY)/Dockerfile .
 
 run-image: build-image
-	docker run blackchain/$(BINARY):$(IMAGE_TAG)
+	docker run offsideswap/$(BINARY):$(IMAGE_TAG)
 
 sh-image: build-image
-	docker run -it blackchain/$(BINARY):$(IMAGE_TAG) sh
+	docker run -it offsideswap/$(BINARY):$(IMAGE_TAG) sh
 
 init-run:
 	./scripts/init.sh && ./scripts/run.sh

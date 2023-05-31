@@ -238,7 +238,7 @@ voting power is defined as the amount of projected token delegated to the valida
 
 The SDK and mintscan calculate the voting power as zero for validators outside the validator set and for validators inside the validator set the voting power is the amount of token delegated to the validator divided by
 the total amount of **bonded** token (bonded tokens are the subset of delegated tokens which are delegated to validators
-in the validator set (i.e. those validators which vote on blocks)) - see https://github.com/cosmos/cosmos-sdk/blob/d0043914ba7c37c3a0d7039d2c2a2aca6b38a93b/x/staking/types/validator.go#L350-L356 and https://www.mintscan.io/blackchain/validators - the cumulative share of the validators in
+in the validator set (i.e. those validators which vote on blocks)) - see https://github.com/cosmos/cosmos-sdk/blob/d0043914ba7c37c3a0d7039d2c2a2aca6b38a93b/x/staking/types/validator.go#L350-L356 and https://www.mintscan.io/offsideswap/validators - the cumulative share of the validators in
 the validator set (115 validators) add up to 100%, so the tokens delegated to validators outside the validator set (some do exist) are not
 included in the calculation.
 

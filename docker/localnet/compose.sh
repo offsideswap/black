@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CHAINNET0=blackchain-ibc-0
-CHAINNET1=blackchain-ibc-1
+CHAINNET0=offsideswap-ibc-0
+CHAINNET1=offsideswap-ibc-1
 IPADDR0=192.168.65.2
 IPADDR1=192.168.65.3
 IPADDR2=192.168.65.4

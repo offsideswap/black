@@ -6,8 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/cmd/blackfuryd/cmd"
+	"github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/cmd/blackfuryd/cmd"
 )
 
 func main() {

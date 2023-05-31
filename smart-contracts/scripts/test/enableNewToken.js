@@ -3,16 +3,16 @@ const BN = require('bn.js');
 module.exports = async (cb) => {
     const Web3 = require("web3");
 
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
-    const argv = blackchainUtilities.processArgs(this, {
-        ...blackchainUtilities.sharedYargOptions,
-        ...blackchainUtilities.bridgeBankAddressYargOptions,
-        ...blackchainUtilities.symbolYargOption,
-        ...blackchainUtilities.amountYargOption,
+    const argv = offsideswapUtilities.processArgs(this, {
+        ...offsideswapUtilities.sharedYargOptions,
+        ...offsideswapUtilities.bridgeBankAddressYargOptions,
+        ...offsideswapUtilities.symbolYargOption,
+        ...offsideswapUtilities.amountYargOption,
         'limit_amount': {
             describe: 'an amount',
             demandOption: true
@@ -38,7 +38,7 @@ module.exports = async (cb) => {
         from: argv.operator_address
     }
 
-    const newTokenBuilder = await contractUtilites.buildBaseContract(this, argv, logging, "BlackchainTestToken");
+    const newTokenBuilder = await contractUtilites.buildBaseContract(this, argv, logging, "OffsideswapTestToken");
     const newToken = await newTokenBuilder.new(argv.token_name, argv.symbol, argv.decimals, standardOptions);
 
     const bridgeBankContract = await contractUtilites.buildContract(this, argv, logging, "BridgeBank", argv.bridgebank_address);

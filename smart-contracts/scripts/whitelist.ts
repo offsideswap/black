@@ -3,7 +3,7 @@ import {container} from "tsyringe";
 import {DeployedBridgeBank} from "../src/contractSupport";
 import {HardhatRuntimeEnvironmentToken} from "../src/tsyringe/injectionTokens";
 import {setupDeployment} from "../src/hardhatFunctions";
-import {BlackchainContractFactories} from "../src/tsyringe/contracts";
+import {OffsideswapContractFactories} from "../src/tsyringe/contracts";
 import {getWhitelistItems} from "../src/whitelist";
 
 async function main() {
@@ -11,7 +11,7 @@ async function main() {
     await setupDeployment(container)
 
     const bridgeBank = await container.resolve(DeployedBridgeBank).contract
-    const btf = await container.resolve(BlackchainContractFactories).bridgeToken
+    const btf = await container.resolve(OffsideswapContractFactories).bridgeToken
     const result = await getWhitelistItems(bridgeBank, btf)
     console.log(JSON.stringify(result))
 }

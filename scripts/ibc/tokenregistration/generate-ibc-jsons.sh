@@ -4,9 +4,9 @@
 
 . ./envs/$1.sh 
 
-echo "\n\ngenerating and storing all entries for network $BLACKCHAIN_ID"
+echo "\n\ngenerating and storing all entries for network $OFFSIDESWAP_ID"
 
-mkdir -p ./$BLACKCHAIN_ID
+mkdir -p ./$OFFSIDESWAP_ID
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=$COSMOS_BASE_DENOM \
@@ -20,11 +20,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/cosmos.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/cosmos.json
 
 echo "\n\ngenerated entry for COSMOS $COSMOS_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/cosmos.json | jq
+cat $OFFSIDESWAP_ID/cosmos.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uakt \
@@ -38,11 +38,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="uakt" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/akash.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/akash.json
 
 echo "\n\ngenerated entry for AKASH $AKASH_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/akash.json | jq
+cat $OFFSIDESWAP_ID/akash.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=udvpn \
@@ -56,11 +56,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="udvpn" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/sentinel.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/sentinel.json
 
 echo "\n\ngenerated entry for SENTINEL $SENTINEL_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/sentinel.json | jq
+cat $OFFSIDESWAP_ID/sentinel.json | jq
 
 
 blackfuryd q tokenregistry generate -o json \
@@ -75,11 +75,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/iris.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/iris.json
 
 echo "\n\ngenerated entry for IRIS $IRIS_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/iris.json | jq
+cat $OFFSIDESWAP_ID/iris.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uxprt \
@@ -93,11 +93,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="uxprt" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/persistence.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/persistence.json
 
 echo "\n\ngenerated entry for PERSISTENCE $PERSISTENCE_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/persistence.json | jq
+cat $OFFSIDESWAP_ID/persistence.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=basecro \
@@ -111,11 +111,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="basecro" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/crypto-org.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/crypto-org.json
 
 echo "\n\ngenerated entry for CRYPTO $CRYPTO_ORG_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/crypto-org.json | jq
+cat $OFFSIDESWAP_ID/crypto-org.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uregen \
@@ -129,11 +129,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/regen.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/regen.json
 
 echo "\n\ngenerated entry for REGEN $REGEN_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/regen.json | jq
+cat $OFFSIDESWAP_ID/regen.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uosmo \
@@ -147,11 +147,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/osmosis.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/osmosis.json
 
 echo "\n\ngenerated entry for OSMOSIS $OSMOSIS_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/osmosis.json | jq
+cat $OFFSIDESWAP_ID/osmosis.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=ujuno \
@@ -165,11 +165,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/juno.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/juno.json
 
 echo "\n\ngenerated entry for JUNO $JUNO_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/juno.json | jq
+cat $OFFSIDESWAP_ID/juno.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uixo \
@@ -183,11 +183,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/ixo.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/ixo.json
 
 echo "\n\ngenerated entry for IXO $IXO_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/ixo.json | jq
+cat $OFFSIDESWAP_ID/ixo.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=nanolike \
@@ -201,11 +201,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/likecoin.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/likecoin.json
 
 echo "\n\ngenerated entry for LIKECOIN $LIKECOIN_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/likecoin.json | jq
+cat $OFFSIDESWAP_ID/likecoin.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=ubtsg \
@@ -219,11 +219,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/bitsong.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/bitsong.json
 
 echo "\n\ngenerated entry for BITSONG $BITSONG_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/bitsong.json | jq
+cat $OFFSIDESWAP_ID/bitsong.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uband \
@@ -237,11 +237,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/band.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/band.json
 
 echo "\n\ngenerated entry for BAND $BAND_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/band.json | jq
+cat $OFFSIDESWAP_ID/band.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=ungm \
@@ -255,11 +255,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/emoney.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/emoney.json
 
 echo "\n\ngenerated entry for EMONEY $EMONEY_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/emoney.json | jq
+cat $OFFSIDESWAP_ID/emoney.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=eeur \
@@ -273,11 +273,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/emoney-eeur.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/emoney-eeur.json
 
 echo "\n\ngenerated entry for EMONEY $EMONEY_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/emoney-eeur.json | jq
+cat $OFFSIDESWAP_ID/emoney-eeur.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uluna \
@@ -291,11 +291,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/terra.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/terra.json
 
 echo "\n\ngenerated entry for TERRA $TERRA_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/terra.json | jq
+cat $OFFSIDESWAP_ID/terra.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uusd \
@@ -309,11 +309,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/terra-uusd.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/terra-uusd.json
 
 echo "\n\ngenerated entry for TERRA $TERRA_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/terra-uusd.json | jq
+cat $OFFSIDESWAP_ID/terra-uusd.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uscrt \
@@ -327,11 +327,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/scrt.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/scrt.json
 
 echo "\n\ngenerated entry for SECRET $SECRET_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/scrt.json | jq
+cat $OFFSIDESWAP_ID/scrt.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=cdmx \
@@ -345,11 +345,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/cdmx.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/cdmx.json
 
 echo "\n\ngenerated entry for $COMDEX_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/cmdx.json | jq
+cat $OFFSIDESWAP_ID/cmdx.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uhuahua \
@@ -363,11 +363,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/huahua.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/huahua.json
 
 echo "\n\ngenerated entry for $HUAHUA_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/huahua.json | jq
+cat $OFFSIDESWAP_ID/huahua.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=ustars \
@@ -381,11 +381,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/ustars.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/ustars.json
 
 echo "\n\ngenerated entry for $STARGAZE_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/ustars.json | jq
+cat $OFFSIDESWAP_ID/ustars.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=ubcna \
@@ -399,11 +399,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/ubcna.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/ubcna.json
 
 echo "\n\ngenerated entry for $BITCANNA_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/ubcna.json | jq
+cat $OFFSIDESWAP_ID/ubcna.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=uiov \
@@ -417,11 +417,11 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/uiov.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/uiov.json
 
 echo "\n\ngenerated entry for $STARNAME_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/uiov.json | jq
+cat $OFFSIDESWAP_ID/uiov.json | jq
 
 blackfuryd q tokenregistry generate -o json \
 	--token_base_denom=aevmos \
@@ -435,8 +435,8 @@ blackfuryd q tokenregistry generate -o json \
 	--token_external_symbol="" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true | jq > $BLACKCHAIN_ID/aevmos.json
+	--token_permission_ibc_import=true | jq > $OFFSIDESWAP_ID/aevmos.json
 
 echo "\n\ngenerated entry for $EVMOS_CHAIN_ID"
 
-cat $BLACKCHAIN_ID/aevmos.json | jq
+cat $OFFSIDESWAP_ID/aevmos.json | jq

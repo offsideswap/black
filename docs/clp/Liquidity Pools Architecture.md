@@ -1,8 +1,8 @@
-# **Blackchain Liquidity Pools Architecture**
+# **Offsideswap Liquidity Pools Architecture**
 
 ## Changelog
 -First Draft: Austin Haines &amp; Charlie Wolf (Barefoot Coders)
- Prepared For: Jazear Brooks, Blackchain  September 21, 2020
+ Prepared For: Jazear Brooks, Offsideswap  September 21, 2020
 
 -First Revision: Austin Haines (Barefoot Coders) September 28, 2020
 
@@ -14,7 +14,7 @@
 
 
 ## Context
-Outlined below are the starting points of an architecture that will allow Blackchain to implement an MVP version of liquidity pools similar to Sushiswap.
+Outlined below are the starting points of an architecture that will allow Offsideswap to implement an MVP version of liquidity pools similar to Sushiswap.
 
 ## Cosmos-SDK Objects
 
@@ -30,13 +30,13 @@ The following represent objects outlined by the Cosmos-SDK that the software wil
 
 **Message:** Object containing core state changes for a desired operation ie: creating a pool, adding liquidity to a pool, or destroying a pool.
 
-![](images/BlackchainCLPArchitecture/BlackchainMessages.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapMessages.png)
 
 **Event:** Object containing metadata relevant to messages. Returned by a module to the base app and recorded on-chain for block explorers and other services to track.
 
 **Event Handler:** Abstraction responsible for processing and maintaining a list of `Events` for a `Transaction`.
 
-![](images/BlackchainCLPArchitecture/BlackchainEvent.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapEvent.png)
 
 **Query:** Requests by the user for information about the state of the `Module`&#39;s store.
 
@@ -60,7 +60,7 @@ The `Keeper` also contains methods for getting/setting the store affected by the
 
 getPools(), getPool(), setPool(), destroyPool(), getLiquidityProvider(), getLiquidityProviderIterator(), setLiquidityProvider(), destroyLiquidityProvider()
 
-![](images/BlackchainCLPArchitecture/BlackchainAppStructure.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapAppStructure.png)
 
 ## Structs
 
@@ -72,7 +72,7 @@ These structures contain all data pertaining to liquidity pools that are stored 
 
 **Asset:** Contains symbol identifying a single asset.
 
-![](images/BlackchainCLPArchitecture/BlackchainStructs.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapStructs.png)
 
 **Addresses:** Pool addresses are a hash of "pool-" prefix and asset symbol suffixes following the form "pool-[firstSymbol][secondSymbol]" ie: "pool-cETHFURY". This module is designed to be extensible, therefore the pool address serves as both an identifier for future pools with multiple external assets and as an address for holding tokens in the liquidity pool. `lpAddress` is the address of a liquidity provider's account. Both types of addresses will be used to send tokens in and out of liquidity pools.
 
@@ -179,9 +179,9 @@ The creator of the pool contributes tokens and becomes the `Pool`&#39;s first `L
     return stakeUnits
 }
 ```
-![](images/BlackchainCLPArchitecture/BlackchainCreatePool.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapCreatePool.png)
 
-**decommissionPool(keeper, poolAddress)**: Decomissions liquidity pool specified by pool address. Refunds all `LiquidityProvider`s and deletes `Pool` and associated `LiquidityProvider`s from the store. This function should only execute when the pool is under a minimum volume threshold or does not meet other requirements outlined by Blackchain.
+**decommissionPool(keeper, poolAddress)**: Decomissions liquidity pool specified by pool address. Refunds all `LiquidityProvider`s and deletes `Pool` and associated `LiquidityProvider`s from the store. This function should only execute when the pool is under a minimum volume threshold or does not meet other requirements outlined by Offsideswap.
 
 ```golang 
 {
@@ -203,7 +203,7 @@ The creator of the pool contributes tokens and becomes the `Pool`&#39;s first `L
 }
 ```
 
-![](images/BlackchainCLPArchitecture/BlackchainDecommissionFlow.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapDecommissionFlow.png)
 
 **addLiquidity(keeper, externalAsset, externalAssetAmount, nativeAssetAmount)**: Adds liquidity to an asset&#39;s liquidity pool asymmetrically.
 
@@ -220,7 +220,7 @@ The creator of the pool contributes tokens and becomes the `Pool`&#39;s first `L
   setLiquidityProvider()
 }
 ```
-![](images/BlackchainCLPArchitecture/BlackchainAddLiquidity.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapAddLiquidity.png)
 
 **removeLiquidity(keeper, externalAsset, wBasisPoints, asymmetry):** Functions similar to addLiquidity(), but uses lpUnits and poolUnits to determine `LiquidityProvider`&#39;s ownership of the `Pool`. Users will specify asymmetry and withdrawal basis point parameters to determine the proportion of each token in the pool to withdraw and the proportion of their stake in the pool to withdraw. Asymmetry is used to determine swap amount after a symmetrical withdrawal.
 
@@ -275,7 +275,7 @@ The creator of the pool contributes tokens and becomes the `Pool`&#39;s first `L
   return withdrawNativeAssetAmount, withdrawExternalAssetAmount, lpUnitsLeft, swapAmount
 }
 ```
-![](images/BlackchainCLPArchitecture/BlackchainRemoveLiquidity.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapRemoveLiquidity.png)
 
 **swap(keeper, sentAsset, receivedAsset, sentAmount)**: Swaps amount of sent asset for received asset. Calls swapOne() to do actual swap work.  If sent asset and received asset are both non-native swapOne is called twice: (sentAsset to nativeAsset + nativeAsset to receivedAsset).
 ```golang
@@ -335,8 +335,8 @@ Uses Thorchain&#39;s slip based Continuous Liquidity Pool model to calculate tra
   return (x * X * Y) / ((x + X) * (x + X))
 }
 ```
-![](images/BlackchainCLPArchitecture/BlackchainSwap.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapSwap.png)
 
-![](images/BlackchainCLPArchitecture/BlackchainCreateSwapFlow.png)
+![](images/OffsideswapCLPArchitecture/OffsideswapCreateSwapFlow.png)
 
-**Swap Queue:** This feature is part of Thorchain's CLP model and will order swap execution by fee and slip size to ensure maximum fee collection and to prevent low-value trades. This is currently slated as a future goal for Blackchain.
+**Swap Queue:** This feature is part of Thorchain's CLP model and will order swap execution by fee and slip size to ensure maximum fee collection and to prevent low-value trades. This is currently slated as a future goal for Offsideswap.

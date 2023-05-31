@@ -3,9 +3,9 @@ package utils_test
 import (
 	"encoding/json"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/test"
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
-	"github.com/Blackchain/blackfury/x/tokenregistry/utils"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/utils"
 
 	"io/ioutil"
 	"os"

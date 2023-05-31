@@ -4,8 +4,8 @@ from typing import Tuple
 
 import blacktool_path
 from blacktool.common import *
-from blacktool.blackchain import FURY, FURY_DECIMALS, STAKE
-from blacktool import command, cosmos, project, environments, blackchain
+from blacktool.offsideswap import FURY, FURY_DECIMALS, STAKE
+from blacktool import command, cosmos, project, environments, offsideswap
 
 
 # How to use:
@@ -19,14 +19,14 @@ from blacktool import command, cosmos, project, environments, blackchain
 # To watch live logs: tail -F /tmp/blacktool.tmp/test_min_commission/blackfuryd-0/blackfuryd.log
 #
 # More information about min commission / max voting power:
-# Test scenarios (Kevin): https://github.com/Blackchain/blackfury/blob/feature/min-commission/docs/tutorials/commission.md
-# Test scenarios (James): https://www.notion.so/blackchain/Minimum-Commissions-Max-Voting-Power-Test-Scenarios-Draft-729620045e2d41f8b18f3a5df28b623b
-# How to bypass the 24h limit (Caner): https://www.notion.so/blackchain/v0-15-0-Edit-min-commission-of-existing-validator-edecd16b074a4900974704d223847b48
+# Test scenarios (Kevin): https://github.com/Offsideswap/blackfury/blob/feature/min-commission/docs/tutorials/commission.md
+# Test scenarios (James): https://www.notion.so/offsideswap/Minimum-Commissions-Max-Voting-Power-Test-Scenarios-Draft-729620045e2d41f8b18f3a5df28b623b
+# How to bypass the 24h limit (Caner): https://www.notion.so/offsideswap/v0-15-0-Edit-min-commission-of-existing-validator-edecd16b074a4900974704d223847b48
 # Useful info:
-# - https://app.zenhub.com/workspaces/current-sprint---engineering-615a2e9fe2abd5001befc7f9/issues/blackchain/blackchain-chainops/200
+# - https://app.zenhub.com/workspaces/current-sprint---engineering-615a2e9fe2abd5001befc7f9/issues/offsideswap/offsideswap-chainops/200
 # Upgrades:
-# - https://github.com/Blackchain/blackchain-devops/blob/main/scripts/blackfury/release/testing/upgrade_path.json
-# - https://github.com/Blackchain/blackfury/blob/68f69eb7e390363f336ec7a235ab7e564bf5dabb/scripts/upgrade-integration.sh#L39-L39
+# - https://github.com/Offsideswap/offsideswap-devops/blob/main/scripts/blackfury/release/testing/upgrade_path.json
+# - https://github.com/Offsideswap/blackfury/blob/68f69eb7e390363f336ec7a235ab7e564bf5dabb/scripts/upgrade-integration.sh#L39-L39
 
 
 log = blacktool_logger(__name__)
@@ -61,7 +61,7 @@ def create_environment(cmd, version, commission_rate=0.06, commission_max_rate=0
     cmd.mkdir(home_root)
 
     binary = get_binary_for_version(version)
-    assert blackchain.Blackfuryd(cmd, binary=binary).version() == version  # Check actual version
+    assert offsideswap.Blackfuryd(cmd, binary=binary).version() == version  # Check actual version
 
     pkill(cmd)
 
@@ -82,7 +82,7 @@ def delegate(env, from_index, to_index, amount):
     from_addr = from_validator_node_info["admin_addr"]
     env.fund(from_addr, {env.staking_denom: amount})  # Make sure admin has enough balance for what he is delegating
     res = blackfuryd_from_to.staking_delegate(validator_addr, {env.staking_denom: amount}, from_addr, broadcast_mode="block")
-    blackchain.check_raw_log(res)
+    offsideswap.check_raw_log(res)
 
 
 def test_min_commission_create_new_validator(cmd: command.Command):
@@ -98,7 +98,7 @@ def test_min_commission_create_new_validator(cmd: command.Command):
         if should_succeed:
             assert_no_exception(exception)
         else:
-            assert blackchain.is_min_commission_too_low_exception(exception)
+            assert offsideswap.is_min_commission_too_low_exception(exception)
 
     test_case(0.05, 0.10, True)
     test_case(0.03, 0.20, False)
@@ -132,7 +132,7 @@ def test_min_commission_modify_existing_validator_24h(cmd: command.Command):
     exception = None
     try:
         res = blackfuryd0.staking_edit_validator(0.05, from_acct=admin0_addr, broadcast_mode="block")
-        blackchain.check_raw_log(res)
+        offsideswap.check_raw_log(res)
     except Exception as e:
         exception = e
     assert_no_exception(exception)
@@ -140,15 +140,15 @@ def test_min_commission_modify_existing_validator_24h(cmd: command.Command):
     exception = None
     try:
         res = blackfuryd1.staking_edit_validator(0.03, from_acct=admin1_addr, broadcast_mode="block")
-        blackchain.check_raw_log(res)
+        offsideswap.check_raw_log(res)
     except Exception as e:
         exception = e
-    assert blackchain.is_min_commission_too_low_exception(exception)
+    assert offsideswap.is_min_commission_too_low_exception(exception)
 
     exception = None
     try:
         res = blackfuryd2.staking_edit_validator(0.07, from_acct=admin2_addr, broadcast_mode="block")
-        blackchain.check_raw_log(res)
+        offsideswap.check_raw_log(res)
     except Exception as e:
         exception = e
     assert_no_exception(exception)
@@ -223,7 +223,7 @@ def test_max_voting_power(cmd: command.Command):
             expected_validator_powers_after[to_validator_index] += amount
             assert validator_powers_after == expected_validator_powers_after
         else:
-            assert blackchain.is_max_voting_power_limit_exceeded_exception(exception)
+            assert offsideswap.is_max_voting_power_limit_exceeded_exception(exception)
             assert validator_powers_after == validator_powers_before
 
     black = 0

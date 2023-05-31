@@ -1,8 +1,8 @@
 #!/bin/sh
 
-BLACKCHAIN_ID=blackchain-devnet-1 \
+OFFSIDESWAP_ID=offsideswap-devnet-1 \
   KEYRING_BACKEND=test \
-  BLACK_NODE=https://rpc-devnet.blackchain.finance:443 \
+  BLACK_NODE=https://rpc-devnet.offsideswap.finance:443 \
   COSMOS_BASE_DENOM=uphoton \
   COSMOS_CHANNEL_ID=channel-114 \
   COSMOS_COUNTERPARTY_CHANNEL_ID=channel-26 \

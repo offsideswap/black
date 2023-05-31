@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 const (

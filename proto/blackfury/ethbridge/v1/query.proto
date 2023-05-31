@@ -5,7 +5,7 @@ import "gogoproto/gogo.proto";
 import "blackfury/ethbridge/v1/types.proto";
 import "blackfury/oracle/v1/types.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/ethbridge/types";
+option go_package = "github.com/Offsideswap/blackfury/x/ethbridge/types";
 
 // Query service for queries
 service Query {

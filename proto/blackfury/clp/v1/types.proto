@@ -4,7 +4,7 @@ package blackfury.clp.v1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/clp/types";
+option go_package = "github.com/Offsideswap/blackfury/x/clp/types";
 
 message Asset { string symbol = 1; }
 

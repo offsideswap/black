@@ -41,8 +41,8 @@ Where:
 
 |Var|Description|
 |---|-----------|
-|`${CHAINNET0}`|The Chain ID of the first blackfury (e.g.: `blackchain-ibc-0`)|
-|`${CHAINNET1}`|The Chain ID of the second blackfury (e.g.: `blackchain-ibc-1`)|
+|`${CHAINNET0}`|The Chain ID of the first blackfury (e.g.: `offsideswap-ibc-0`)|
+|`${CHAINNET1}`|The Chain ID of the second blackfury (e.g.: `offsideswap-ibc-1`)|
 |`${IPADDR0}`|The IP Address of the first blackfury (e.g.: `192.168.65.2`)|
 |`${IPADDR1}`|The IP Address of the second blackfury (e.g.: `192.168.65.3`)|
 |`${IPADDR2}`|The IP Address of the relayer (e.g.: `192.168.65.3`)|
@@ -52,8 +52,8 @@ Where:
 e.g.:
 
 ```bash
-CHAINNET0=blackchain-ibc-0 \
-CHAINNET1=blackchain-ibc-1 \
+CHAINNET0=offsideswap-ibc-0 \
+CHAINNET1=offsideswap-ibc-1 \
 IPADDR0=192.168.65.2 \
 IPADDR1=192.168.65.3 \
 IPADDR2=192.168.65.4 \

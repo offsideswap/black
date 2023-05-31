@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, data types.GenesisState) (res []abci.ValidatorUpdate) {

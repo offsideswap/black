@@ -3,12 +3,12 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ibctransfer/keeper"
-	scibctransfertypes "github.com/Blackchain/blackfury/x/ibctransfer/types"
-	scibctransfermocks "github.com/Blackchain/blackfury/x/ibctransfer/types/mocks"
-	tokenregistrytest "github.com/Blackchain/blackfury/x/tokenregistry/test"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ibctransfer/keeper"
+	scibctransfertypes "github.com/Offsideswap/blackfury/x/ibctransfer/types"
+	scibctransfermocks "github.com/Offsideswap/blackfury/x/ibctransfer/types/mocks"
+	tokenregistrytest "github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdktransfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v2/modules/core/02-client/types"

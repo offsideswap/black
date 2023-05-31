@@ -9,10 +9,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/dispensation/keeper"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
-	"github.com/Blackchain/blackfury/x/dispensation/types/legacy"
+	"github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types/legacy"
 )
 
 func TestUpgradeDistributionRecords(t *testing.T) {

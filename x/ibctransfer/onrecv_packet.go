@@ -3,14 +3,14 @@ package ibctransfer
 import (
 	"fmt"
 
-	"github.com/Blackchain/blackfury/x/ibctransfer/helpers"
+	"github.com/Offsideswap/blackfury/x/ibctransfer/helpers"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	transfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v2/modules/core/04-channel/types"
 
-	sctransfertypes "github.com/Blackchain/blackfury/x/ibctransfer/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	sctransfertypes "github.com/Offsideswap/blackfury/x/ibctransfer/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 // OnRecvPacketWhitelistConvert receives a transfer, check if the denom is whitelisted, and converts it

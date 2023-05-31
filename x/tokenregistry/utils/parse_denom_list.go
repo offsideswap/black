@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 func ParseDenoms(codec codec.JSONCodec, dir string) (tokenregistrytypes.Registry, error) {

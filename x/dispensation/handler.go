@@ -2,8 +2,8 @@ package dispensation
 
 import (
 	"fmt"
-	"github.com/Blackchain/blackfury/x/dispensation/keeper"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

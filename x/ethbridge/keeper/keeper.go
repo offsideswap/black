@@ -4,14 +4,14 @@ import (
 	"errors"
 	"fmt"
 
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	"github.com/tendermint/tendermint/libs/log"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 const errorMessageKey = "errorMessageKey"

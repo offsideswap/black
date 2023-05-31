@@ -1,14 +1,14 @@
 package test
 
 import (
-	blackapp "github.com/Blackchain/blackfury/app"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )
 
-func CreateTestApp(isCheckTx bool) (*blackapp.BlackchainApp, sdk.Context, string) {
+func CreateTestApp(isCheckTx bool) (*blackapp.OffsideswapApp, sdk.Context, string) {
 	blackapp.SetConfig(false)
 	app := blackapp.Setup(isCheckTx)
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})

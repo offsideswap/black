@@ -1,10 +1,10 @@
 package ante_test
 
 import (
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/app/ante"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	dispensationtypes "github.com/Blackchain/blackfury/x/dispensation/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/app/ante"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	dispensationtypes "github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"

@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
 
 	"github.com/cosmos/cosmos-sdk/client/tx"
 
@@ -30,10 +30,10 @@ import (
 	tmclient "github.com/tendermint/tendermint/rpc/client/http"
 	"go.uber.org/zap"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/contract"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/contract"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 const (

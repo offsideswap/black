@@ -3,9 +3,9 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/margin/keeper"
-	"github.com/Blackchain/blackfury/x/margin/test"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/keeper"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )

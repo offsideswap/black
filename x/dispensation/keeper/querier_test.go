@@ -11,11 +11,11 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/Blackchain/blackfury/app"
+	"github.com/Offsideswap/blackfury/app"
 
-	dispensationkeeper "github.com/Blackchain/blackfury/x/dispensation/keeper"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	dispensationkeeper "github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 )
 
 func TestNewLegacyQuerier(t *testing.T) {
@@ -44,7 +44,7 @@ func TestNewLegacyQuerier(t *testing.T) {
 
 }
 
-func GenerateQueryData(app *app.BlackchainApp, ctx sdk.Context, name string, outList []bank.Output) {
+func GenerateQueryData(app *app.OffsideswapApp, ctx sdk.Context, name string, outList []bank.Output) {
 	keeper := app.DispensationKeeper
 	authorizedRunner := sdk.AccAddress(crypto.AddressHash([]byte("Runner")))
 	for i := 0; i < 10; i++ {

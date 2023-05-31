@@ -7,7 +7,7 @@ package tokenregistrymocks
 import (
 	reflect "reflect"
 
-	types "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	types "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	types0 "github.com/cosmos/cosmos-sdk/types"
 	gomock "github.com/golang/mock/gomock"
 	types1 "github.com/tendermint/tendermint/abci/types"

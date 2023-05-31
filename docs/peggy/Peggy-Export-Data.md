@@ -1,5 +1,5 @@
  # Peggy Export Data
- Before upgrade the peggy to Cosmos SDK 0.42, peggy export the data of both ethbridge and oracle into the genesis file. Then new Blackchain network can get the data like CethReceiverAccount and PeggyTokenList from genesis file.
+ Before upgrade the peggy to Cosmos SDK 0.42, peggy export the data of both ethbridge and oracle into the genesis file. Then new Offsideswap network can get the data like CethReceiverAccount and PeggyTokenList from genesis file.
 
  ## How to set CethReceiverAccount 
  See the Peggy-Ceth-Account-Set.md in the same folder.

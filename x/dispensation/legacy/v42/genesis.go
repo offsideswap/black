@@ -3,8 +3,8 @@ package v42
 import (
 	gogotypes "github.com/gogo/protobuf/types"
 
-	v039dispensation "github.com/Blackchain/blackfury/x/dispensation/legacy/v39"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	v039dispensation "github.com/Offsideswap/blackfury/x/dispensation/legacy/v39"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 )
 
 func Migrate(state v039dispensation.GenesisState) *types.GenesisState {

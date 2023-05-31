@@ -4,10 +4,10 @@
 package testutil
 
 import (
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	"github.com/cosmos/cosmos-sdk/testutil/network"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"

@@ -1,10 +1,10 @@
 # This is for load testing of LPD/rewardss (and in future, margin)
 #
-# Scenario description: https://www.notion.so/blackchain/Rewards-2-0-Load-Testing-972fbe73b04440cd87232aa60a3146c5
-# Ticket: https://app.zenhub.com/workspaces/current-sprint---engineering-615a2e9fe2abd5001befc7f9/issues/blackchain/blackfury/3020
+# Scenario description: https://www.notion.so/offsideswap/Rewards-2-0-Load-Testing-972fbe73b04440cd87232aa60a3146c5
+# Ticket: https://app.zenhub.com/workspaces/current-sprint---engineering-615a2e9fe2abd5001befc7f9/issues/offsideswap/blackfury/3020
 # How to run a validator in multi-node setup:
-# - https://docs.blackchain.finance/network-security/validators/running-blackfury-and-becoming-a-validator
-# - https://docs.blackchain.finance/developers/tutorials/setup-standalone-validator-node-manually
+# - https://docs.offsideswap.finance/network-security/validators/running-blackfury-and-becoming-a-validator
+# - https://docs.offsideswap.finance/developers/tutorials/setup-standalone-validator-node-manually
 #
 # Requirements: Python (3.9 is best, 3.8 and 3.10 should also work, support for other versions is currently unknownn)
 #
@@ -41,7 +41,7 @@
 # TODO - improvements
 #
 # (1) Log HTTP response for block_height, maybe we can get a bit more information like this:
-# $ curl -i "http://rpc-archive.blackchain.finance/block_results?height=9000000"
+# $ curl -i "http://rpc-archive.offsideswap.finance/block_results?height=9000000"
 # HTTP/1.1 500 Internal Server Error
 # ...
 # {
@@ -54,7 +54,7 @@
 #   }
 # }
 #
-# (2) use rocksb, see https://raw.githubusercontent.com/Blackchain/blackchain-devops/1218ff79b22ab2a6bd22b81d6aa4385a247cafc9/scripts/blackfury/testing/blackfury_n_node_network_simulator.py?token=GHSAT0AAAAAABLH7LII5AAWD6YDWG7THBHGYW7DSVA
+# (2) use rocksb, see https://raw.githubusercontent.com/Offsideswap/offsideswap-devops/1218ff79b22ab2a6bd22b81d6aa4385a247cafc9/scripts/blackfury/testing/blackfury_n_node_network_simulator.py?token=GHSAT0AAAAAABLH7LII5AAWD6YDWG7THBHGYW7DSVA
 #
 # (3) Exceptions / printing of _debug...
 #
@@ -68,8 +68,8 @@ import sys
 import time
 import blacktool_path
 from blacktool.common import *
-from blacktool import command, blackchain, project, cosmos, environments, test_utils2
-from blacktool.blackchain import FURY, STAKE, FURY_DECIMALS
+from blacktool import command, offsideswap, project, cosmos, environments, test_utils2
+from blacktool.offsideswap import FURY, STAKE, FURY_DECIMALS
 
 
 log = blacktool_logger()
@@ -153,9 +153,9 @@ class Test:
         # TODO It is not clear if we really need to fund all of them (and how much).
         # TODO Does this have to cover for rewards and lppd distribution? If rewards are minted, then no.
         # For rewards, the funds are minted and in case we opted for a distribution of the rewards to the LP wallet the
-        # minted furys are transferred there, you can see the minting process here: https://github.com/Blackchain/blackfury/blob/master/x/clp/keeper/rewards.go#L54
-        # For LPD, we only transfer the existing funds in CLP to the LP's wallet, you can see here: https://github.com/Blackchain/blackfury/blob/8b2f9c45130c79e07555735185fbe1d00279fab0/x/clp/keeper/pool.go#L128
-        blackfuryd_client = blackchain.Blackfuryd(self.cmd, home=client_home)
+        # minted furys are transferred there, you can see the minting process here: https://github.com/Offsideswap/blackfury/blob/master/x/clp/keeper/rewards.go#L54
+        # For LPD, we only transfer the existing funds in CLP to the LP's wallet, you can see here: https://github.com/Offsideswap/blackfury/blob/8b2f9c45130c79e07555735185fbe1d00279fab0/x/clp/keeper/pool.go#L128
+        blackfuryd_client = offsideswap.Blackfuryd(self.cmd, home=client_home)
         denom_total_supply = 10000 * self.number_of_wallets * self.amount_of_denom_per_wallet
         wallets = {}
         extra_accounts = {}
@@ -186,7 +186,7 @@ class Test:
 
         self.env = env
         blackfuryd = env._blackfuryd_for(env.node_info[0])
-        blackfuryd_client = blackchain.Blackfuryd(self.cmd, home=client_home, node=blackchain.format_node_url(
+        blackfuryd_client = offsideswap.Blackfuryd(self.cmd, home=client_home, node=offsideswap.format_node_url(
             self.env.node_info[0]["host"], self.env.node_info[0]["ports"]["rpc"]), chain_id=env.chain_id)
         blackfuryd_client.get_balance_default_retries = 5
 
@@ -205,7 +205,7 @@ class Test:
             for denom in denoms:
                 res = blackfuryd_client.tx_clp_add_liquidity(addr, denom, self.amount_of_liquidity_added_by_wallet,
                     self.amount_of_liquidity_added_by_wallet, account_seq=(account_number, account_sequence))
-                blackchain.check_raw_log(res)
+                offsideswap.check_raw_log(res)
                 account_sequence += 1
         blackfuryd_client.wait_for_last_transaction_to_be_mined()
         self.check_actual_liquidity_providers(blackfuryd_client, env.clp_admin, wallets)
@@ -232,7 +232,7 @@ class Test:
 
         # Set up rewards
         if self.rewards_duration_blocks > 0:
-            reward_params = blackchain.create_rewards_descriptor("RP_1", rewards_start_block, rewards_end_block,
+            reward_params = offsideswap.create_rewards_descriptor("RP_1", rewards_start_block, rewards_end_block,
                 [(token, 1) for token in self.tokens][:self.reward_period_pool_count], 100000 * self.token_unit,
                 self.reward_period_default_multiplier, self.reward_period_distribute, self.reward_period_mod)
             blackfuryd.clp_reward_period(admin_addr, reward_params)
@@ -243,7 +243,7 @@ class Test:
 
         # Set up LPD policies
         if self.lpd_duration_blocks > 0:
-            lppd_params = blackchain.create_lppd_params(lppd_start_block, lppd_end_block, 0.00045, self.lpd_period_mod)
+            lppd_params = offsideswap.create_lppd_params(lppd_start_block, lppd_end_block, 0.00045, self.lpd_period_mod)
             blackfuryd.clp_set_lppd_params(admin_addr, lppd_params)
             blackfuryd.wait_for_last_transaction_to_be_mined()
             wait_boundaries.add(lppd_start_block)
@@ -267,7 +267,7 @@ class Test:
                     wait_boundaries[i], wait_boundaries[i + 1], block_time_per_phase[i]))
 
         # TODO LPD and rewards assertions
-        # See https://www.notion.so/blackchain/Rewards-2-0-Load-Testing-972fbe73b04440cd87232aa60a3146c5#7392be2c1a034d2db83b9b38ab89ff9e
+        # See https://www.notion.so/offsideswap/Rewards-2-0-Load-Testing-972fbe73b04440cd87232aa60a3146c5#7392be2c1a034d2db83b9b38ab89ff9e
 
         # run_forever means we're not interested in average block times but want to run this
         # as an environment

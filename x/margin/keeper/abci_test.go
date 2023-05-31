@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/margin/test"
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 )
 
 func TestKeeper_BeginBlocker(t *testing.T) {

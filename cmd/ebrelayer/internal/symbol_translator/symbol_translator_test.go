@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	blackchainDenomFeedface = "ibc/FEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACE"
+	offsideswapDenomFeedface = "ibc/FEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACEFEEDFACE"
 	ethereumSymbolFeeface = "Face"
 )
 
@@ -18,13 +18,13 @@ func TestNewSymbolTranslatorFromJsonBytes(t *testing.T) {
 	x, err := NewSymbolTranslatorFromJSONBytes([]byte(q))
 	assert.NoError(t, err)
 	assert.NotNil(t, x)
-	assert.Equal(t, x.BlackchainToEthereum(blackchainDenomFeedface), ethereumSymbolFeeface)
-	assert.Equal(t, x.EthereumToBlackchain(ethereumSymbolFeeface), blackchainDenomFeedface)
-	assert.Equal(t, x.BlackchainToEthereum("verbatim"), "verbatim")
-	assert.Equal(t, x.EthereumToBlackchain("verbatim"), "verbatim")
+	assert.Equal(t, x.OffsideswapToEthereum(offsideswapDenomFeedface), ethereumSymbolFeeface)
+	assert.Equal(t, x.EthereumToOffsideswap(ethereumSymbolFeeface), offsideswapDenomFeedface)
+	assert.Equal(t, x.OffsideswapToEthereum("verbatim"), "verbatim")
+	assert.Equal(t, x.EthereumToOffsideswap("verbatim"), "verbatim")
 }
 
 func TestNewSymbolTranslator(t *testing.T) {
 	s := NewSymbolTranslator()
-	assert.Equal(t, s.BlackchainToEthereum("something"), "something")
+	assert.Equal(t, s.OffsideswapToEthereum("something"), "something")
 }

@@ -4,17 +4,17 @@ import os
 import pytest
 
 import burn_lock_functions
-from burn_lock_functions import EthereumToBlackchainTransferRequest
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
 import test_utilities
 from pytest_utilities import generate_test_account
-from test_utilities import get_required_env_var, BlackchaincliCredentials, get_optional_env_var, ganache_owner_account
+from test_utilities import get_required_env_var, OffsideswapcliCredentials, get_optional_env_var, ganache_owner_account
 
 
 def test_fury_to_efury(
-        basic_transfer_request: EthereumToBlackchainTransferRequest,
+        basic_transfer_request: EthereumToOffsideswapTransferRequest,
         source_ethereum_address: str,
-        fury_source_integrationtest_env_credentials: BlackchaincliCredentials,
-        fury_source_integrationtest_env_transfer_request: EthereumToBlackchainTransferRequest,
+        fury_source_integrationtest_env_credentials: OffsideswapcliCredentials,
+        fury_source_integrationtest_env_transfer_request: EthereumToOffsideswapTransferRequest,
         ethereum_network,
         bridgetoken_address,
         smart_contracts_dir
@@ -34,7 +34,7 @@ def test_fury_to_efury(
     request.ethereum_address, _ = test_utilities.create_ethereum_address(
         smart_contracts_dir, ethereum_network
     )
-    request.blackchain_symbol = "fury"
+    request.offsideswap_symbol = "fury"
     request.ethereum_symbol = bridgetoken_address
     request.amount = int(target_fury_balance / 2)
-    burn_lock_functions.transfer_blackchain_to_ethereum(request, credentials)
+    burn_lock_functions.transfer_offsideswap_to_ethereum(request, credentials)

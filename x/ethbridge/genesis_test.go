@@ -3,8 +3,8 @@ package ethbridge_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/ethbridge"
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"

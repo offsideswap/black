@@ -1,4 +1,4 @@
-# Blackchain - Margin Trading Basics Tutorial
+# Offsideswap - Margin Trading Basics Tutorial
 
 #### demo video
 
@@ -6,11 +6,11 @@ TBD
 
 #### Previous tutorial
 
-- Clp Basics: https://github.com/Blackchain/blackfury/blob/develop/docs/tutorials/clp%20tutorial.md
+- Clp Basics: https://github.com/Offsideswap/blackfury/blob/develop/docs/tutorials/clp%20tutorial.md
 
 #### Dependencies:
 
-0. `git clone git@github.com:Blackchain/blackfury.git`
+0. `git clone git@github.com:Offsideswap/blackfury.git`
 1. `cd blackfury`
 2. `git checkout feature/margin-1`
 3. `make install`

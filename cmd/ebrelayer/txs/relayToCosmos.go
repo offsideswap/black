@@ -3,7 +3,7 @@ package txs
 // DONTCOVER
 
 import (
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"go.uber.org/zap"
@@ -61,7 +61,7 @@ func RelayToCosmos(factory tx.Factory, claims []*types.EthBridgeClaim, cliCtx cl
 	//        if so, how many times do we try?
 	if err != nil {
 		sugaredLogger.Errorw(
-			"failed to broadcast tx to blackchain.",
+			"failed to broadcast tx to offsideswap.",
 			errorMessageKey, err.Error(),
 		)
 		return err

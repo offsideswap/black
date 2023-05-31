@@ -4,8 +4,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 func DefaultGenesis() *types.GenesisState {

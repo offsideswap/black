@@ -8,7 +8,7 @@
 
 ### Summary
 
-For the Blackchain MVP ,CLP module provides the following functionalities 
+For the Offsideswap MVP ,CLP module provides the following functionalities 
 - Create New Liquidity Pool
 - Add Liquidity to an Existing Liquidity pool 
 - Remove Liquidity from an Existing Liquidity pool 
@@ -24,7 +24,7 @@ SourceChain: ETHEREUM
 Symbol: ETH
 Ticker: ceth
 
-SourceChain: BLACKCHAIN
+SourceChain: OFFSIDESWAP
 Symbol: RWN
 Ticker: rwn
 ```

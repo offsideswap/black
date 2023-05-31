@@ -1,19 +1,19 @@
 package ibctransfer_test
 
 import (
-	app2 "github.com/Blackchain/blackfury/app"
-	sctransfertypes "github.com/Blackchain/blackfury/x/ibctransfer/types"
+	app2 "github.com/Offsideswap/blackfury/app"
+	sctransfertypes "github.com/Offsideswap/blackfury/x/ibctransfer/types"
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
 
-	tokenregistrytest "github.com/Blackchain/blackfury/x/tokenregistry/test"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	tokenregistrytest "github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	transfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v2/modules/core/04-channel/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/ibctransfer/helpers"
+	"github.com/Offsideswap/blackfury/x/ibctransfer/helpers"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -211,7 +211,7 @@ func TestOnRecvPacketV2(t *testing.T) {
 		DestinationPort:    "transfer",
 		DestinationChannel: "channel-1",
 	}
-	// Xfury which originated on Blackchain
+	// Xfury which originated on Offsideswap
 	xFuryV2Amount := "10000000000"
 	returningXfury := transfertypes.FungibleTokenPacketData{
 		Denom:    "transfer/channel-0/xfury",

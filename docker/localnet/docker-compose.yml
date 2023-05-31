@@ -2,7 +2,7 @@ version: '3'
 
 services:
   blackfury0:
-    image: blackchain/blackfury:latest
+    image: offsideswap/blackfury:latest
     ports:
       - 1317:1317
       - 26656:26656
@@ -16,11 +16,11 @@ services:
       - ./blackfury/root/scripts:/root/scripts:Z
     command: /root/scripts/blackfury.sh
     networks:
-      blackchain:
+      offsideswap:
         ipv4_address: ${IPADDR0}
 
   blackfury1:
-    image: blackchain/blackfury:latest
+    image: offsideswap/blackfury:latest
     ports:
       - 2317:1317
       - 36656:26656
@@ -34,11 +34,11 @@ services:
       - ./blackfury/root/scripts:/root/scripts:Z
     command: /root/scripts/blackfury.sh
     networks:
-      blackchain:
+      offsideswap:
         ipv4_address: ${IPADDR1}
 
   ts-relayer:
-    image: blackchain/ts-relayer:latest
+    image: offsideswap/ts-relayer:latest
     environment:
       CHAINNET0: ${CHAINNET0}
       CHAINNET1: ${CHAINNET1}
@@ -59,11 +59,11 @@ services:
       - blackfury1
     command: /root/scripts/ts-relayer.sh
     networks:
-      blackchain:
+      offsideswap:
         ipv4_address: ${IPADDR2}
 
 networks:
-  blackchain:
+  offsideswap:
     driver: bridge
     ipam:
       driver: default

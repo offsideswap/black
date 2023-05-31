@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Blackchain/blackfury/x/dispensation/client/rest"
+	"github.com/Offsideswap/blackfury/x/dispensation/client/rest"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
@@ -13,15 +13,15 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/cobra"
 
-	"github.com/Blackchain/blackfury/x/dispensation/client/cli"
+	"github.com/Offsideswap/blackfury/x/dispensation/client/cli"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/dispensation/keeper"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 )
 
 // Type check to ensure the interface is properly implemented

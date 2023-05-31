@@ -3,9 +3,9 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/dispensation/keeper"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"

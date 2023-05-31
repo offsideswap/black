@@ -3,11 +3,11 @@ package keeper
 import (
 	"context"
 
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 type msgServer struct {

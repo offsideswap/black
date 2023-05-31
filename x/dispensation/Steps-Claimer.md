@@ -30,7 +30,7 @@ type CreateClaimReq struct {
 
 #### CLI
 ```shell
-blackfuryd tx dispensation claim LiquidityMining --from black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.blackchain.finance:80 --chain-id blackchain
+blackfuryd tx dispensation claim LiquidityMining --from black1l7hypmqk2yc334vc6vmdwzp5sdefygj2ad93p5 --yes --gas auto --gas-adjustment=1.5 --gas-prices 1.0fury --node tcp://rpc.offsideswap.finance:80 --chain-id offsideswap
 ```
 
 The relevant event 

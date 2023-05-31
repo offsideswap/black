@@ -25,8 +25,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/ibctransfer/keeper"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/ibctransfer/keeper"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 // Type check to ensure the interface is properly implemented

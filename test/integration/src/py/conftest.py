@@ -20,14 +20,14 @@ def blackfury_base_dir():
 
 
 @pytest.fixture
-def blackchain_admin_account():
-    return test_utilities.get_required_env_var("BLACKCHAIN_ADMIN_ACCOUNT")
+def offsideswap_admin_account():
+    return test_utilities.get_required_env_var("OFFSIDESWAP_ADMIN_ACCOUNT")
 
 
 @pytest.fixture
-def blackchain_admin_account_credentials(blackchain_admin_account):
-    return test_utilities.BlackchaincliCredentials(
-        from_key=blackchain_admin_account
+def offsideswap_admin_account_credentials(offsideswap_admin_account):
+    return test_utilities.OffsideswapcliCredentials(
+        from_key=offsideswap_admin_account
     )
 
 
@@ -79,8 +79,8 @@ def ethereum_network():
 
 
 @pytest.fixture
-def n_blackchain_accounts():
-    return int(test_utilities.get_optional_env_var("N_BLACKCHAIN_ACCOUNTS", 1))
+def n_offsideswap_accounts():
+    return int(test_utilities.get_optional_env_var("N_OFFSIDESWAP_ACCOUNTS", 1))
 
 
 @pytest.fixture
@@ -106,7 +106,7 @@ def blackfuryd_homedir(is_ropsten_testnet):
 
 @pytest.fixture
 def fury_source(is_ropsten_testnet, validator_address):
-    """A blackchain address or key that has fury and can send that fury to other address"""
+    """A offsideswap address or key that has fury and can send that fury to other address"""
     result = test_utilities.get_optional_env_var("FURY_SOURCE", None)
     if result:
         return result
@@ -119,7 +119,7 @@ def fury_source(is_ropsten_testnet, validator_address):
 
 @pytest.fixture
 def fury_source_key(is_ropsten_testnet, fury_source):
-    """A blackchain address or key that has fury and can send that fury to other address"""
+    """A offsideswap address or key that has fury and can send that fury to other address"""
     result = test_utilities.get_optional_env_var("FURY_SOURCE_KEY", fury_source)
     if result:
         return result
@@ -181,18 +181,18 @@ def is_ganache(ethereum_network):
 
 # Deprecated: blackfuryd accepts --gas-prices=0.5fury along with --gas-adjustment=1.5 instead of a fixed fee.
 # Using those parameters is the best way to have the fees set robustly after the .42 upgrade.
-# See https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+# See https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
 @pytest.fixture
-def blackchain_fees(blackchain_fees_int):
+def offsideswap_fees(offsideswap_fees_int):
     """returns a string suitable for passing to blackfuryd"""
-    return f"{blackchain_fees_int}fury"
+    return f"{offsideswap_fees_int}fury"
 
 
 # Deprecated: blackfuryd accepts --gas-prices=0.5fury along with --gas-adjustment=1.5 instead of a fixed fee.
 # Using those parameters is the best way to have the fees set robustly after the .42 upgrade.
-# See https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+# See https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
 @pytest.fixture
-def blackchain_fees_int():
+def offsideswap_fees_int():
     return 100000000000000000
 
 
@@ -270,14 +270,14 @@ def basic_transfer_request(
         ethereum_network,
         blackfuryd_node,
         chain_id,
-        blackchain_fees,
+        offsideswap_fees,
         solidity_json_path,
         is_ganache,
 ):
     """
-    Creates a EthereumToBlackchainTransferRequest with all the generic fields filled in.
+    Creates a EthereumToOffsideswapTransferRequest with all the generic fields filled in.
     """
-    return test_utilities.EthereumToBlackchainTransferRequest(
+    return test_utilities.EthereumToOffsideswapTransferRequest(
         smart_contracts_dir=smart_contracts_dir,
         ethereum_private_key_env_var="ETHEREUM_PRIVATE_KEY",
         bridgebank_address=bridgebank_address,
@@ -286,7 +286,7 @@ def basic_transfer_request(
         blackfuryd_node=blackfuryd_node,
         manual_block_advance=is_ganache,
         chain_id=chain_id,
-        blackchain_fees=blackchain_fees,
+        offsideswap_fees=offsideswap_fees,
         solidity_json_path=solidity_json_path
     )
 
@@ -300,10 +300,10 @@ def fury_source_integrationtest_env_credentials(
         fury_source
 ):
     """
-    Creates a BlackchaincliCredentials with all the fields filled in
+    Creates a OffsideswapcliCredentials with all the fields filled in
     to transfer fury from an account that already has fury.
     """
-    return test_utilities.BlackchaincliCredentials(
+    return test_utilities.OffsideswapcliCredentials(
         keyring_backend="test",
         keyring_passphrase=validator_password,
         from_key=fury_source
@@ -314,14 +314,14 @@ def fury_source_integrationtest_env_credentials(
 def fury_source_integrationtest_env_transfer_request(
         basic_transfer_request,
         fury_source
-) -> test_utilities.EthereumToBlackchainTransferRequest:
+) -> test_utilities.EthereumToOffsideswapTransferRequest:
     """
-    Creates a EthereumToBlackchainTransferRequest with all the generic fields filled in
+    Creates a EthereumToOffsideswapTransferRequest with all the generic fields filled in
     for a transfer of fury from an account that already has fury.
     """
-    result: test_utilities.EthereumToBlackchainTransferRequest = copy.deepcopy(basic_transfer_request)
-    result.blackchain_address = fury_source
-    result.blackchain_symbol = "fury"
+    result: test_utilities.EthereumToOffsideswapTransferRequest = copy.deepcopy(basic_transfer_request)
+    result.offsideswap_address = fury_source
+    result.offsideswap_symbol = "fury"
     return result
 
 
@@ -334,17 +334,17 @@ def ethbridge_module_address():
 @pytest.fixture(scope="function")
 def restore_default_rescue_location(
         ethbridge_module_address,
-        blackchain_admin_account,
-        blackchain_admin_account_credentials,
+        offsideswap_admin_account,
+        offsideswap_admin_account_credentials,
         basic_transfer_request
 ):
     """Restores the ethbridge module as the destination for ceth fees"""
     yield None
     test_utilities.update_ceth_receiver_account(
         receiver_account=ethbridge_module_address,
-        admin_account=blackchain_admin_account,
+        admin_account=offsideswap_admin_account,
         transfer_request=basic_transfer_request,
-        credentials=blackchain_admin_account_credentials
+        credentials=offsideswap_admin_account_credentials
     )
 
 

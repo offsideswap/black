@@ -1,7 +1,7 @@
 package utils_test
 
 import (
-	"github.com/Blackchain/blackfury/x/ethbridge/utils"
+	"github.com/Offsideswap/blackfury/x/ethbridge/utils"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

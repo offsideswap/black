@@ -16,7 +16,7 @@ import (
 
 // ExportAppStateAndValidators exports the state of the application for a genesis
 // file.
-func (app *BlackchainApp) ExportAppStateAndValidators(
+func (app *OffsideswapApp) ExportAppStateAndValidators(
 	forZeroHeight bool, jailAllowedAddrs []string,
 ) (servertypes.ExportedApp, error) {
 
@@ -50,7 +50,7 @@ func (app *BlackchainApp) ExportAppStateAndValidators(
 // prepare for fresh start at zero height
 // NOTE zero height genesis is a temporary feature which will be deprecated
 //      in favour of export at a block height
-func (app *BlackchainApp) prepForZeroHeightGenesis(ctx sdk.Context, jailWhiteList []string) {
+func (app *OffsideswapApp) prepForZeroHeightGenesis(ctx sdk.Context, jailWhiteList []string) {
 	applyWhiteList := false
 
 	//Check if there is a whitelist
@@ -192,7 +192,7 @@ func (app *BlackchainApp) prepForZeroHeightGenesis(ctx sdk.Context, jailWhiteLis
 }
 
 // ExportAppState exports the validator set and application state into two different files
-func ExportAppState(name string, app *BlackchainApp, ctx sdk.Context) {
+func ExportAppState(name string, app *OffsideswapApp, ctx sdk.Context) {
 	appState, err := app.ExportAppStateAndValidators(true, []string{})
 	if err != nil {
 		ctx.Logger().Error("failed to export app state", "error:", err)

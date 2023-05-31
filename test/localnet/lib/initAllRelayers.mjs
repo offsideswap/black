@@ -22,12 +22,12 @@ export async function initAllRelayers({
     configPath,
   });
   const chainsProps = getChainsProps({ chains, network });
-  const { blackchain: blackChainProps, ...otherChainsProps } = chainsProps;
+  const { offsideswap: blackChainProps, ...otherChainsProps } = chainsProps;
 
   // 1) create global registry for relayers
   await createRelayerRegistry({ chainsProps, registryFrom });
 
-  // 2) create relayer for each single chains connecting to blackchain
+  // 2) create relayer for each single chains connecting to offsideswap
   const createdRelayers = await Promise.all(
     Object.values(otherChainsProps).map(async (otherChainProps) => {
       return createRelayer({ blackChainProps, otherChainProps, registryFrom });

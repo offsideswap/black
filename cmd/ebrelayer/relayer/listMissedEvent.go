@@ -4,11 +4,11 @@ package relayer
 
 import (
 	"context"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
 	"log"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	tmClient "github.com/tendermint/tendermint/rpc/client/http"

@@ -5,11 +5,11 @@ import (
 	"errors"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
@@ -201,7 +201,7 @@ func TestQuerier_GetPoolShareEstimate(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{

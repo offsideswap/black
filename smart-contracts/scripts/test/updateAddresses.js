@@ -6,9 +6,9 @@
 // (this will be obsolete when the frontend just gets it from the smart contracts
 // directly)
 //
-// For example, to get the blackchain version:
+// For example, to get the offsideswap version:
 // 
-//   node scripts/test/updateAddresses.js $BASEDIR/ui/core/src/tokenwhitelist.sandpit.json $BASEDIR/ui/core/src/assets.ethereum.ropsten.json | jq .blackchain
+//   node scripts/test/updateAddresses.js $BASEDIR/ui/core/src/tokenwhitelist.sandpit.json $BASEDIR/ui/core/src/assets.ethereum.ropsten.json | jq .offsideswap
 //
 //
 
@@ -35,17 +35,17 @@ const assets = targets["assets"].map(t => {
     return newElement;
 });
 
-const blackchainAssets = assets.map(t => {
+const offsideswapAssets = assets.map(t => {
     return {
         ...t,
         symbol: ((t.symbol === "efury") ? "fury" : `c${t.symbol}`).toLowerCase(),
-        network: "blackchain",
+        network: "offsideswap",
     }
 });
 
 const result = {
     ethereum: {assets},
-    blackchain: {assets: blackchainAssets},
+    offsideswap: {assets: offsideswapAssets},
 }
 
 console.log(JSON.stringify(result))

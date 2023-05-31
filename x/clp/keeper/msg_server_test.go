@@ -4,17 +4,17 @@ import (
 	"errors"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	admintest "github.com/Blackchain/blackfury/x/admin/test"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	admintest "github.com/Offsideswap/blackfury/x/admin/test"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func TestMsgServer_DecommissionPool(t *testing.T) {
@@ -140,7 +140,7 @@ func TestMsgServer_DecommissionPool(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{
@@ -259,7 +259,7 @@ func TestMsgServer_Swap(t *testing.T) {
 				SentAmount:         sdk.NewUint(1),
 				MinReceivingAmount: sdk.NewUint(1),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:                            "received asset token not supported",
@@ -277,7 +277,7 @@ func TestMsgServer_Swap(t *testing.T) {
 				SentAmount:         sdk.NewUint(1),
 				MinReceivingAmount: sdk.NewUint(1),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:                            "external asset permission denied",
@@ -700,7 +700,7 @@ func TestMsgServer_Swap(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
@@ -862,7 +862,7 @@ func TestMsgServer_RemoveLiquidity(t *testing.T) {
 				WBasisPoints:  sdk.NewInt(1),
 				Asymmetry:     sdk.NewInt(1),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:          "received asset token not supported",
@@ -876,7 +876,7 @@ func TestMsgServer_RemoveLiquidity(t *testing.T) {
 				WBasisPoints:  sdk.NewInt(1),
 				Asymmetry:     sdk.NewInt(1),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:          "external asset permission denied",
@@ -976,7 +976,7 @@ func TestMsgServer_RemoveLiquidity(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{
@@ -1106,7 +1106,7 @@ func TestMsgServer_CreatePool(t *testing.T) {
 				NativeAssetAmount:   sdk.NewUintFromString(types.PoolThrehold),
 				ExternalAssetAmount: sdk.NewUintFromString(types.PoolThrehold),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:          "external asset permission denied",
@@ -1189,7 +1189,7 @@ func TestMsgServer_CreatePool(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{
@@ -1307,7 +1307,7 @@ func TestMsgServer_AddLiquidity(t *testing.T) {
 				NativeAssetAmount:   sdk.NewUintFromString(types.PoolThrehold),
 				ExternalAssetAmount: sdk.NewUintFromString(types.PoolThrehold),
 			},
-			errString: errors.New("Token not supported by blackchain"),
+			errString: errors.New("Token not supported by offsideswap"),
 		},
 		{
 			name:          "external asset permission denied",
@@ -1729,7 +1729,7 @@ func TestMsgServer_AddLiquidity(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{
@@ -1831,7 +1831,7 @@ func TestMsgServer_AddLiquidity(t *testing.T) {
 func TestMsgServer_AddProviderDistribution(t *testing.T) {
 	admin := "black1gy2ne7m62uer4h5s4e7xlfq7aeem5zpwx6nu9q"
 	nonAdmin := "black1gy2ne7m62uer4h5s4e7xlfq7aeem5zpwx6nu9r"
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		adminGs := &admintypes.GenesisState{
 			AdminAccounts: admintest.GetAdmins(admin),
 		}

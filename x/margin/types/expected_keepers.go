@@ -1,8 +1,8 @@
 package types
 
 import (
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/tendermint/tendermint/abci/types"

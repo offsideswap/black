@@ -168,11 +168,11 @@ contract("BridgeBank", function (accounts) {
       ).should.be.fulfilled;
     });
 
-    it("should return true if a blackchain address prefix is correct", async function () {
+    it("should return true if a offsideswap address prefix is correct", async function () {
       (await this.bridgeBank.verifyBlackPrefix(this.sender)).should.be.equal(true);
     })
 
-    it("should return false if a blackchain address has an incorrect `black` prefix", async function () {
+    it("should return false if a offsideswap address has an incorrect `black` prefix", async function () {
       const incorrectBlackAddress = web3.utils.utf8ToHex(
         "eif1nx650s8q9w28f2g3t9ztxyg48ugldptuwzpace"
       );
@@ -946,7 +946,7 @@ contract("BridgeBank", function (accounts) {
   });
 
   // This entire scenario is mimicking the mainnet scenario where there will be
-  // cosmos assets on blackchain, and then we hook into an existing ERC20 contract on mainnet
+  // cosmos assets on offsideswap, and then we hook into an existing ERC20 contract on mainnet
   // that is eFury. Then we will try to transfer fury to eFury to ensure that
   // everything is set up correctly.
   // We will do this by making a new prophecy claim, validating it with the validators
@@ -1009,7 +1009,7 @@ contract("BridgeBank", function (accounts) {
       tokenAddress.should.be.equal(this.token.address);
     });
 
-    it("should burn eFury to create fury on blackchain", async function () {
+    it("should burn eFury to create fury on offsideswap", async function () {
       function convertToHex(str) {
         let hex = '';
         for (let i = 0; i < str.length; i++) {
@@ -1034,7 +1034,7 @@ contract("BridgeBank", function (accounts) {
       (tx.receipt.logs[0].args['3']).should.be.equal(symbol);
     });
 
-    it("should NOT burn eFury to create fury on blackchain if user is blocklisted", async function () {
+    it("should NOT burn eFury to create fury on offsideswap if user is blocklisted", async function () {
       // Add sender to the blocklist
       await this.blocklist.addToBlocklist(operator);
 
@@ -1059,7 +1059,7 @@ contract("BridgeBank", function (accounts) {
       )).to.be.rejectedWith('Address is blocklisted');
     });
 
-    it("should mint eFury to transfer Fury from blackchain to ethereum", async function () {
+    it("should mint eFury to transfer Fury from offsideswap to ethereum", async function () {
       function convertToHex(str) {
         let hex = '';
         for (let i = 0; i < str.length; i++) {

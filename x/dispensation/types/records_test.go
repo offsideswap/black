@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	gogotypes "github.com/gogo/protobuf/types"
 	"github.com/stretchr/testify/assert"

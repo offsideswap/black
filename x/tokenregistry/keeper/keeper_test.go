@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/test"
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -17,7 +17,7 @@ Usage:
 
   yarn initAllRelayers [options]
 
-Initiate all the IBC relayers connected to blackchain.
+Initiate all the IBC relayers connected to offsideswap.
 
 Options:
 

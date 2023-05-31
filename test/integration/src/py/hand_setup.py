@@ -4,9 +4,9 @@ import sys
 
 import burn_lock_functions
 import test_utilities
-from burn_lock_functions import EthereumToBlackchainTransferRequest
-from integration_env_credentials import blackchain_cli_credentials_for_test
-from test_utilities import get_required_env_var, BlackchaincliCredentials, get_optional_env_var, \
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
+from integration_env_credentials import offsideswap_cli_credentials_for_test
+from test_utilities import get_required_env_var, OffsideswapcliCredentials, get_optional_env_var, \
     ganache_owner_account
 
 logging.basicConfig(
@@ -25,13 +25,13 @@ ethereum_address = get_optional_env_var(
 )
 
 
-def build_request() -> (EthereumToBlackchainTransferRequest, BlackchaincliCredentials):
+def build_request() -> (EthereumToOffsideswapTransferRequest, OffsideswapcliCredentials):
     new_account_key = 'user1'
-    credentials = blackchain_cli_credentials_for_test(new_account_key)
+    credentials = offsideswap_cli_credentials_for_test(new_account_key)
     new_addr = burn_lock_functions.create_new_blackaddr(credentials=credentials, keyname=new_account_key)
     credentials.from_key = new_addr["name"]
-    request = EthereumToBlackchainTransferRequest(
-        blackchain_address=new_addr["address"],
+    request = EthereumToOffsideswapTransferRequest(
+        offsideswap_address=new_addr["address"],
         smart_contracts_dir=smart_contracts_dir,
         ethereum_address=ethereum_address,
         ethereum_private_key_env_var="ETHEREUM_PRIVATE_KEY",
@@ -49,6 +49,6 @@ try:
 except:
     logging.debug("no key to delete, this is normal in a fresh environment")
 request, credentials = build_request()
-burn_lock_functions.transfer_ethereum_to_blackchain(request)
-test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node, "ceth")
+burn_lock_functions.transfer_ethereum_to_offsideswap(request)
+test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node, "ceth")
 logging.info(f"created account for key {credentials.from_key}")

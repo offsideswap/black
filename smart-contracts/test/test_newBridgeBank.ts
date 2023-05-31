@@ -8,10 +8,10 @@ import {
     BridgeBankProxy,
     BridgeTokenSetup,
     FuryContract,
-    BlackchainContractFactories
+    OffsideswapContractFactories
 } from "../src/tsyringe/contracts";
 import {BridgeBank, BridgeBank__factory, BridgeToken} from "../build";
-import {BlackchainAccounts, BlackchainAccountsPromise} from "../src/tsyringe/blackchainAccounts";
+import {OffsideswapAccounts, OffsideswapAccountsPromise} from "../src/tsyringe/offsideswapAccounts";
 import {
     DeploymentChainId,
     DeploymentDirectory,
@@ -22,7 +22,7 @@ import * as hardhat from "hardhat";
 import {SignerWithAddress} from "@nomiclabs/hardhat-ethers/signers";
 import {DeployedBridgeBank} from "../src/contractSupport";
 import {HardhatRuntimeEnvironment} from "hardhat/types";
-import {impersonateAccount, setupBlackchainMainnetDeployment} from "../src/hardhatFunctions";
+import {impersonateAccount, setupOffsideswapMainnetDeployment} from "../src/hardhatFunctions";
 import {getErc20Data, getWhitelistItems, getWhitelistRawItems} from "../src/whitelist";
 
 chai.use(solidity)
@@ -41,7 +41,7 @@ describe("BridgeBank", () => {
     })
 
     it("should deploy the BridgeBank, correctly setting the owner", async function () {
-        const accounts = await container.resolve(BlackchainAccountsPromise).accounts
+        const accounts = await container.resolve(OffsideswapAccountsPromise).accounts
         const bridgeBank = await container.resolve(BridgeBankProxy).contract
         const bridgeBankOwner = await bridgeBank.connect(accounts.ownerAccount).owner()
         expect(bridgeBankOwner).to.equal(accounts.ownerAccount.address);
@@ -54,7 +54,7 @@ describe("BridgeBank", () => {
     });
 
     it("should not allow a user to send ethereum directly to the contract", async function () {
-        const accounts = await container.resolve(BlackchainAccountsPromise).accounts
+        const accounts = await container.resolve(OffsideswapAccountsPromise).accounts
         await expect(hardhat.network.provider.send('eth_sendTransaction', [{
             to: bridgeBank.address,
             from: accounts.availableAccounts[0].address,
@@ -64,7 +64,7 @@ describe("BridgeBank", () => {
 
     describe("locking and burning", function () {
         let sender: SignerWithAddress;
-        let accounts: BlackchainAccounts;
+        let accounts: OffsideswapAccounts;
         let amount: BigNumber
         let smallAmount: BigNumber
         let testToken: BridgeToken
@@ -72,11 +72,11 @@ describe("BridgeBank", () => {
         const invalidRecipient = web3.utils.utf8ToHex("eblack1nx650s8q9w28f2g3t9ztxyg48ugldptuwzpace")
 
         before('create test token', async () => {
-            accounts = await container.resolve(BlackchainAccountsPromise).accounts
+            accounts = await container.resolve(OffsideswapAccountsPromise).accounts
             sender = accounts.availableAccounts[0]
             amount = hardhat.ethers.utils.parseEther("100") as BigNumber
             smallAmount = amount.div(100)
-            const testTokenFactory = (await container.resolve(BlackchainContractFactories).bridgeToken).connect(sender)
+            const testTokenFactory = (await container.resolve(OffsideswapContractFactories).bridgeToken).connect(sender)
             testToken = await testTokenFactory.deploy("test")
             await testToken.mint(sender.address, amount)
             await testToken.approve(bridgeBank.address, hardhat.ethers.constants.MaxUint256)
@@ -96,7 +96,7 @@ describe("BridgeBank", () => {
         })
 
         it("should read the whitelist", async () => {
-            const btf = await container.resolve(BlackchainContractFactories).bridgeToken
+            const btf = await container.resolve(OffsideswapContractFactories).bridgeToken
             const whitelistItems = await getWhitelistItems(bridgeBank, btf)
             expect(whitelistItems.length).to.eq(2)
         })

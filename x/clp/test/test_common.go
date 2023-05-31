@@ -12,14 +12,14 @@ import (
 	"time"
 	"unicode/utf8"
 
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 // Constants for test scripts only .
@@ -30,7 +30,7 @@ const (
 )
 
 // CreateTestApp returns context and app with params set on account keeper
-func CreateTestApp(isCheckTx bool) (*blackapp.BlackchainApp, sdk.Context) {
+func CreateTestApp(isCheckTx bool) (*blackapp.OffsideswapApp, sdk.Context) {
 	app := blackapp.Setup(isCheckTx)
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})
 	app.AccountKeeper.SetParams(ctx, authtypes.DefaultParams())
@@ -38,11 +38,11 @@ func CreateTestApp(isCheckTx bool) (*blackapp.BlackchainApp, sdk.Context) {
 	_ = blackapp.AddTestAddrs(app, ctx, 6, initTokens)
 	return app, ctx
 }
-func CreateTestAppClp(isCheckTx bool) (sdk.Context, *blackapp.BlackchainApp) {
+func CreateTestAppClp(isCheckTx bool) (sdk.Context, *blackapp.OffsideswapApp) {
 	return CreateTestAppClpWithBlacklist(isCheckTx, []sdk.AccAddress{})
 }
 
-func CreateTestAppClpWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) (sdk.Context, *blackapp.BlackchainApp) {
+func CreateTestAppClpWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) (sdk.Context, *blackapp.OffsideswapApp) {
 	blackapp.SetConfig(false)
 	app := blackapp.SetupWithBlacklist(isCheckTx, blacklist)
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})
@@ -86,7 +86,7 @@ func CreateTestAppClpWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) (
 	return ctx, app
 }
 
-func CreateTestAppClpFromGenesis(isCheckTx bool, genesisTransformer func(*blackapp.BlackchainApp, blackapp.GenesisState) blackapp.GenesisState) (sdk.Context, *blackapp.BlackchainApp) {
+func CreateTestAppClpFromGenesis(isCheckTx bool, genesisTransformer func(*blackapp.OffsideswapApp, blackapp.GenesisState) blackapp.GenesisState) (sdk.Context, *blackapp.OffsideswapApp) {
 	blackapp.SetConfig(false)
 	app := blackapp.SetupFromGenesis(isCheckTx, genesisTransformer)
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})
@@ -329,7 +329,7 @@ func GenerateWhitelistAddress(key string) sdk.AccAddress {
 	return res
 }
 
-func GeneratePoolsFromFile(app *blackapp.BlackchainApp, keeper clpkeeper.Keeper, ctx sdk.Context) []*types.Pool {
+func GeneratePoolsFromFile(app *blackapp.OffsideswapApp, keeper clpkeeper.Keeper, ctx sdk.Context) []*types.Pool {
 	var poolList types.PoolsRes
 
 	file, err := filepath.Abs("test/pools_input.json")

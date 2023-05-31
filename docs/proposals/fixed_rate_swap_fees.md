@@ -1,6 +1,6 @@
 # Fixed Rate Swap Fees
 
-Blackchain is switching from a slip-based fee model to a fixed-rate fee model. This requires
+Offsideswap is switching from a slip-based fee model to a fixed-rate fee model. This requires
 the swap formula and the liquidity fee formula within blackfury to be updated.
 
 ## Fixed-rate formuals

@@ -48,7 +48,7 @@ type Args struct {
 	ChannelID        string          `json:"channel_id,omitempty"`
 	Sender           sdk.AccAddress  `json:"sender,omitempty"`
 	SenderName       string          `json:"sender_name"`
-	BlackchainReceiver sdk.AccAddress  `json:"receiver,omitempty"`
+	OffsideswapReceiver sdk.AccAddress  `json:"receiver,omitempty"`
 	CosmosReceiver   string          `json:"cosmos_receiver"`
 	Amount           sdk.Coins       `json:""`
 	TimeoutTimestamp uint64          `json:"timeout_timestamp,omitempty"`

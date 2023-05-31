@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Blackchain/blackfury/x/oracle/keeper"
-	"github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/oracle/keeper"
+	"github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 var (

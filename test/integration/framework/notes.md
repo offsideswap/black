@@ -9,30 +9,30 @@ Original design document: https://docs.google.com/document/d/1IhE2Y03Z48ROmTwO9-
 
 - setups two blackfury instances running independent chains + IBC relayer (ts-relayer)
 
-2. PoC (docker): https://github.com/Blackchain/blackchain-deploy/tree/feature/ibc-poc/docker/localnet/ibc
+2. PoC (docker): https://github.com/Offsideswap/offsideswap-deploy/tree/feature/ibc-poc/docker/localnet/ibc
 
-3. Test environment for testing the new Blackchain public SDK (Caner):
+3. Test environment for testing the new Offsideswap public SDK (Caner):
 
 - https://docs.google.com/document/d/1MAlg-I0xMnUvbavAZdAN---WuqbyuRyKw-6Lfgfe130/edit
-- https://github.com/blackchain/blackchain-ui/blob/3868ac7138c6c4149dced4ced5b36690e5fc1da7/ui/core/src/config/chains/index.ts#L1
-- https://github.com/Blackchain/blackchain-ui/blob/3868ac7138c6c4149dced4ced5b36690e5fc1da7/ui/core/src/config/chains/cosmoshub/index.ts
+- https://github.com/offsideswap/offsideswap-ui/blob/3868ac7138c6c4149dced4ced5b36690e5fc1da7/ui/core/src/config/chains/index.ts#L1
+- https://github.com/Offsideswap/offsideswap-ui/blob/3868ac7138c6c4149dced4ced5b36690e5fc1da7/ui/core/src/config/chains/cosmoshub/index.ts
 
 4. scripts/init-multichain.sh (on future/peggy2 branch)
 
-5. https://github.com/Blackchain/blackfury/commit/9ab620e148be8f4850eef59d39b0e869956f87a4
+5. https://github.com/Offsideswap/blackfury/commit/9ab620e148be8f4850eef59d39b0e869956f87a4
 
-6. blackchain-devops script to deploy TestNet (by \_IM): https://github.com/Blackchain/blackchain-devops/blob/main/scripts/testnet/launch.sh#L19
+6. offsideswap-devops script to deploy TestNet (by \_IM): https://github.com/Offsideswap/offsideswap-devops/blob/main/scripts/testnet/launch.sh#L19
 
 7. Tempnet scripts by chainops
 
-8. In Blackchain/blackfury/scripts there's init.sh which, if you have everything installed, will run a single node. Ping
+8. In Offsideswap/blackfury/scripts there's init.sh which, if you have everything installed, will run a single node. Ping
    @Brianosaurus for more info.
 
 9. efury should be deployed and whitelisted (assumption)
 
 # RPC endpoints:
 
-e.g. BLACKFURY="https://api-testnet.blackchain.finance"
+e.g. BLACKFURY="https://api-testnet.offsideswap.finance"
 
 - $BLACKFURY/node_info
 - $BLACKFURY/tokenregistry/entries
@@ -70,7 +70,7 @@ e.g. BLACKFURY="https://api-testnet.blackchain.finance"
 ```
 
 - Integration test to be targeted for PoC: test_eth_transfers.py
-- Dependency diagram: https://files.slack.com/files-pri/T0187TWB4V8-F02BC477N79/blackchaindevenv.jpg
+- Dependency diagram: https://files.slack.com/files-pri/T0187TWB4V8-F02BC477N79/offsideswapdevenv.jpg
 
 # Standardized environment setup
 
@@ -125,7 +125,7 @@ blackfuryd q tokenregistry generate -o json \
 // printf "registering cosmos... \n"
 blackfuryd tx tokenregistry register gaia.json \
  --node tcp://${BLACKFURY_P2P_HOSTNAME}:26657 \
- --chain-id $BLACKCHAIN_ID \
+ --chain-id $OFFSIDESWAP_ID \
  --from $BLACK_WALLET \
  --keyring-backend test \
  --gas=500000 \

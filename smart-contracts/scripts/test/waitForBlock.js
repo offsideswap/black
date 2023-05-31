@@ -1,9 +1,9 @@
 module.exports = async (cb) => {
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const argv = blackchainUtilities.processArgs(this, {
-        ...blackchainUtilities.sharedYargOptions,
+    const argv = offsideswapUtilities.processArgs(this, {
+        ...offsideswapUtilities.sharedYargOptions,
         'block_number': {
             type: "number",
             demandOption: true
@@ -16,7 +16,7 @@ module.exports = async (cb) => {
         },
     });
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
     const web3 = contractUtilites.buildWeb3(this, argv, logging);
 

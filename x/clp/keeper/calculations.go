@@ -6,7 +6,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func CalcSwapPmtp(toFury bool, y, pmtpCurrentRunningRate sdk.Dec) sdk.Dec {
@@ -23,7 +23,7 @@ func CalcSwapPmtp(toFury bool, y, pmtpCurrentRunningRate sdk.Dec) sdk.Dec {
 }
 
 // More details on the formula
-// https://github.com/Blackchain/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
+// https://github.com/Offsideswap/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
 func CalculateWithdrawal(poolUnits sdk.Uint, nativeAssetDepth string,
 	externalAssetDepth string, lpUnits string, wBasisPoints string, asymmetry sdk.Int) (sdk.Uint, sdk.Uint, sdk.Uint, sdk.Uint) {
 	poolUnitsF := sdk.NewDecFromBigInt(poolUnits.BigInt())
@@ -75,7 +75,7 @@ func CalculateWithdrawal(poolUnits sdk.Uint, nativeAssetDepth string,
 }
 
 // More details on the formula
-// https://github.com/Blackchain/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
+// https://github.com/Offsideswap/blackfury/blob/develop/docs/1.Liquidity%20Pools%20Architecture.md
 func CalculateWithdrawalFromUnits(poolUnits sdk.Uint, nativeAssetDepth string,
 	externalAssetDepth string, lpUnits string, withdrawUnits sdk.Uint) (sdk.Uint, sdk.Uint, sdk.Uint) {
 	poolUnitsF := sdk.NewDecFromBigInt(poolUnits.BigInt())

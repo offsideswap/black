@@ -6,12 +6,12 @@ import (
 	"log"
 	"strings"
 
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	//"github.com/Blackchain/blackfury/x/clp"
+	//"github.com/Offsideswap/blackfury/x/clp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

@@ -1,12 +1,12 @@
 package keeper
 
 import (
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 type keeper struct {

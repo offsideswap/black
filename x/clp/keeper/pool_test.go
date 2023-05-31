@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/test"
 )
 
 func TestKeeper_SetPool_ValidatePool(t *testing.T) {

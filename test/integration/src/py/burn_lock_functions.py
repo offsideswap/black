@@ -9,11 +9,11 @@ from typing import List
 import sys
 import time
 
-from test_utilities import get_blackchain_addr_balance, advance_n_ethereum_blocks, \
-    n_wait_blocks, print_error_message, wait_for_blackchain_addr_balance, send_from_ethereum_to_blackchain, \
-    get_eth_balance, send_from_blackchain_to_ethereum, wait_for_eth_balance, \
-    wait_for_ethereum_block_number, send_from_blackchain_to_blackchain, wait_for_black_account, \
-    get_shell_output_json, EthereumToBlackchainTransferRequest, BlackchaincliCredentials, RequestAndCredentials, \
+from test_utilities import get_offsideswap_addr_balance, advance_n_ethereum_blocks, \
+    n_wait_blocks, print_error_message, wait_for_offsideswap_addr_balance, send_from_ethereum_to_offsideswap, \
+    get_eth_balance, send_from_offsideswap_to_ethereum, wait_for_eth_balance, \
+    wait_for_ethereum_block_number, send_from_offsideswap_to_offsideswap, wait_for_black_account, \
+    get_shell_output_json, EthereumToOffsideswapTransferRequest, OffsideswapcliCredentials, RequestAndCredentials, \
     blackfuryd_binary
 
 default_timeout_for_ganache = 160
@@ -34,11 +34,11 @@ def force_log_level(new_level):
     return existing_level
 
 
-def transfer_ethereum_to_blackchain(transfer_request: EthereumToBlackchainTransferRequest,
+def transfer_ethereum_to_offsideswap(transfer_request: EthereumToOffsideswapTransferRequest,
                                   max_seconds: int = default_timeout_for_ganache):
-    logging.debug(f"transfer_ethereum_to_blackchain {transfer_request.as_json()}")
+    logging.debug(f"transfer_ethereum_to_offsideswap {transfer_request.as_json()}")
     assert transfer_request.ethereum_address
-    assert transfer_request.blackchain_address
+    assert transfer_request.offsideswap_address
 
     # it's possible that this is the first transfer to the address, so there's
     # no balance to retrieve.  Catch that exception.
@@ -46,26 +46,26 @@ def transfer_ethereum_to_blackchain(transfer_request: EthereumToBlackchainTransf
     original_log_level = decrease_log_level()
 
     try:
-        blackchain_starting_balance = get_blackchain_addr_balance(
-            transfer_request.blackchain_address,
+        offsideswap_starting_balance = get_offsideswap_addr_balance(
+            transfer_request.offsideswap_address,
             transfer_request.blackfuryd_node,
-            transfer_request.blackchain_symbol
+            transfer_request.offsideswap_symbol
         )
     except:
-        logging.debug(f"transfer_ethereum_to_blackchain failed to get starting balance, this is probably a new account")
-        blackchain_starting_balance = 0
+        logging.debug(f"transfer_ethereum_to_offsideswap failed to get starting balance, this is probably a new account")
+        offsideswap_starting_balance = 0
 
     status = {
-        "action": "transfer_ethereum_to_blackchain",
-        "blackchain_starting_balance": blackchain_starting_balance,
+        "action": "transfer_ethereum_to_offsideswap",
+        "offsideswap_starting_balance": offsideswap_starting_balance,
         "transfer_request": transfer_request.__dict__,
     }
-    logging.debug(f"transfer_ethereum_to_blackchain_json: {json.dumps(status)}", )
+    logging.debug(f"transfer_ethereum_to_offsideswap_json: {json.dumps(status)}", )
 
     force_log_level(original_log_level)
-    starting_block = send_from_ethereum_to_blackchain(transfer_request)
+    starting_block = send_from_ethereum_to_offsideswap(transfer_request)
     original_log_level = decrease_log_level()
-    logging.debug(f"send_from_ethereum_to_blackchain ethereum block number: {starting_block}")
+    logging.debug(f"send_from_ethereum_to_offsideswap ethereum block number: {starting_block}")
 
     half_n_wait_blocks = n_wait_blocks / 2
     logging.debug("wait half the blocks, transfer should not complete")
@@ -81,21 +81,21 @@ def transfer_ethereum_to_blackchain(transfer_request: EthereumToBlackchainTransf
 
     # we still may not have an account
     try:
-        blackchain_balance_before_required_elapsed_blocks = get_blackchain_addr_balance(
-            transfer_request.blackchain_address,
+        offsideswap_balance_before_required_elapsed_blocks = get_offsideswap_addr_balance(
+            transfer_request.offsideswap_address,
             transfer_request.blackfuryd_node,
-            transfer_request.blackchain_symbol
+            transfer_request.offsideswap_symbol
         )
     except:
-        blackchain_balance_before_required_elapsed_blocks = 0
+        offsideswap_balance_before_required_elapsed_blocks = 0
 
     # need to be able to turn off checking the balance after waiting half the blocks
     # because we want to be able to run some tests in parallel.  If parallel tests
     # are manually advancing blocks, you can't be sure where you are.
-    if transfer_request.check_wait_blocks and blackchain_balance_before_required_elapsed_blocks != blackchain_starting_balance:
+    if transfer_request.check_wait_blocks and offsideswap_balance_before_required_elapsed_blocks != offsideswap_starting_balance:
         print_error_message(
-            f"balance should not have changed yet.  Starting balance {blackchain_starting_balance},"
-            f" current balance {blackchain_balance_before_required_elapsed_blocks}"
+            f"balance should not have changed yet.  Starting balance {offsideswap_starting_balance},"
+            f" current balance {offsideswap_balance_before_required_elapsed_blocks}"
         )
 
     if transfer_request.manual_block_advance:
@@ -106,61 +106,61 @@ def transfer_ethereum_to_blackchain(transfer_request: EthereumToBlackchainTransf
             transfer_request=transfer_request
         )
 
-    target_balance = blackchain_starting_balance + transfer_request.amount
+    target_balance = offsideswap_starting_balance + transfer_request.amount
 
     # You can't get the balance of an account that doesn't exist yet,
     # so wait for the account to be there before asking for the balance
-    logging.debug(f"wait for account {transfer_request.blackchain_address}")
+    logging.debug(f"wait for account {transfer_request.offsideswap_address}")
     wait_for_black_account(
-        black_addr=transfer_request.blackchain_address,
-        blackchaincli_node=transfer_request.blackfuryd_node,
+        black_addr=transfer_request.offsideswap_address,
+        offsideswapcli_node=transfer_request.blackfuryd_node,
         max_seconds=max_seconds
     )
 
-    wait_for_blackchain_addr_balance(
-        blackchain_address=transfer_request.blackchain_address,
-        symbol=transfer_request.blackchain_symbol,
-        blackchaincli_node=transfer_request.blackfuryd_node,
+    wait_for_offsideswap_addr_balance(
+        offsideswap_address=transfer_request.offsideswap_address,
+        symbol=transfer_request.offsideswap_symbol,
+        offsideswapcli_node=transfer_request.blackfuryd_node,
         target_balance=target_balance,
         max_seconds=max_seconds,
-        debug_prefix=f"transfer_ethereum_to_blackchain waiting for balance {transfer_request}"
+        debug_prefix=f"transfer_ethereum_to_offsideswap waiting for balance {transfer_request}"
     )
 
     force_log_level(original_log_level)
 
     result = {
         **status,
-        "blackchain_ending_balance": target_balance,
+        "offsideswap_ending_balance": target_balance,
     }
-    logging.debug(f"transfer_ethereum_to_blackchain completed {json.dumps(result)}")
+    logging.debug(f"transfer_ethereum_to_offsideswap completed {json.dumps(result)}")
     return result
 
 
-def transfer_blackchain_to_ethereum(
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials,
+def transfer_offsideswap_to_ethereum(
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials,
         max_seconds: int = 90
 ):
-    logging.debug(f"transfer_blackchain_to_ethereum_json: {transfer_request.as_json()}")
+    logging.debug(f"transfer_offsideswap_to_ethereum_json: {transfer_request.as_json()}")
 
     original_log_level = decrease_log_level()
     ethereum_starting_balance = get_eth_balance(transfer_request)
 
-    blackchain_starting_balance = get_blackchain_addr_balance(
-        transfer_request.blackchain_address,
+    offsideswap_starting_balance = get_offsideswap_addr_balance(
+        transfer_request.offsideswap_address,
         transfer_request.blackfuryd_node,
-        transfer_request.blackchain_symbol
+        transfer_request.offsideswap_symbol
     )
 
     status = {
-        "action": "transfer_blackchain_to_ethereum",
+        "action": "transfer_offsideswap_to_ethereum",
         "ethereum_starting_balance": ethereum_starting_balance,
-        "blackchain_starting_balance": blackchain_starting_balance,
+        "offsideswap_starting_balance": offsideswap_starting_balance,
     }
     logging.debug(status)
 
     force_log_level(original_log_level)
-    raw_output = send_from_blackchain_to_ethereum(transfer_request, credentials)
+    raw_output = send_from_offsideswap_to_ethereum(transfer_request, credentials)
     original_log_level = decrease_log_level()
 
     target_balance = ethereum_starting_balance + transfer_request.amount
@@ -171,67 +171,67 @@ def transfer_blackchain_to_ethereum(
         max_seconds=max_seconds
     )
 
-    blackchain_ending_balance = get_blackchain_addr_balance(
-        transfer_request.blackchain_address,
+    offsideswap_ending_balance = get_offsideswap_addr_balance(
+        transfer_request.offsideswap_address,
         transfer_request.blackfuryd_node,
-        transfer_request.blackchain_symbol
+        transfer_request.offsideswap_symbol
     )
 
     result = {
         **status,
-        "blackchain_ending_balance": blackchain_ending_balance,
+        "offsideswap_ending_balance": offsideswap_ending_balance,
         "ethereum_ending_balance": target_balance,
     }
-    logging.debug(f"transfer_blackchain_to_ethereum_complete_json: {json.dumps(result)}")
+    logging.debug(f"transfer_offsideswap_to_ethereum_complete_json: {json.dumps(result)}")
     force_log_level(original_log_level)
     return result
 
 
-def transfer_blackchain_to_blackchain(
-        transfer_request: EthereumToBlackchainTransferRequest,
-        credentials: BlackchaincliCredentials,
+def transfer_offsideswap_to_offsideswap(
+        transfer_request: EthereumToOffsideswapTransferRequest,
+        credentials: OffsideswapcliCredentials,
         max_seconds: int = 30
 ):
-    logging.debug(f"transfer_blackchain_to_blackchain: {transfer_request.as_json()}")
+    logging.debug(f"transfer_offsideswap_to_offsideswap: {transfer_request.as_json()}")
 
     try:
-        blackchain_starting_balance = get_blackchain_addr_balance(
-            transfer_request.blackchain_destination_address,
+        offsideswap_starting_balance = get_offsideswap_addr_balance(
+            transfer_request.offsideswap_destination_address,
             transfer_request.blackfuryd_node,
-            transfer_request.blackchain_symbol
+            transfer_request.offsideswap_symbol
         )
     except Exception as e:
         # this is a new account, so the balance is 0
-        blackchain_starting_balance = 0
+        offsideswap_starting_balance = 0
 
     status = {
-        "action": "transfer_blackchain_to_blackchain",
-        "blackchain_starting_balance": blackchain_starting_balance,
+        "action": "transfer_offsideswap_to_offsideswap",
+        "offsideswap_starting_balance": offsideswap_starting_balance,
     }
     logging.info(status)
 
-    send_from_blackchain_to_blackchain(
+    send_from_offsideswap_to_offsideswap(
         transfer_request,
         credentials
     )
-    target_balance = transfer_request.amount + blackchain_starting_balance
+    target_balance = transfer_request.amount + offsideswap_starting_balance
     wait_for_black_account(
-        black_addr=transfer_request.blackchain_destination_address,
-        blackchaincli_node=transfer_request.blackfuryd_node,
+        black_addr=transfer_request.offsideswap_destination_address,
+        offsideswapcli_node=transfer_request.blackfuryd_node,
         max_seconds=max_seconds
     )
-    wait_for_blackchain_addr_balance(
-        blackchain_address=transfer_request.blackchain_destination_address,
-        symbol=transfer_request.blackchain_symbol,
+    wait_for_offsideswap_addr_balance(
+        offsideswap_address=transfer_request.offsideswap_destination_address,
+        symbol=transfer_request.offsideswap_symbol,
         target_balance=target_balance,
-        blackchaincli_node=transfer_request.blackfuryd_node,
+        offsideswapcli_node=transfer_request.blackfuryd_node,
         max_seconds=max_seconds,
-        debug_prefix=f"transfer_blackchain_to_blackchain {transfer_request}"
+        debug_prefix=f"transfer_offsideswap_to_offsideswap {transfer_request}"
     )
 
     return {
         **status,
-        "blackchain_ending_balance": target_balance,
+        "offsideswap_ending_balance": target_balance,
     }
 
 
@@ -239,22 +239,22 @@ def transfer_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent("""
-    Transfer from Ethereum to Blackchain
+    Transfer from Ethereum to Offsideswap
     """))
     parser.add_argument(
-        '--blackchain_address',
+        '--offsideswap_address',
         type=str,
         nargs=1,
         required=True,
         help="A BlackChain address like black132tc0acwt8klntn53xatchqztl3ajfxxxsawn8"
     )
     parser.add_argument(
-        '--blackchain_destination_address',
+        '--offsideswap_destination_address',
         type=str,
         nargs=1,
         required=False,
         default=[""],
-        help="A BlackChain address like black132tc0acwt8klntn53xatchqztl3ajfxxxsawn8, used for transferring between blackchain addresses"
+        help="A BlackChain address like black132tc0acwt8klntn53xatchqztl3ajfxxxsawn8, used for transferring between offsideswap addresses"
     )
     parser.add_argument(
         '--ethereum_address',
@@ -271,7 +271,7 @@ def transfer_argument_parser() -> argparse.ArgumentParser:
         help="An ethereum symbol like eth"
     )
     parser.add_argument(
-        '--blackchain_symbol',
+        '--offsideswap_symbol',
         type=str,
         nargs=1,
         required=True,
@@ -402,9 +402,9 @@ def process_args(cmdline: List[str]) -> RequestAndCredentials:
 
     logging.debug(f"command line arguments: {sys.argv} {args}")
 
-    transfer_request = EthereumToBlackchainTransferRequest.from_args(args)
+    transfer_request = EthereumToOffsideswapTransferRequest.from_args(args)
 
-    credentials = BlackchaincliCredentials(
+    credentials = OffsideswapcliCredentials(
         keyring_passphrase=os.environ.get(args.keyring_passphrase_env_var[0]),
         from_key=args.from_key[0],
         keyring_backend=args.keyring_backend[0],
@@ -415,7 +415,7 @@ def process_args(cmdline: List[str]) -> RequestAndCredentials:
 
 
 def create_new_blackaddr(
-        credentials: BlackchaincliCredentials,
+        credentials: OffsideswapcliCredentials,
         keyname
 ):
     """returns something like {"name":"9cbf3bd4-f15c-4128-bae6-a534fc8d6877","type":"local","address":"black19u4xtckuvy2zk9r2l4063g93s3r8qc4vw0a20t","pubkey":"blackpub1addwnpepqw88ns6dmy3xwjqh4mkvuda6ezn056nxy8ldrtpkrfuvuamexv9hxyzhxm7","mnemonic":"surprise fire cupboard orange scatter boat cruel ability oven gap accident purity delay"}"""

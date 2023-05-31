@@ -14,9 +14,9 @@ import (
 	"github.com/stretchr/testify/require"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/Blackchain/blackfury/app"
-	//blackfurydcmd "github.com/Blackchain/blackfury/cmd/blackfuryd/cmd"
-	"github.com/Blackchain/blackfury/x/oracle"
+	"github.com/Offsideswap/blackfury/app"
+	//blackfurydcmd "github.com/Offsideswap/blackfury/cmd/blackfuryd/cmd"
+	"github.com/Offsideswap/blackfury/x/oracle"
 )
 
 func TestAddGenesisValidatorCmd(t *testing.T) {

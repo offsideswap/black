@@ -3,18 +3,18 @@ const BN = require('bn.js');
 module.exports = async (cb) => {
     const Web3 = require("web3");
 
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
-    const argv = blackchainUtilities.processArgs(this, {
-        ...blackchainUtilities.sharedYargOptions,
-        ...blackchainUtilities.transactionYargOptions,
+    const argv = offsideswapUtilities.processArgs(this, {
+        ...offsideswapUtilities.sharedYargOptions,
+        ...offsideswapUtilities.transactionYargOptions,
         'transactions': {
             type: "string",
             demandOption: true,
-            description: 'json containing all the transactions to send.  Specify [{amount:, symbol:, blackchain_address:}].  The entries in --amount, --symbol, --blackchain_address are only used to estimate gas'
+            description: 'json containing all the transactions to send.  Specify [{amount:, symbol:, offsideswap_address:}].  The entries in --amount, --symbol, --offsideswap_address are only used to estimate gas'
         },
         'lock_or_burn': {
             type: "string",
@@ -25,13 +25,13 @@ module.exports = async (cb) => {
 
     const bridgeBankContract = await contractUtilites.buildContract(this, argv, logging, "BridgeBank", argv.bridgebank_address);
 
-    let cosmosRecipient = Web3.utils.utf8ToHex(argv.blackchain_address);
+    let cosmosRecipient = Web3.utils.utf8ToHex(argv.offsideswap_address);
     let coinDenom = argv.symbol;
     let amount = argv.amount;
 
     let request = {
         from: argv.ethereum_address,
-        value: coinDenom === blackchainUtilities.NULL_ADDRESS ? amount : 0,
+        value: coinDenom === offsideswapUtilities.NULL_ADDRESS ? amount : 0,
         gas: argv.gas,
     };
 
@@ -47,14 +47,14 @@ module.exports = async (cb) => {
     let transactions = JSON.parse(argv.transactions);
     const actions = [];
     for (const t of transactions) {
-        logging.info(`calling bridgeBankContract.lock for ${t.blackchain_address}, amount is |${t.amount}|`);
+        logging.info(`calling bridgeBankContract.lock for ${t.offsideswap_address}, amount is |${t.amount}|`);
         let lockResult;
         const amount = new BN(t.amount);
         try {
             if (argv.lock_or_burn === "lock")
-                lockResult = bridgeBankContract.lock(Web3.utils.utf8ToHex(t.blackchain_address), t.symbol, amount, request);
+                lockResult = bridgeBankContract.lock(Web3.utils.utf8ToHex(t.offsideswap_address), t.symbol, amount, request);
             else
-                lockResult = bridgeBankContract.burn(Web3.utils.utf8ToHex(t.blackchain_address), t.symbol, amount, request);
+                lockResult = bridgeBankContract.burn(Web3.utils.utf8ToHex(t.offsideswap_address), t.symbol, amount, request);
         } catch (error){
             logging.info(`goterror: ${error}`);
         }
@@ -65,7 +65,7 @@ module.exports = async (cb) => {
     const blockCounts = {};
     for (const a of actions) {
         const result = await a["lockResult"];
-        logging.info(`bridgeBankContract.lock result for ${a.t.blackchain_address}: ${JSON.stringify(result)}`);
+        logging.info(`bridgeBankContract.lock result for ${a.t.offsideswap_address}: ${JSON.stringify(result)}`);
         results.push(result);
         const blockNumber = result["receipt"]["blockNumber"];
         const existingBlockCount = blockCounts[blockNumber] || 0;

@@ -1,8 +1,8 @@
 package v42
 
 import (
-	v039oracle "github.com/Blackchain/blackfury/x/oracle/legacy/v39"
-	"github.com/Blackchain/blackfury/x/oracle/types"
+	v039oracle "github.com/Offsideswap/blackfury/x/oracle/legacy/v39"
+	"github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 func Migrate(genesis v039oracle.GenesisState) *types.GenesisState {

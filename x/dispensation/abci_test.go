@@ -1,10 +1,10 @@
 package dispensation_test
 
 import (
-	types2 "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/dispensation"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
+	types2 "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/dispensation"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

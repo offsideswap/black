@@ -36,7 +36,7 @@ aws configure
 2. Create a new `kubeconfig`:
 
 ```
-aws eks --region us-west-2 update-kubeconfig --name blackchain-aws-feature-testnets
+aws eks --region us-west-2 update-kubeconfig --name offsideswap-aws-feature-testnets
 ```
 
 3. Get your node's IP/s:

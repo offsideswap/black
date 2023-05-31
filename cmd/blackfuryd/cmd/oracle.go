@@ -14,7 +14,7 @@ import (
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/spf13/cobra"
 
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 // SetGenesisOracleAdminCmd set the admin address can update the whitelist validators

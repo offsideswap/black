@@ -3,13 +3,13 @@ package keeper_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 )
 
@@ -19,7 +19,7 @@ func TestKeeper_SetPmtpEpoch(t *testing.T) {
 	nativeBalance := sdk.NewInt(10000)
 	externalBalance := sdk.NewInt(10000)
 
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		balances := []banktypes.Balance{
 			{
 				Address: address,
@@ -58,7 +58,7 @@ func TestKeeper_DecrementPmtpEpochCounter(t *testing.T) {
 	nativeBalance := sdk.NewInt(10000)
 	externalBalance := sdk.NewInt(10000)
 
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		balances := []banktypes.Balance{
 			{
 				Address: address,
@@ -99,7 +99,7 @@ func TestKeeper_DecrementPmtpBlockCounter(t *testing.T) {
 	nativeBalance := sdk.NewInt(10000)
 	externalBalance := sdk.NewInt(10000)
 
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		balances := []banktypes.Balance{
 			{
 				Address: address,
@@ -140,7 +140,7 @@ func TestKeeper_SetPmtpBlockCounter(t *testing.T) {
 	nativeBalance := sdk.NewInt(10000)
 	externalBalance := sdk.NewInt(10000)
 
-	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		balances := []banktypes.Balance{
 			{
 				Address: address,

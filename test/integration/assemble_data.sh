@@ -7,8 +7,8 @@ cp $SMART_CONTRACTS_DIR/.env ${datadir}/env
 cp $TEST_INTEGRATION_DIR/vagrantenv.sh ${datadir}/vagrantenv.sh
 ( cd $SMART_CONTRACTS_DIR && npx truffle networks ) > ${datadir}/trufflenetworks.txt &
 rsync --delete -a $GANACHE_DB_DIR/ ${datadir}/ganachedb/ &
-$basedir/blackchain_logs.sh vagrant/data/logs/* > ${datadir}/blacktransactions.json &
-$basedir/blackchain_blocks.sh vagrant/data/logs/* > ${datadir}/blackblocks.json &
+$basedir/offsideswap_logs.sh vagrant/data/logs/* > ${datadir}/blacktransactions.json &
+$basedir/offsideswap_blocks.sh vagrant/data/logs/* > ${datadir}/blackblocks.json &
 
 wait 
 

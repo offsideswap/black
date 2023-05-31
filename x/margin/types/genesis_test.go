@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	"github.com/stretchr/testify/require"
 )
 

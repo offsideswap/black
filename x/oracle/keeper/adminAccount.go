@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	gogotypes "github.com/gogo/protobuf/types"
 
-	"github.com/Blackchain/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/oracle/types"
 )
 
 func (k Keeper) SetAdminAccount(ctx sdk.Context, adminAccount sdk.AccAddress) {

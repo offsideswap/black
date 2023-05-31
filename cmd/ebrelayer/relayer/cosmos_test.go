@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/require"
 	"github.com/syndtr/goleveldb/leveldb"

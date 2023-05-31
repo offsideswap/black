@@ -40,7 +40,7 @@ var DefaultConsensusParams = &abci.ConsensusParams{
 	},
 }
 
-func setup(withGenesis bool, invCheckPeriod uint, blacklist []sdk.AccAddress) (*BlackchainApp, GenesisState) {
+func setup(withGenesis bool, invCheckPeriod uint, blacklist []sdk.AccAddress) (*OffsideswapApp, GenesisState) {
 	db := dbm.NewMemDB()
 	encCdc := MakeTestEncodingConfig()
 	app := NewBlackAppWithBlacklist(log.NewNopLogger(), db, nil, true, map[int64]bool{}, DefaultNodeHome, invCheckPeriod, encCdc, EmptyAppOptions{}, blacklist)
@@ -51,12 +51,12 @@ func setup(withGenesis bool, invCheckPeriod uint, blacklist []sdk.AccAddress) (*
 }
 
 // Setup initializes a new SimApp. A Nop logger is set in SimApp.
-func Setup(isCheckTx bool) *BlackchainApp {
+func Setup(isCheckTx bool) *OffsideswapApp {
 	return SetupWithBlacklist(isCheckTx, []sdk.AccAddress{})
 }
 
 // Setup initializes a new SimApp. A Nop logger is set in SimApp.
-func SetupWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) *BlackchainApp {
+func SetupWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) *OffsideswapApp {
 	app, genesisState := setup(!isCheckTx, 5, blacklist)
 
 	if !isCheckTx {
@@ -77,7 +77,7 @@ func SetupWithBlacklist(isCheckTx bool, blacklist []sdk.AccAddress) *BlackchainA
 	return app
 }
 
-func SetupFromGenesis(isCheckTx bool, genesisTransformer func(*BlackchainApp, GenesisState) GenesisState) *BlackchainApp {
+func SetupFromGenesis(isCheckTx bool, genesisTransformer func(*OffsideswapApp, GenesisState) GenesisState) *OffsideswapApp {
 	app, genesisState := setup(!isCheckTx, 5, []sdk.AccAddress{})
 
 	genesisState = genesisTransformer(app, genesisState)
@@ -145,11 +145,11 @@ func (ao EmptyAppOptions) Get(o string) interface{} {
 }
 
 // AddTestAddrs constructs and returns accNum amount of accounts with initial balance of accAmt in random order
-func AddTestAddrs(app *BlackchainApp, ctx sdk.Context, accNum int, accAmt sdk.Int) []sdk.AccAddress {
+func AddTestAddrs(app *OffsideswapApp, ctx sdk.Context, accNum int, accAmt sdk.Int) []sdk.AccAddress {
 	return addTestAddrs(app, ctx, accNum, accAmt, CreateRandomAccounts)
 }
 
-func addTestAddrs(app *BlackchainApp, ctx sdk.Context, accNum int, accAmt sdk.Int, strategy GenerateAccountStrategy) []sdk.AccAddress {
+func addTestAddrs(app *OffsideswapApp, ctx sdk.Context, accNum int, accAmt sdk.Int, strategy GenerateAccountStrategy) []sdk.AccAddress {
 	testAddrs := strategy(accNum)
 	moduleCoins := sdk.NewCoins(sdk.NewCoin(app.StakingKeeper.BondDenom(ctx), accAmt.MulRaw(int64(accNum+1))))
 	_ = app.BankKeeper.MintCoins(ctx, "ethbridge", moduleCoins)

@@ -1,23 +1,23 @@
 {
-  "blackchain": {
+  "offsideswap": {
     "binary": "blackfuryd",
-    "binaryUrl": "https://github.com/Blackchain/blackfury/releases/download/betanet-0.9.10/blackfuryd-betanet-0.9.10-linux-amd64.zip",
+    "binaryUrl": "https://github.com/Offsideswap/blackfury/releases/download/betanet-0.9.10/blackfuryd-betanet-0.9.10-linux-amd64.zip",
     "denom": "fury",
     "prefix": "black",
     "fees": 100000,
-    "node": "https://rpc-testnet.blackchain.finance:443",
-    "chainId": "blackchain-testnet-1",
+    "node": "https://rpc-testnet.offsideswap.finance:443",
+    "chainId": "offsideswap-testnet-1",
     "devnet-1": {
-      "node": "https://rpc-devnet.blackchain.finance:443",
-      "chainId": "blackchain-devnet-1"
+      "node": "https://rpc-devnet.offsideswap.finance:443",
+      "chainId": "offsideswap-devnet-1"
     },
     "testnet-1": {
-      "node": "https://rpc-testnet.blackchain.finance:443",
-      "chainId": "blackchain-testnet-1"
+      "node": "https://rpc-testnet.offsideswap.finance:443",
+      "chainId": "offsideswap-testnet-1"
     },
     "betanet": {
-      "node": "https://rpc.blackchain.finance:443",
-      "chainId": "blackchain-1"
+      "node": "https://rpc.offsideswap.finance:443",
+      "chainId": "offsideswap-1"
     }
   },
   "cosmos": {

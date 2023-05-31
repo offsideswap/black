@@ -2,7 +2,7 @@ package keeper
 
 import (
 	"fmt"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

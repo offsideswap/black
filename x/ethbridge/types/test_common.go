@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

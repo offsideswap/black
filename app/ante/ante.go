@@ -3,12 +3,12 @@ package ante
 import (
 	"strings"
 
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
-	disptypes "github.com/Blackchain/blackfury/x/dispensation/types"
+	disptypes "github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"

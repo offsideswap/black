@@ -3,10 +3,10 @@ package keeper_test
 import (
 	"testing"
 
-	adminTypes "github.com/Blackchain/blackfury/x/admin/types"
-	ethbriddgeKeeper "github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	adminTypes "github.com/Offsideswap/blackfury/x/admin/types"
+	ethbriddgeKeeper "github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )

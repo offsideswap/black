@@ -22,7 +22,7 @@ type CreateClaimReq struct {
 ### On friday we get a list of all the claims (After Cut-off time) for the week. Any claims submitted after cutoff would be processed next week.
 This query through the cli would look like
 ```shell
-blackfuryd q dispensation claims-by-type ValidatorSubsidy --chain-id blackchain --node tcp://rpc.blackchain.finance:80
+blackfuryd q dispensation claims-by-type ValidatorSubsidy --chain-id offsideswap --node tcp://rpc.offsideswap.finance:80
 ```
 Which returns 
 ```json

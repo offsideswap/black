@@ -35,5 +35,5 @@ done
 # go mod tidy
 
 # move proto files to the right places
-cp -r github.com/Blackchain/blackfury/* ./
+cp -r github.com/Offsideswap/blackfury/* ./
 rm -rf github.com

@@ -1,7 +1,7 @@
 package types
 
 import (
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )

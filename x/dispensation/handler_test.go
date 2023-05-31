@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 
-	"github.com/Blackchain/blackfury/x/dispensation"
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	"github.com/Blackchain/blackfury/x/dispensation/types"
-	dispensationUtils "github.com/Blackchain/blackfury/x/dispensation/utils"
+	"github.com/Offsideswap/blackfury/x/dispensation"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
+	dispensationUtils "github.com/Offsideswap/blackfury/x/dispensation/utils"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

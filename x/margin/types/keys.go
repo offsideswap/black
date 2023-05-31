@@ -3,7 +3,7 @@ package types
 import (
 	"encoding/binary"
 
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 var (

@@ -1,12 +1,12 @@
 import pytest
 
 import blacktool_path
-from blacktool import eth, blackchain
+from blacktool import eth, offsideswap
 from blacktool.inflate_tokens import InflateTokens
 from blacktool.common import *
 
 
-# Blackchain wallets to which we want to distribute
+# Offsideswap wallets to which we want to distribute
 test_wallets = [
     "black1fpq67nw66thzmf2a5ng64cd8p8nxa5vl9d3cm4",
     "black1syavy2npfyt9tcncdtsdzf7kny9lh777yqc2nd",
@@ -99,9 +99,9 @@ def _test_inflate_tokens_parametrized(ctx, number_of_tokens):
 
     script = InflateTokens(ctx)
 
-    balances_before = [ctx.get_blackchain_balance(w) for w in wallets]
+    balances_before = [ctx.get_offsideswap_balance(w) for w in wallets]
     script.transfer(requested_tokens, amount_in_tokens, wallets, amount_gwei)
-    balances_delta = [blackchain.balance_delta(balances_before[i], ctx.get_blackchain_balance(w)) for i, w in enumerate(wallets)]
+    balances_delta = [offsideswap.balance_delta(balances_before[i], ctx.get_offsideswap_balance(w)) for i, w in enumerate(wallets)]
 
     for balances_delta in balances_delta:
         for t in requested_tokens:

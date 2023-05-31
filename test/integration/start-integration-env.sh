@@ -20,7 +20,7 @@ set_persistant_env_var OWNER 0x627306090abaB3A6e1400e9345bC60c78a8BEf57 $envexpo
 # we may eventually switch things so PAUSER and OWNER aren't the same account, but for now they're the same
 set_persistant_env_var PAUSER $OWNER $envexportfile
 set_persistant_env_var BASEDIR $(fullpath $BASEDIR) $envexportfile
-set_persistant_env_var BLACKCHAIN_BIN $BASEDIR/cmd $envexportfile
+set_persistant_env_var OFFSIDESWAP_BIN $BASEDIR/cmd $envexportfile
 set_persistant_env_var envexportfile $(fullpath $envexportfile) $envexportfile
 set_persistant_env_var TEST_INTEGRATION_DIR ${BASEDIR}/test/integration $envexportfile
 set_persistant_env_var TEST_INTEGRATION_PY_DIR ${BASEDIR}/test/integration/src/py $envexportfile
@@ -62,8 +62,8 @@ set_persistant_env_var BRIDGE_TOKEN_ADDRESS $(cat $BASEDIR/smart-contracts/build
 
 set_persistant_env_var BRIDGE_BANK_ADDRESS $(cat $BASEDIR/smart-contracts/build/contracts/BridgeBank.json | jq -r '.networks["5777"].address') $envexportfile required
 
-rm -rf /tmp/blackchainrelayerdb
-bash ${BASEDIR}/test/integration/setup_blackchain.sh
+rm -rf /tmp/offsideswaprelayerdb
+bash ${BASEDIR}/test/integration/setup_offsideswap.sh
 . $envexportfile
 
 logecho finished $0

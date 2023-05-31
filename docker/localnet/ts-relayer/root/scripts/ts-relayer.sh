@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Blackchain: IBC Relayer entrypoint.
+# Offsideswap: IBC Relayer entrypoint.
 #
 
 TMPDIR=/tmp

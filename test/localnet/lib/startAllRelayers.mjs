@@ -17,7 +17,7 @@ export async function startAllRelayers({
     configPath,
   });
   const chainsProps = getChainsProps({ chains, network });
-  const { blackchain: blackChainProps, ...otherChainsProps } = chainsProps;
+  const { offsideswap: blackChainProps, ...otherChainsProps } = chainsProps;
 
   // 1) start relayers
   return Promise.all(

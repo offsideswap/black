@@ -3,7 +3,7 @@ package blackfury.oracle.v1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Blackchain/blackfury/x/oracle/types";
+option go_package = "github.com/Offsideswap/blackfury/x/oracle/types";
 
 message GenesisState {
   repeated string address_whitelist = 1;

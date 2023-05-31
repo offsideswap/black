@@ -84,18 +84,18 @@ class IntegrationTestContext:
 
     # Deprecated: blackfuryd accepts --gas-prices=0.5fury along with --gas-adjustment=1.5 instead of a fixed fee.
     # Using those parameters is the best way to have the fees set robustly after the .42 upgrade.
-    # See https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+    # See https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
     @property
-    def blackchain_fees_int(self):
+    def offsideswap_fees_int(self):
         return 100000000000000000
 
     # Deprecated: blackfuryd accepts --gas-prices=0.5fury along with --gas-adjustment=1.5 instead of a fixed fee.
     # Using those parameters is the best way to have the fees set robustly after the .42 upgrade.
-    # See https://github.com/Blackchain/blackfury/pull/1802#discussion_r697403408
+    # See https://github.com/Offsideswap/blackfury/pull/1802#discussion_r697403408
     @property
-    def blackchain_fees(self):
+    def offsideswap_fees(self):
         """returns a string suitable for passing to blackfuryd"""
-        return f"{self.blackchain_fees_int}fury"
+        return f"{self.offsideswap_fees_int}fury"
 
     @property
     def solidity_json_path(self):
@@ -135,7 +135,7 @@ class IntegrationTestContext:
 
     @property
     def fury_source(self):
-        """A blackchain address or key that has fury and can send that fury to other address"""
+        """A offsideswap address or key that has fury and can send that fury to other address"""
         result = self.get_optional_var("FURY_SOURCE", None)
         if result:
             return result
@@ -178,10 +178,10 @@ class IntegrationTestContext:
     @property
     def fury_source_integrationtest_env_credentials(self):
         """
-        Creates a BlackchaincliCredentials with all the fields filled in
+        Creates a OffsideswapcliCredentials with all the fields filled in
         to transfer fury from an account that already has fury.
         """
-        return test_utilities.BlackchaincliCredentials(
+        return test_utilities.OffsideswapcliCredentials(
             keyring_backend="test",
             keyring_passphrase=self.validator_password,
             from_key=self.fury_source
@@ -189,20 +189,20 @@ class IntegrationTestContext:
 
     def fury_source_integrationtest_env_transfer_request(self, basic_transfer_request):
         """
-        Creates a EthereumToBlackchainTransferRequest with all the generic fields filled in
+        Creates a EthereumToOffsideswapTransferRequest with all the generic fields filled in
         for a transfer of fury from an account that already has fury.
         """
-        result: test_utilities.EthereumToBlackchainTransferRequest = copy.deepcopy(basic_transfer_request)
-        result.blackchain_address = self.fury_source
-        result.blackchain_symbol = "fury"
+        result: test_utilities.EthereumToOffsideswapTransferRequest = copy.deepcopy(basic_transfer_request)
+        result.offsideswap_address = self.fury_source
+        result.offsideswap_symbol = "fury"
         return result
 
     @property
     def basic_transfer_request(self):
         """
-        Creates a EthereumToBlackchainTransferRequest with all the generic fields filled in.
+        Creates a EthereumToOffsideswapTransferRequest with all the generic fields filled in.
         """
-        return test_utilities.EthereumToBlackchainTransferRequest(
+        return test_utilities.EthereumToOffsideswapTransferRequest(
             smart_contracts_dir=self.smart_contracts_dir,
             ethereum_private_key_env_var="ETHEREUM_PRIVATE_KEY",
             bridgebank_address=self.bridgebank_address,
@@ -211,5 +211,5 @@ class IntegrationTestContext:
             blackfuryd_node=self.blackfuryd_node,
             manual_block_advance=self.is_ganache,
             chain_id=self.chain_id,
-            blackchain_fees=self.blackchain_fees,
+            offsideswap_fees=self.offsideswap_fees,
             solidity_json_path=self.solidity_json_path)

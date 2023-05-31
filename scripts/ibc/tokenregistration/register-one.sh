@@ -6,9 +6,9 @@
 
 TOKEN_REGISTRY_ADMIN_ADDRESS="black1tpypxpppcf5lea47vcvgy09675nllmcucxydvu"
 
-blackfuryd tx tokenregistry register ./$BLACKCHAIN_ID/$2.json \
+blackfuryd tx tokenregistry register ./$OFFSIDESWAP_ID/$2.json \
   --node $BLACK_NODE \
-  --chain-id $BLACKCHAIN_ID \
+  --chain-id $OFFSIDESWAP_ID \
   --from $TOKEN_REGISTRY_ADMIN_ADDRESS \
   --keyring-backend $KEYRING_BACKEND \
   --gas=500000 \

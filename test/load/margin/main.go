@@ -5,8 +5,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/margin/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/config"
 	"github.com/cosmos/cosmos-sdk/client/flags"

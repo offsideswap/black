@@ -1,7 +1,7 @@
 package main
 
 import (
-	dispensationtypes "github.com/Blackchain/blackfury/x/dispensation/types"
+	dispensationtypes "github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/tendermint/tendermint/crypto"

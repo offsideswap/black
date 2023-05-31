@@ -8,8 +8,8 @@ import (
 
 	"github.com/tendermint/tendermint/libs/cli"
 
-	clpcli "github.com/Blackchain/blackfury/x/clp/client/cli"
-	margincli "github.com/Blackchain/blackfury/x/margin/client/cli"
+	clpcli "github.com/Offsideswap/blackfury/x/clp/client/cli"
+	margincli "github.com/Offsideswap/blackfury/x/margin/client/cli"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/testutil"

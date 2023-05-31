@@ -9,8 +9,8 @@ import (
 	"math/big"
 	"time"
 
-	cosmosbridge "github.com/Blackchain/blackfury/cmd/ebrelayer/contract/generated/bindings/cosmosbridge"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
+	cosmosbridge "github.com/Offsideswap/blackfury/cmd/ebrelayer/contract/generated/bindings/cosmosbridge"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	ctypes "github.com/ethereum/go-ethereum/core/types"

@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
+	blackapp "github.com/Offsideswap/blackfury/app"
 	"github.com/stretchr/testify/assert"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )

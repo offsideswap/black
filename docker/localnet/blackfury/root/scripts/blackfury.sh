@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Blackchain: Blackfury Genesis Entrypoint.
+# Offsideswap: Blackfury Genesis Entrypoint.
 #
 
 #

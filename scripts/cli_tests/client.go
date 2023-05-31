@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Blackchain/blackfury/app"
+	"github.com/Offsideswap/blackfury/app"
 	sdkclient "github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/cosmos/cosmos-sdk/simapp/params"
@@ -13,11 +13,11 @@ func getClientAndFactory(args Args) (tx.Factory, sdkclient.Context) {
 	uri := ""
 	switch args.Network {
 	case Devnet:
-		uri = "https://rpc-devnet.blackchain.finance:443"
+		uri = "https://rpc-devnet.offsideswap.finance:443"
 	case TestNet:
-		uri = "https://rpc-testnet.blackchain.finance:443"
+		uri = "https://rpc-testnet.offsideswap.finance:443"
 	case MainNet:
-		uri = "https://rpc.blackchain.finance:443"
+		uri = "https://rpc.offsideswap.finance:443"
 	case LocalNet:
 		uri = "tcp://127.0.0.1:26657"
 	default:

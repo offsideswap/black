@@ -8,30 +8,30 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/x/authz"
 
-	blackchainAnte "github.com/Blackchain/blackfury/app/ante"
-	"github.com/Blackchain/blackfury/x/admin"
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	"github.com/Blackchain/blackfury/x/clp"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/dispensation"
-	dispkeeper "github.com/Blackchain/blackfury/x/dispensation/keeper"
-	disptypes "github.com/Blackchain/blackfury/x/dispensation/types"
-	"github.com/Blackchain/blackfury/x/ethbridge"
-	ethbridgekeeper "github.com/Blackchain/blackfury/x/ethbridge/keeper"
-	ethbridgetypes "github.com/Blackchain/blackfury/x/ethbridge/types"
-	ibctransferoverride "github.com/Blackchain/blackfury/x/ibctransfer"
-	sctransfertypes "github.com/Blackchain/blackfury/x/ibctransfer/types"
-	"github.com/Blackchain/blackfury/x/margin"
-	marginkeeper "github.com/Blackchain/blackfury/x/margin/keeper"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
-	"github.com/Blackchain/blackfury/x/oracle"
-	oraclekeeper "github.com/Blackchain/blackfury/x/oracle/keeper"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
-	"github.com/Blackchain/blackfury/x/tokenregistry"
-	tokenregistrykeeper "github.com/Blackchain/blackfury/x/tokenregistry/keeper"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	offsideswapAnte "github.com/Offsideswap/blackfury/app/ante"
+	"github.com/Offsideswap/blackfury/x/admin"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/clp"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/dispensation"
+	dispkeeper "github.com/Offsideswap/blackfury/x/dispensation/keeper"
+	disptypes "github.com/Offsideswap/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge"
+	ethbridgekeeper "github.com/Offsideswap/blackfury/x/ethbridge/keeper"
+	ethbridgetypes "github.com/Offsideswap/blackfury/x/ethbridge/types"
+	ibctransferoverride "github.com/Offsideswap/blackfury/x/ibctransfer"
+	sctransfertypes "github.com/Offsideswap/blackfury/x/ibctransfer/types"
+	"github.com/Offsideswap/blackfury/x/margin"
+	marginkeeper "github.com/Offsideswap/blackfury/x/margin/keeper"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
+	"github.com/Offsideswap/blackfury/x/oracle"
+	oraclekeeper "github.com/Offsideswap/blackfury/x/oracle/keeper"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry"
+	tokenregistrykeeper "github.com/Offsideswap/blackfury/x/tokenregistry/keeper"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
@@ -184,11 +184,11 @@ func init() {
 }
 
 var (
-	_ simapp.App              = (*BlackchainApp)(nil)
-	_ servertypes.Application = (*BlackchainApp)(nil)
+	_ simapp.App              = (*OffsideswapApp)(nil)
+	_ servertypes.Application = (*OffsideswapApp)(nil)
 )
 
-type BlackchainApp struct {
+type OffsideswapApp struct {
 	*baseapp.BaseApp
 	legacyAmino       *codec.LegacyAmino //nolint
 	appCodec          codec.Codec
@@ -241,7 +241,7 @@ func NewBlackApp(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool, skipUpgradeHeights map[int64]bool,
 	homePath string, invCheckPeriod uint, encodingConfig simappparams.EncodingConfig,
 	appOpts servertypes.AppOptions, baseAppOptions ...func(*baseapp.BaseApp),
-) *BlackchainApp {
+) *OffsideswapApp {
 	return NewBlackAppWithBlacklist(logger, db, traceStore, loadLatest, skipUpgradeHeights, homePath, invCheckPeriod, encodingConfig, appOpts, []sdk.AccAddress{}, baseAppOptions...)
 }
 
@@ -249,7 +249,7 @@ func NewBlackAppWithBlacklist(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool, skipUpgradeHeights map[int64]bool,
 	homePath string, invCheckPeriod uint, encodingConfig simappparams.EncodingConfig,
 	appOpts servertypes.AppOptions, blackListedAddresses []sdk.AccAddress, baseAppOptions ...func(*baseapp.BaseApp),
-) *BlackchainApp {
+) *OffsideswapApp {
 	appCodec := encodingConfig.Marshaler
 	legacyAmino := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
@@ -283,7 +283,7 @@ func NewBlackAppWithBlacklist(
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
-	var app = &BlackchainApp{
+	var app = &OffsideswapApp{
 		BaseApp:           bApp,
 		legacyAmino:       legacyAmino, //nolint
 		appCodec:          appCodec,
@@ -618,8 +618,8 @@ func NewBlackAppWithBlacklist(
 	app.MountKVStores(keys)
 	app.MountTransientStores(tkeys)
 	app.MountMemoryStores(memKeys)
-	anteHandler, err := blackchainAnte.NewAnteHandler(
-		blackchainAnte.HandlerOptions{
+	anteHandler, err := offsideswapAnte.NewAnteHandler(
+		offsideswapAnte.HandlerOptions{
 			AdminKeeper:     app.AdminKeeper,
 			AccountKeeper:   app.AccountKeeper,
 			BankKeeper:      app.BankKeeper,
@@ -659,7 +659,7 @@ func NewBlackAppWithBlacklist(
 	return app
 }
 
-func (app *BlackchainApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *OffsideswapApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 	var genesisState GenesisState
 
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
@@ -671,15 +671,15 @@ func (app *BlackchainApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain
 	return app.mm.InitGenesis(ctx, app.appCodec, genesisState)
 }
 
-func (app *BlackchainApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+func (app *OffsideswapApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	return app.mm.BeginBlock(ctx, req)
 }
 
-func (app *BlackchainApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *OffsideswapApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	return app.mm.EndBlock(ctx, req)
 }
 
-func (app *BlackchainApp) LegacyAmino() *codec.LegacyAmino { //nolint
+func (app *OffsideswapApp) LegacyAmino() *codec.LegacyAmino { //nolint
 	return app.legacyAmino
 }
 
@@ -687,43 +687,43 @@ func (app *BlackchainApp) LegacyAmino() *codec.LegacyAmino { //nolint
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *BlackchainApp) AppCodec() codec.Codec {
+func (app *OffsideswapApp) AppCodec() codec.Codec {
 	return app.appCodec
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *BlackchainApp) GetSubspace(moduleName string) paramstypes.Subspace {
+func (app *OffsideswapApp) GetSubspace(moduleName string) paramstypes.Subspace {
 	subspace, _ := app.ParamsKeeper.GetSubspace(moduleName)
 	return subspace
 }
 
-func (app *BlackchainApp) GetKey(storeKey string) *sdk.KVStoreKey {
+func (app *OffsideswapApp) GetKey(storeKey string) *sdk.KVStoreKey {
 	return app.keys[storeKey]
 }
 
 // GetTKey returns the TransientStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *BlackchainApp) GetTKey(storeKey string) *sdk.TransientStoreKey {
+func (app *OffsideswapApp) GetTKey(storeKey string) *sdk.TransientStoreKey {
 	return app.tkeys[storeKey]
 }
 
 // GetMemKey returns the MemStoreKey for the provided mem key.
 //
 // NOTE: This is solely used for testing purposes.
-func (app *BlackchainApp) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
+func (app *OffsideswapApp) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
 	return app.memKeys[storeKey]
 }
 
 // LoadHeight loads a particular height
-func (app *BlackchainApp) LoadHeight(height int64) error {
+func (app *OffsideswapApp) LoadHeight(height int64) error {
 	return app.LoadVersion(height)
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *BlackchainApp) ModuleAccountAddrs() map[string]bool {
+func (app *OffsideswapApp) ModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		modAccAddrs[authtypes.NewModuleAddress(acc).String()] = true
@@ -732,7 +732,7 @@ func (app *BlackchainApp) ModuleAccountAddrs() map[string]bool {
 	return modAccAddrs
 }
 
-func (app *BlackchainApp) SimulationManager() *module.SimulationManager {
+func (app *OffsideswapApp) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
@@ -746,7 +746,7 @@ func GetMaccPerms() map[string][]string {
 
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
-func (app *BlackchainApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
+func (app *OffsideswapApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
 	clientCtx := apiSvr.ClientCtx
 	rpc.RegisterRoutes(clientCtx, apiSvr.Router)
 	// Register legacy tx routes.
@@ -767,12 +767,12 @@ func (app *BlackchainApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config
 }
 
 // RegisterTxService implements the Application.RegisterTxService method.
-func (app *BlackchainApp) RegisterTxService(clientCtx client.Context) {
+func (app *OffsideswapApp) RegisterTxService(clientCtx client.Context) {
 	authtx.RegisterTxService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.BaseApp.Simulate, app.interfaceRegistry)
 }
 
 // RegisterTendermintService implements the Application.RegisterTendermintService method.
-func (app *BlackchainApp) RegisterTendermintService(clientCtx client.Context) {
+func (app *OffsideswapApp) RegisterTendermintService(clientCtx client.Context) {
 	tmservice.RegisterTendermintService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.interfaceRegistry)
 }
 

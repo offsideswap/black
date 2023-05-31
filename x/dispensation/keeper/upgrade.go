@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
-	"github.com/Blackchain/blackfury/x/dispensation/types"
-	"github.com/Blackchain/blackfury/x/dispensation/types/legacy"
+	"github.com/Offsideswap/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/types/legacy"
 )
 
 func MigrateRecords(keeper Keeper) func(ctx sdk.Context, plan upgradetypes.Plan) {

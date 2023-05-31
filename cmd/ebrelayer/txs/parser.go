@@ -2,7 +2,7 @@ package txs
 
 import (
 	"errors"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -11,13 +11,13 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 const (
 	nullAddress           = "0x0000000000000000000000000000000000000000"
-	defaultBlackchainPrefix = "c"
+	defaultOffsideswapPrefix = "c"
 )
 
 // EthereumEventToEthBridgeClaim parses and packages an Ethereum event struct with a validator address in an EthBridgeClaim msg
@@ -55,7 +55,7 @@ func EthereumEventToEthBridgeClaim(valAddr sdk.ValAddress, event types.EthereumE
 			return witnessClaim, errors.New("symbol \"eth\" must have null address set as token address")
 		}
 	case ethbridge.ClaimType_CLAIM_TYPE_BURN:
-		symbol = symbolTranslator.EthereumToBlackchain(symbol)
+		symbol = symbolTranslator.EthereumToOffsideswap(symbol)
 	}
 
 	amount := sdk.NewIntFromBigInt(event.Value)
@@ -122,14 +122,14 @@ func BurnLockEventToCosmosMsg(claimType types.Event, attributes []abci.EventAttr
 			attributeNumber++
 			switch claimType {
 			case types.MsgLock:
-				symbol = symbolTranslator.BlackchainToEthereum(val)
+				symbol = symbolTranslator.OffsideswapToEthereum(val)
 			case types.MsgBurn:
-				if !strings.Contains(val, defaultBlackchainPrefix) {
-					// log.Printf("Can only relay burns of '%v' prefixed coins", defaultBlackchainPrefix)
+				if !strings.Contains(val, defaultOffsideswapPrefix) {
+					// log.Printf("Can only relay burns of '%v' prefixed coins", defaultOffsideswapPrefix)
 					sugaredLogger.Errorw("only relay burns prefixed coins", "coin symbol", val)
-					return types.CosmosMsg{}, errors.New("can only relay burns of '%v' prefixed coins" + defaultBlackchainPrefix)
+					return types.CosmosMsg{}, errors.New("can only relay burns of '%v' prefixed coins" + defaultOffsideswapPrefix)
 				}
-				res := strings.SplitAfter(val, defaultBlackchainPrefix)
+				res := strings.SplitAfter(val, defaultOffsideswapPrefix)
 				symbol = strings.Join(res[1:], "")
 			}
 		case types.Amount.String():

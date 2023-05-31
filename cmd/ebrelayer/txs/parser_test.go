@@ -1,7 +1,7 @@
 package txs
 
 import (
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
 	"strings"
 	"testing"
 
@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
-	ethbridge "github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
+	ethbridge "github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 var (

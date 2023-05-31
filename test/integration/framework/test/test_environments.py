@@ -1,6 +1,6 @@
 import contextlib
 from blacktool.common import *
-from blacktool import command, environments, project, blackchain, cosmos
+from blacktool import command, environments, project, offsideswap, cosmos
 
 
 def get_validators(env):
@@ -10,7 +10,7 @@ def get_validators(env):
 
 def test_transfer(env):
     blackfuryd = env.blackfuryd
-    blackfuryd.send_and_check(env.faucet, blackfuryd.create_addr(), {blackchain.FURY: 10 ** blackchain.FURY_DECIMALS})
+    blackfuryd.send_and_check(env.faucet, blackfuryd.create_addr(), {offsideswap.FURY: 10 ** offsideswap.FURY_DECIMALS})
 
 
 def assert_validators_working(env, expected_monikers):
@@ -57,7 +57,7 @@ class TestBlackfurydEnvironment:
             exception = e
         # The validator will exit immediately, writing error to the log.
         # What we get here is a "timeout waiting for blackfuryd to come up".
-        assert type(exception) == blackchain.BlackfurydException
+        assert type(exception) == offsideswap.BlackfurydException
 
     def test_need_2_out_of_3_validators_running_for_consensus(self):
         env = environments.BlackfurydEnvironment(self.cmd, blackfuryd_home_root=self.blackfuryd_home_root)
@@ -84,7 +84,7 @@ class TestBlackfurydEnvironment:
             test_transfer(env)  # 2 out of 4 => should fail
         except Exception as e:
             exception = e
-        assert type(exception) == blackchain.BlackfurydException
+        assert type(exception) == offsideswap.BlackfurydException
 
     def test_can_have_validators_with_same_moniker(self):
         env = environments.BlackfurydEnvironment(self.cmd, blackfuryd_home_root=self.blackfuryd_home_root)
@@ -107,11 +107,11 @@ class TestBlackfurydEnvironment:
         number_of_denoms = 10  # > 1
         number_of_wallets = 100
         faucet_balance = cosmos.balance_add({"foo{}".format(i): (i + 1) * 10**30 for i in range(10)},
-            {blackchain.FURY: 10**30})
+            {offsideswap.FURY: 10**30})
 
         tmpdir = self.cmd.mktempdir()
         try:
-            blackfuryd = blackchain.Blackfuryd(self.cmd, home=tmpdir)
+            blackfuryd = offsideswap.Blackfuryd(self.cmd, home=tmpdir)
             extra_accounts = {blackfuryd.create_addr(): {"bar{}".format(j): (i * number_of_denoms + j + 1) * 10**25
                 for j in range(number_of_denoms)} for i in range(number_of_wallets)}
             env = environments.BlackfurydEnvironment(self.cmd, blackfuryd_home_root=self.blackfuryd_home_root)
@@ -141,7 +141,7 @@ class TestBlackfurydEnvironment:
 
             # On each node, do a sample transfer of one fury from admin to a new wallet and check that the change of
             # balances is visible on all nodes
-            test_transfer_amount = {blackchain.FURY: 10**blackchain.FURY_DECIMALS}
+            test_transfer_amount = {offsideswap.FURY: 10**offsideswap.FURY_DECIMALS}
             for i in range(number_of_validators):
                 blackfuryd_i = env._blackfuryd_for(env.node_info[i])
                 test_addr = blackfuryd_i.create_addr()

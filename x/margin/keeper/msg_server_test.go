@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	"github.com/Blackchain/blackfury/x/clp"
-	clptest "github.com/Blackchain/blackfury/x/clp/test"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	"github.com/Blackchain/blackfury/x/margin/keeper"
-	"github.com/Blackchain/blackfury/x/margin/test"
-	"github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/clp"
+	clptest "github.com/Offsideswap/blackfury/x/clp/test"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/margin/keeper"
+	"github.com/Offsideswap/blackfury/x/margin/test"
+	"github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -653,7 +653,7 @@ func TestKeeper_ForceClose(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			asset := clptypes.Asset{Symbol: tt.poolAsset}
 
-			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				gs1 := &admintypes.GenesisState{
 					AdminAccounts: []*admintypes.AdminAccount{
 						{
@@ -1054,7 +1054,7 @@ func TestKeeper_OpenThenClose(t *testing.T) {
 	nativeAsset := clptypes.NativeSymbol
 	signer := "black1azpar20ck9lpys89r8x7zc8yu0qzgvtp48ng5v"
 
-	ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+	ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 		gs2 := &tokenregistrytypes.GenesisState{
 			Registry: &tokenregistrytypes.Registry{
 				Entries: []*tokenregistrytypes.RegistryEntry{
@@ -1761,7 +1761,7 @@ func TestKeeper_EC(t *testing.T) {
 		for _, testItem := range ec.tests {
 			testItem := testItem
 
-			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppMarginFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				gs2 := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
 						Entries: []*tokenregistrytypes.RegistryEntry{

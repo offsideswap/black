@@ -196,7 +196,7 @@ contract("Security Test", function (accounts) {
   });
 
   // This entire scenario is mimicking the mainnet scenario where there will be
-  // cosmos assets on blackchain, and then we hook into an existing ERC20 contract on mainnet
+  // cosmos assets on offsideswap, and then we hook into an existing ERC20 contract on mainnet
   // that is eFury. Then we will try to transfer fury to eFury to ensure that
   // everything is set up correctly.
   // We will do this by making a new prophecy claim, validating it with the validators

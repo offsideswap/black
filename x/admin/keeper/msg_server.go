@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/Blackchain/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/admin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

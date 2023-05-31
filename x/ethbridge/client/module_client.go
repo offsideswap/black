@@ -7,9 +7,9 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/Blackchain/blackfury/x/ethbridge/client/cli"
-	"github.com/Blackchain/blackfury/x/ethbridge/client/rest"
-	"github.com/Blackchain/blackfury/x/ethbridge/types"
+	"github.com/Offsideswap/blackfury/x/ethbridge/client/cli"
+	"github.com/Offsideswap/blackfury/x/ethbridge/client/rest"
+	"github.com/Offsideswap/blackfury/x/ethbridge/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

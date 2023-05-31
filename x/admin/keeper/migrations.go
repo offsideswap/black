@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/Blackchain/blackfury/x/admin/types"
+	"github.com/Offsideswap/blackfury/x/admin/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -15,7 +15,7 @@ func NewMigrator(keeper Keeper) Migrator {
 
 func (m Migrator) InitialMigration(ctx sdk.Context) error {
 	var accounts []*types.AdminAccount
-	if ctx.ChainID() == "blackchain-1" {
+	if ctx.ChainID() == "offsideswap-1" {
 		accounts = types.ProdAdminAccounts()
 	} else {
 		accounts = types.InitialAdminAccounts()

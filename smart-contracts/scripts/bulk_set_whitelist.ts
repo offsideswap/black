@@ -17,7 +17,7 @@ import {
     impersonateBridgeBankAccounts,
     setupDeployment,
     setupRopstenDeployment,
-    setupBlackchainMainnetDeployment
+    setupOffsideswapMainnetDeployment
 } from "../src/hardhatFunctions";
 import * as fs from "fs";
 

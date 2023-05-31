@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Blackchain/blackfury/x/tokenregistry/keeper"
-	"github.com/Blackchain/blackfury/x/tokenregistry/types"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/keeper"
+	"github.com/Offsideswap/blackfury/x/tokenregistry/types"
 )
 
 func NewHandler(k types.Keeper) sdk.Handler {

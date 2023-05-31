@@ -10,14 +10,14 @@ const BN = require('bn.js');
 module.exports = async (cb) => {
     const Web3 = require("web3");
 
-    const blackchainUtilities = require('./blackchainUtilities')
+    const offsideswapUtilities = require('./offsideswapUtilities')
     const contractUtilites = require('./contractUtilities');
 
-    const logging = blackchainUtilities.configureLogging(this);
+    const logging = offsideswapUtilities.configureLogging(this);
 
-    const argv = blackchainUtilities.processArgs(this, {
-        ...blackchainUtilities.sharedYargOptions,
-        ...blackchainUtilities.bridgeBankAddressYargOptions,
+    const argv = offsideswapUtilities.processArgs(this, {
+        ...offsideswapUtilities.sharedYargOptions,
+        ...offsideswapUtilities.bridgeBankAddressYargOptions,
     });
 
     const bridgeBankContract = await contractUtilites.buildContract(this, argv, logging, "BridgeBank", argv.bridgebank_address);

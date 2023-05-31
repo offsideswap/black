@@ -12,7 +12,7 @@ Why is this a good idea?
 * Google Analytics which is an implementation concern can get realtime information on what is happening within core by simply adding a listener to the NotificationsService. 
 * Other implementation concerns such as logging and error reporting can listen to events driven from the EventBusService and marshall the appropriate response to their respective targets
 * Events are typed so the event payload shape is matched to the event type
-* Cohesion occurs through the shared definition of events which in this example happens [here](https://github.com/Blackchain/blackfury/pull/892/files#diff-1181e517a11ffd75848b4d3e55ccdaf88bf27ec325aa9c9ec5218d472e9d92e4R7) we might want to move them elsewhere.
+* Cohesion occurs through the shared definition of events which in this example happens [here](https://github.com/Offsideswap/blackfury/pull/892/files#diff-1181e517a11ffd75848b4d3e55ccdaf88bf27ec325aa9c9ec5218d472e9d92e4R7) we might want to move them elsewhere.
 
 
 Possible other things we could do

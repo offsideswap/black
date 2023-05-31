@@ -1,8 +1,8 @@
 package types
 
 import (
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
-	oracletypes "github.com/Blackchain/blackfury/x/oracle/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
+	oracletypes "github.com/Offsideswap/blackfury/x/oracle/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 )

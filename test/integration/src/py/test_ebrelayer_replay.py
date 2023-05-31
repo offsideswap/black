@@ -5,23 +5,23 @@ import time
 
 import burn_lock_functions
 import test_utilities
-from burn_lock_functions import EthereumToBlackchainTransferRequest
-from integration_env_credentials import blackchain_cli_credentials_for_test
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
+from integration_env_credentials import offsideswap_cli_credentials_for_test
 from pytest_utilities import generate_test_account
-from test_utilities import get_required_env_var, get_shell_output, BlackchaincliCredentials
+from test_utilities import get_required_env_var, get_shell_output, OffsideswapcliCredentials
 
 
 def build_request(
         smart_contracts_dir,
         ethereum_address,
         solidity_json_path,
-) -> (EthereumToBlackchainTransferRequest, BlackchaincliCredentials):
+) -> (EthereumToOffsideswapTransferRequest, OffsideswapcliCredentials):
     new_account_key = get_shell_output("uuidgen")
-    credentials = blackchain_cli_credentials_for_test(new_account_key)
+    credentials = offsideswap_cli_credentials_for_test(new_account_key)
     new_addr = burn_lock_functions.create_new_blackaddr(credentials=credentials, keyname=new_account_key)
     credentials.from_key = new_addr["name"]
-    request = EthereumToBlackchainTransferRequest(
-        blackchain_address=new_addr["address"],
+    request = EthereumToOffsideswapTransferRequest(
+        offsideswap_address=new_addr["address"],
         smart_contracts_dir=smart_contracts_dir,
         ethereum_address=ethereum_address,
         ethereum_private_key_env_var="ETHEREUM_PRIVATE_KEY",
@@ -55,28 +55,28 @@ def test_transfer_eth_to_ceth_using_replay_blocks(
         target_fury_balance=10 ** 19
     )
     fury_transfer_request = copy.deepcopy(request)
-    fury_transfer_request.blackchain_symbol = "fury"
+    fury_transfer_request.offsideswap_symbol = "fury"
     small_amount = 9
     fury_transfer_request.amount = small_amount
-    test_utilities.send_from_blackchain_to_ethereum(fury_transfer_request, credentials)
+    test_utilities.send_from_offsideswap_to_ethereum(fury_transfer_request, credentials)
 
     starting_block = test_utilities.current_ethereum_block_number(smart_contracts_dir)
     logging.info("stopping ebrelayer")
     test_utilities.kill_ebrelayer()
     request, credentials = build_request(smart_contracts_dir, source_ethereum_address, solidity_json_path)
-    request.blackchain_symbol = "fury"
+    request.offsideswap_symbol = "fury"
     request.ethereum_symbol = bridgetoken_address
     request.amount = small_amount
     logging.info("(no transactions should happen without a relayer)")
-    logging.info(f"send {small_amount} fury to {request.blackchain_address}")
-    test_utilities.send_from_ethereum_to_blackchain(request)
+    logging.info(f"send {small_amount} fury to {request.offsideswap_address}")
+    test_utilities.send_from_ethereum_to_offsideswap(request)
 
     logging.info("make sure no balances changed while the relayer was offline")
     test_utilities.advance_n_ethereum_blocks(test_utilities.n_wait_blocks, smart_contracts_dir)
     time.sleep(5)
-    balance_with_no_relayer = test_utilities.get_blackchain_addr_balance(
-        request.blackchain_address, request.blackfuryd_node,
-        request.blackchain_symbol
+    balance_with_no_relayer = test_utilities.get_offsideswap_addr_balance(
+        request.offsideswap_address, request.blackfuryd_node,
+        request.offsideswap_symbol
     )
     assert (balance_with_no_relayer == 0)
 
@@ -91,14 +91,14 @@ def test_transfer_eth_to_ceth_using_replay_blocks(
  --keyring-backend test --node tcp://0.0.0.0:26657 --from {mon}  --symbol-translator-file {integration_dir}/config/symbol_translator.json"""
     test_utilities.get_shell_output(cmd)
     time.sleep(5)
-    logging.info(f"check the ending balance of {request.blackchain_address} after replaying blocks")
-    ending_balance = test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node,
-                                                              request.blackchain_symbol)
+    logging.info(f"check the ending balance of {request.offsideswap_address} after replaying blocks")
+    ending_balance = test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node,
+                                                              request.offsideswap_symbol)
     assert (ending_balance == request.amount)
 
     # now do it again
     test_utilities.get_shell_output(cmd)
     time.sleep(5)
-    ending_balance2 = test_utilities.get_blackchain_addr_balance(request.blackchain_address, request.blackfuryd_node,
-                                                               request.blackchain_symbol)
+    ending_balance2 = test_utilities.get_offsideswap_addr_balance(request.offsideswap_address, request.blackfuryd_node,
+                                                               request.offsideswap_symbol)
     assert (ending_balance2 == request.amount)

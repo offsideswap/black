@@ -18,12 +18,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/contract"
-	cosmosbridge "github.com/Blackchain/blackfury/cmd/ebrelayer/contract/generated/bindings/cosmosbridge"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/contract"
+	cosmosbridge "github.com/Offsideswap/blackfury/cmd/ebrelayer/contract/generated/bindings/cosmosbridge"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
@@ -72,7 +72,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 	time.Sleep(time.Second)
 	client, err := tmClient.New(sub.TmProvider, "/websocket")
 	if err != nil {
-		sub.SugaredLogger.Errorw("failed to initialize a blackchain client.",
+		sub.SugaredLogger.Errorw("failed to initialize a offsideswap client.",
 			errorMessageKey, err.Error())
 		completionEvent.Add(1)
 		go sub.Start(completionEvent, symbolTranslator)
@@ -80,7 +80,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 	}
 
 	if err := client.Start(); err != nil {
-		sub.SugaredLogger.Errorw("failed to start a blackchain client.",
+		sub.SugaredLogger.Errorw("failed to start a offsideswap client.",
 			errorMessageKey, err.Error())
 		completionEvent.Add(1)
 		go sub.Start(completionEvent, symbolTranslator)
@@ -93,7 +93,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 	query := "tm.event = 'NewBlock'"
 	results, err := client.Subscribe(context.Background(), "test", query, 1000)
 	if err != nil {
-		sub.SugaredLogger.Errorw("blackchain client failed to subscribe to query.",
+		sub.SugaredLogger.Errorw("offsideswap client failed to subscribe to query.",
 			errorMessageKey, err.Error(),
 			"query", query)
 		completionEvent.Add(1)
@@ -103,7 +103,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 
 	defer func() {
 		if err := client.Unsubscribe(context.Background(), "test", query); err != nil {
-			sub.SugaredLogger.Errorw("blackchain client failed to unsubscribe query.",
+			sub.SugaredLogger.Errorw("offsideswap client failed to unsubscribe query.",
 				errorMessageKey, err.Error())
 		}
 	}()
@@ -131,7 +131,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 		case e := <-results:
 			data, ok := e.Data.(tmTypes.EventDataNewBlock)
 			if !ok {
-				sub.SugaredLogger.Errorw("blackchain client failed to extract event data from new block.",
+				sub.SugaredLogger.Errorw("offsideswap client failed to extract event data from new block.",
 					"EventDataNewBlock", fmt.Sprintf("%v", e.Data))
 			}
 			blockHeight := data.Block.Height
@@ -140,7 +140,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 			if lastProcessedBlock == 0 {
 				lastProcessedBlock = blockHeight
 			}
-			sub.SugaredLogger.Infow("new blackchain block witnessed")
+			sub.SugaredLogger.Infow("new offsideswap block witnessed")
 
 			startBlockHeight := lastProcessedBlock + 1
 			sub.SugaredLogger.Infow("cosmos process events for blocks.",
@@ -153,7 +153,7 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 				block, err := client.BlockResults(ctx, &tmpBlockNumber)
 
 				if err != nil {
-					sub.SugaredLogger.Errorw("blackchain client failed to get a block.",
+					sub.SugaredLogger.Errorw("offsideswap client failed to get a block.",
 						errorMessageKey, err.Error())
 					continue
 				}
@@ -169,13 +169,13 @@ func (sub CosmosSub) Start(completionEvent *sync.WaitGroup, symbolTranslator *sy
 						case types.MsgBurn, types.MsgLock:
 							cosmosMsg, err := txs.BurnLockEventToCosmosMsg(claimType, event.GetAttributes(), symbolTranslator, sub.SugaredLogger)
 							if err != nil {
-								sub.SugaredLogger.Errorw("blackchain client failed in get message from event.",
+								sub.SugaredLogger.Errorw("offsideswap client failed in get message from event.",
 									errorMessageKey, err.Error())
 								continue
 							}
 
 							sub.SugaredLogger.Infow(
-								"Received message from blackchain: ",
+								"Received message from offsideswap: ",
 								"msg", cosmosMsg,
 							)
 

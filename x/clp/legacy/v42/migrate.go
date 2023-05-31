@@ -1,8 +1,8 @@
 package v42
 
 import (
-	v039clp "github.com/Blackchain/blackfury/x/clp/legacy/v39"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	v039clp "github.com/Offsideswap/blackfury/x/clp/legacy/v39"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func Migrate(genesis v039clp.GenesisState) clptypes.GenesisState {

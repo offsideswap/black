@@ -2,21 +2,21 @@ package symbol_translator
 
 import (
 	"encoding/json"
-	bimap2 "github.com/Blackchain/blackfury/cmd/ebrelayer/internal/bimap_with_default"
+	bimap2 "github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/bimap_with_default"
 	"github.com/vishalkuo/bimap"
 	"io/ioutil"
 )
 
-// SymbolTranslator translates between Blackchain denoms and Ethereum symbols
+// SymbolTranslator translates between Offsideswap denoms and Ethereum symbols
 type SymbolTranslator struct {
 	symbolTable *bimap.BiMap
 }
 
-func (s *SymbolTranslator) BlackchainToEthereum(denom string) string {
+func (s *SymbolTranslator) OffsideswapToEthereum(denom string) string {
 	return bimap2.GetWithDefault(s.symbolTable, denom, denom).(string)
 }
 
-func (s *SymbolTranslator) EthereumToBlackchain(symbol string) string {
+func (s *SymbolTranslator) EthereumToOffsideswap(symbol string) string {
 	return bimap2.GetInverseWithDefault(s.symbolTable, symbol, symbol).(string)
 }
 

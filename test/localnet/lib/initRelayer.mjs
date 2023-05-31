@@ -6,8 +6,8 @@ import { setupRelayerChannelIds } from "../utils/setupRelayerChannelIds.mjs";
 import { send } from "./send.mjs";
 
 export async function initRelayer(props) {
-  // 0) retrieve blackchain props
-  const candidateBlackChainProps = getChainProps({ chain: "blackchain" });
+  // 0) retrieve offsideswap props
+  const candidateBlackChainProps = getChainProps({ chain: "offsideswap" });
 
   const {
     chainProps: candidateOtherChainProps,

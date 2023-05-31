@@ -3,7 +3,7 @@ package types
 import (
 	"strings"
 
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"

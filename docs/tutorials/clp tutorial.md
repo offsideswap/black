@@ -1,4 +1,4 @@
-# Blackchain - Clp Basics Tutorial
+# Offsideswap - Clp Basics Tutorial
 
 #### demo video
 
@@ -6,11 +6,11 @@
 
 #### Previous tutorial 
 
-* Peggy ethBridge: https://github.com/Blackchain/blackfury/blob/develop/docs/tutorials/peggy%20tutorial.md
+* Peggy ethBridge: https://github.com/Offsideswap/blackfury/blob/develop/docs/tutorials/peggy%20tutorial.md
 
 #### Dependencies:
 
-    0. `git clone git@github.com:Blackchain/blackfury.git`
+    0. `git clone git@github.com:Offsideswap/blackfury.git`
         
 
 #### What are they
@@ -112,7 +112,7 @@ E.g
 
 #### Feature Requests / Bug reports
 
-* https://github.com/Blackchain/blackfury/issues/new/choose
+* https://github.com/Offsideswap/blackfury/issues/new/choose
 
 
 #### References

@@ -4,9 +4,9 @@
 
 . ./envs/$1.sh
 
-echo "\n\ngenerating and storing all entries for network $BLACKCHAIN_ID"
+echo "\n\ngenerating and storing all entries for network $OFFSIDESWAP_ID"
 
-mkdir -p ./$BLACKCHAIN_ID
+mkdir -p ./$OFFSIDESWAP_ID
 
 blackfuryd q tokenregistry generate \
 	--token_base_denom=cxft \
@@ -17,7 +17,7 @@ blackfuryd q tokenregistry generate \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
 	--token_permission_ibc_import=true \
-	-o json | jq > $BLACKCHAIN_ID/cxft.json
+	-o json | jq > $OFFSIDESWAP_ID/cxft.json
 
 echo "\n\ngenerated entry for cxft"
 
@@ -29,7 +29,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="UOS" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cuos.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cuos.json
 
 echo "\n\ngenerated entry for cuos"
 
@@ -41,7 +41,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="NEWO" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cnewo.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cnewo.json
 
 echo "\n\ngenerated entry for cnewo"
 
@@ -53,7 +53,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="oSQTH" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cosqth.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cosqth.json
 
 echo "\n\ngenerated entry for cosqth"
 
@@ -65,7 +65,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="GALA" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cgala.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cgala.json
 
 echo "\n\ngenerated entry for cgala"
 
@@ -78,7 +78,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="PUSH" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cpush.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cpush.json
 
 echo "\n\ngenerated entry for cpush"
 
@@ -91,7 +91,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="MC" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cmc.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cmc.json
 
 echo "\n\ngenerated entry for cmc"
 
@@ -103,7 +103,7 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="INJ" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/cinj.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/cinj.json
 
 echo "\n\ngenerated entry for cinj"
 
@@ -115,6 +115,6 @@ blackfuryd q tokenregistry generate \
 	--token_external_symbol="CUDOS" \
 	--token_permission_clp=true \
 	--token_permission_ibc_export=true \
-	--token_permission_ibc_import=true -o json | jq > $BLACKCHAIN_ID/ccudos.json
+	--token_permission_ibc_import=true -o json | jq > $OFFSIDESWAP_ID/ccudos.json
 
 echo "\n\ngenerated entry for ccudos"

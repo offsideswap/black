@@ -20,7 +20,7 @@ const support = require("../../helpers/forkingSupport");
 const { print } = require("../../helpers/utils");
 
 // If there is no DEPLOYMENT_NAME env var, we'll use the mainnet deployment
-const DEPLOYMENT_NAME = process.env.DEPLOYMENT_NAME || "blackchain-1";
+const DEPLOYMENT_NAME = process.env.DEPLOYMENT_NAME || "offsideswap-1";
 
 // If there is no FORKING_CHAIN_ID env var, we'll use the mainnet id
 const CHAIN_ID = process.env.FORKING_CHAIN_ID || 1;
@@ -437,7 +437,7 @@ function copyManifest() {
   print("cyan", `👀 Fetching the correct manifest`);
 
   fs.copySync(
-    `./deployments/blackchain-1/.openzeppelin/mainnet.json`,
+    `./deployments/offsideswap-1/.openzeppelin/mainnet.json`,
     `./.openzeppelin/mainnet.json`
   );
 }

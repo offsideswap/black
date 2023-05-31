@@ -1,8 +1,8 @@
-# Blackchain - Rewards Tutorial
+# Offsideswap - Rewards Tutorial
 
 #### Dependencies:
 
-0. `git clone git@github.com:Blackchain/blackfury.git`
+0. `git clone git@github.com:Offsideswap/blackfury.git`
 1. `cd blackfury`
 2. `git checkout feature/rewards`
 3. `make init`

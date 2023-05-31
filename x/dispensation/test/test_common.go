@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	dispensation "github.com/Blackchain/blackfury/x/dispensation/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	dispensation "github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -14,7 +14,7 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )
 
-func CreateTestApp(isCheckTx bool) (*blackapp.BlackchainApp, sdk.Context) {
+func CreateTestApp(isCheckTx bool) (*blackapp.OffsideswapApp, sdk.Context) {
 	blackapp.SetConfig(false)
 	app := blackapp.Setup(isCheckTx)
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})

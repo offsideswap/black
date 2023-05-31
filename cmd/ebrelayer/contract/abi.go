@@ -13,7 +13,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
 )
 
 // File paths to Peggy smart contract ABIs

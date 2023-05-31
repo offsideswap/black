@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/Blackchain/blackfury/x/dispensation/test"
-	dispensationtypes "github.com/Blackchain/blackfury/x/dispensation/types"
+	"github.com/Offsideswap/blackfury/x/dispensation/test"
+	dispensationtypes "github.com/Offsideswap/blackfury/x/dispensation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

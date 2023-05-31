@@ -8,14 +8,14 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/internal/symbol_translator"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/txs"
-	ebrelayertypes "github.com/Blackchain/blackfury/cmd/ebrelayer/types"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/internal/symbol_translator"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/txs"
+	ebrelayertypes "github.com/Offsideswap/blackfury/cmd/ebrelayer/types"
 	flag "github.com/spf13/pflag"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/contract"
-	"github.com/Blackchain/blackfury/cmd/ebrelayer/relayer"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/contract"
+	"github.com/Offsideswap/blackfury/cmd/ebrelayer/relayer"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/rpc"
@@ -73,7 +73,7 @@ func buildRootCmd() *cobra.Command {
 	rootCmd.PersistentFlags().String(
 		ebrelayertypes.FlagSymbolTranslatorFile,
 		"",
-		"Path to a json file containing an array of blackchain denom => Ethereum symbol pairs",
+		"Path to a json file containing an array of offsideswap denom => Ethereum symbol pairs",
 	)
 	rootCmd.PersistentFlags().String(
 		ebrelayertypes.FlagRelayerDbPath,

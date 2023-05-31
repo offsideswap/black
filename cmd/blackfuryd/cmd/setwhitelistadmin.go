@@ -14,7 +14,7 @@ import (
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/spf13/cobra"
 
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
 )
 
 func SetGenesisWhitelisterAdminCmd(defaultNodeHome string) *cobra.Command {

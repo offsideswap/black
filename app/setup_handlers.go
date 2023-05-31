@@ -1,7 +1,7 @@
 package app
 
 import (
-	admintypes "github.com/Blackchain/blackfury/x/admin/types"
+	admintypes "github.com/Offsideswap/blackfury/x/admin/types"
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	m "github.com/cosmos/cosmos-sdk/types/module"
@@ -10,7 +10,7 @@ import (
 
 const releaseVersion = "1.1.0-beta"
 
-func SetupHandlers(app *BlackchainApp) {
+func SetupHandlers(app *OffsideswapApp) {
 	app.UpgradeKeeper.SetUpgradeHandler(releaseVersion, func(ctx sdk.Context, plan types.Plan, vm m.VersionMap) (m.VersionMap, error) {
 		app.Logger().Info("Running upgrade handler for " + releaseVersion)
 

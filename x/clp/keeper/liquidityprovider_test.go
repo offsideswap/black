@@ -5,14 +5,14 @@ import (
 	"math"
 	"testing"
 
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Blackchain/blackfury/x/clp/test"
-	"github.com/Blackchain/blackfury/x/clp/types"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	"github.com/Offsideswap/blackfury/x/clp/types"
 )
 
 func TestKeeper_SetLiquidityProvider(t *testing.T) {

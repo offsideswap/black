@@ -4,7 +4,7 @@
 
 - Query all channels for a chain
 ```shell
-blackfuryd q ibc channel channels --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc channel channels --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 ```json
 - channel_id: channel-0
@@ -22,7 +22,7 @@ blackfuryd q ibc channel channels --node=https://rpc-devnet.blackchain.finance:4
 
 - Query all channels with a connection ID 
 ```shell
-blackfuryd q ibc channel connections connection-110 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc channel connections connection-110 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 ```json
 channels:
@@ -43,7 +43,7 @@ height:
 - Query the client-state with channel-id
 
 ```shell
-blackfuryd q ibc channel client-state transfer channel-101  --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc channel client-state transfer channel-101  --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ````
 ```json
 client_id: 07-tendermint-173
@@ -68,27 +68,27 @@ Sequence can be considered similar to nonce , but it is specific to a channel
 
 The packet_sequence can be used to query the state of the packet (in the order mentioned) 
 ```shell
-1 blackfuryd q ibc channel packet-commitment transfer channel-101 31  --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
-2 blackfuryd q ibc channel packet-receipt transfer channel-101 31 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
-3 blackfuryd q ibc channel packet-ack transfer channel-101 31 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+1 blackfuryd q ibc channel packet-commitment transfer channel-101 31  --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
+2 blackfuryd q ibc channel packet-receipt transfer channel-101 31 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
+3 blackfuryd q ibc channel packet-ack transfer channel-101 31 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 
 
 Query if packet is not received in the recipient chain
 ```shell
-blackfuryd q ibc channel unreceived-packets transfer channel-101 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc channel unreceived-packets transfer channel-101 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 
 
 Query if the ack for packet receipt is not present in the sending chain
 ```shell
-blackfuryd q ibc channel  unreceived-acks transfer channel-101 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc channel  unreceived-acks transfer channel-101 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 
 ## Other Helpful queries
 - Get the denom trace from the hash
 ```shell
-blackfuryd q ibc-transfer denom-trace C782C1DE5F380BC8A5B7D490684894B439D31847A004B271D7B7BA07751E582A --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc-transfer denom-trace C782C1DE5F380BC8A5B7D490684894B439D31847A004B271D7B7BA07751E582A --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 ```json
 denom_trace:
@@ -101,16 +101,16 @@ denom_trace:
 Tokens send from Chain-1 to Chain-2 ,are escrowed in Chain-1,instead of Burning .
 When a token comes back to the source chain, it gets released from the escrow address to the user instead of being Minted again.  
 ```shell
-blackfuryd q ibc-transfer escrow-address transfer channel-101 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+blackfuryd q ibc-transfer escrow-address transfer channel-101 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 ```json
 black1j3mmq2dsfws0pv5fut3ce2252w0ere8g2alrvd
 ```
 
-## Blackchain Related Queries 
-- Query blackchain tokenregistry 
+## Offsideswap Related Queries 
+- Query offsideswap tokenregistry 
 ```shell
- blackfuryd q ibc-transfer escrow-address transfer channel-101 --node=https://rpc-devnet.blackchain.finance:443 --chain-id=blackchain-devnet-1
+ blackfuryd q ibc-transfer escrow-address transfer channel-101 --node=https://rpc-devnet.offsideswap.finance:443 --chain-id=offsideswap-devnet-1
 ```
 ```json
 {
@@ -140,22 +140,22 @@ black1j3mmq2dsfws0pv5fut3ce2252w0ere8g2alrvd
 
 Use `blackfuryd ibc-diag stuck-txs` to get a list of stuck IBC transfers.
 
-For example, to get the list of stuck transfer from Blackchain to Terra:
+For example, to get the list of stuck transfer from Offsideswap to Terra:
 
 ```
 blackfuryd ibc-diag stuck-txs \
---src-node http://rpc.blackchain.finance:80 \
+--src-node http://rpc.offsideswap.finance:80 \
 --dst-node http://public-node.terra.dev:26657 \
 --src-channel channel-18 \
 --dst-channel channel-7
 ```
 
-and from Terra to Blackchain:
+and from Terra to Offsideswap:
 
 ```
 blackfuryd ibc-diag stuck-txs \
 --src-node http://public-node.terra.dev:26657 \
---dst-node http://rpc.blackchain.finance:80 \
+--dst-node http://rpc.offsideswap.finance:80 \
 --src-channel channel-7 \
 --dst-channel channel-18
 ```

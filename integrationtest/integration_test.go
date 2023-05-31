@@ -6,14 +6,14 @@ import (
 	"os"
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	clpkeeper "github.com/Blackchain/blackfury/x/clp/keeper"
-	"github.com/Blackchain/blackfury/x/clp/test"
-	clptypes "github.com/Blackchain/blackfury/x/clp/types"
-	ethtest "github.com/Blackchain/blackfury/x/ethbridge/test"
-	marginkeeper "github.com/Blackchain/blackfury/x/margin/keeper"
-	margintypes "github.com/Blackchain/blackfury/x/margin/types"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	clpkeeper "github.com/Offsideswap/blackfury/x/clp/keeper"
+	"github.com/Offsideswap/blackfury/x/clp/test"
+	clptypes "github.com/Offsideswap/blackfury/x/clp/types"
+	ethtest "github.com/Offsideswap/blackfury/x/ethbridge/test"
+	marginkeeper "github.com/Offsideswap/blackfury/x/margin/keeper"
+	margintypes "github.com/Offsideswap/blackfury/x/margin/types"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	flag "github.com/spf13/pflag"
@@ -361,7 +361,7 @@ func TestIntegration(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.Name, func(t *testing.T) {
-			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.BlackchainApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
+			ctx, app := test.CreateTestAppClpFromGenesis(false, func(app *blackapp.OffsideswapApp, genesisState blackapp.GenesisState) blackapp.GenesisState {
 				// Initialise token registry
 				trGs := &tokenregistrytypes.GenesisState{
 					Registry: &tokenregistrytypes.Registry{
@@ -438,7 +438,7 @@ func TestIntegration(t *testing.T) {
 
 }
 
-func endBlock(t *testing.T, app *blackapp.BlackchainApp, ctx sdk.Context, height int64) {
+func endBlock(t *testing.T, app *blackapp.OffsideswapApp, ctx sdk.Context, height int64) {
 	app.EndBlocker(ctx, abci.RequestEndBlock{Height: height})
 	//app.Commit()
 
@@ -453,7 +453,7 @@ type TestResults struct {
 	LPs      map[string]clptypes.LiquidityProvider
 }
 
-func getResults(t *testing.T, app *blackapp.BlackchainApp, ctx sdk.Context, tc TestCase) TestResults {
+func getResults(t *testing.T, app *blackapp.OffsideswapApp, ctx sdk.Context, tc TestCase) TestResults {
 	pools := app.ClpKeeper.GetPools(ctx)
 
 	lps, err := app.ClpKeeper.GetAllLiquidityProviders(ctx)

@@ -1,7 +1,7 @@
 package ante
 
 import (
-	adminkeeper "github.com/Blackchain/blackfury/x/admin/keeper"
+	adminkeeper "github.com/Offsideswap/blackfury/x/admin/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"

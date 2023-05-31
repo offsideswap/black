@@ -7,11 +7,11 @@ import string
 import random
 
 import burn_lock_functions
-from burn_lock_functions import EthereumToBlackchainTransferRequest
+from burn_lock_functions import EthereumToOffsideswapTransferRequest
 import test_utilities
 from pytest_utilities import generate_test_account
-from integration_env_credentials import blackchain_cli_credentials_for_test
-from test_utilities import get_required_env_var, BlackchaincliCredentials, get_optional_env_var, ganache_owner_account, \
+from integration_env_credentials import offsideswap_cli_credentials_for_test
+from test_utilities import get_required_env_var, OffsideswapcliCredentials, get_optional_env_var, ganache_owner_account, \
     get_shell_output_json, get_shell_output, detect_errors_in_blackfuryd_output, get_transaction_result, amount_in_wei
 
 
@@ -23,7 +23,7 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 # CODE TO GENERATE NEW ADDRESS AND ADD IT IN THE KEYRING
 def create_new_blackaddr_and_key():
     new_account_key = test_utilities.get_shell_output("uuidgen").replace("-", "")
-    credentials = blackchain_cli_credentials_for_test(new_account_key)
+    credentials = offsideswap_cli_credentials_for_test(new_account_key)
     new_addr = burn_lock_functions.create_new_blackaddr(credentials=credentials, keyname=new_account_key)
     return new_addr["address"], new_addr["name"]
 
@@ -31,7 +31,7 @@ def create_new_blackaddr_and_key():
 # CODE TO SEND SOME SAMPLE TOKEN TO NEW ADDRESS
 def send_sample_fury(from_address, to_address, amount, keyring_backend, chain_id, offline):
     logging.debug(f"transfer_fury")
-    blackchain_fees_entry = f"--fees 100000000000000000fury"
+    offsideswap_fees_entry = f"--fees 100000000000000000fury"
     keyring_backend_entry = f"--keyring-backend {keyring_backend}"
     cmd = " ".join([
         "blackfuryd tx bank send",
@@ -39,7 +39,7 @@ def send_sample_fury(from_address, to_address, amount, keyring_backend, chain_id
         f"{to_address}",
         f"{amount}",
         keyring_backend_entry,
-        blackchain_fees_entry,
+        offsideswap_fees_entry,
         f"--chain-id {chain_id}",
         f"--yes -o json"
     ])
@@ -81,16 +81,16 @@ def create_online_singlekey_txn(
         chain_id
 ):
     logging.debug(f"create_online_dispensation")
-    blackchain_gas_entry = f"--gas auto"
-    blackchain_fees_entry = f"--fees 50000fury"
+    offsideswap_gas_entry = f"--gas auto"
+    offsideswap_fees_entry = f"--fees 50000fury"
     keyring_backend_entry = f"--keyring-backend test"
     output = 'output.json'
     cmd = " ".join([
         "blackfuryd tx dispensation create",
         f"{claimType}",
         output,
-        blackchain_gas_entry,
-        blackchain_fees_entry,
+        offsideswap_gas_entry,
+        offsideswap_fees_entry,
         f"--from {signing_address}",
         f"--chain-id {chain_id}",
         keyring_backend_entry,
@@ -109,16 +109,16 @@ def create_online_singlekey_async_txn(
         chain_id
 ):
     logging.debug(f"create_online_dispensation")
-    blackchain_fees_entry = f"--fees 150000fury"
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 150000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
     keyring_backend_entry = f"--keyring-backend test"
     output = 'output.json'
     cmd = " ".join([
         "blackfuryd tx dispensation create",
         f"{claimType}",
         output,
-        blackchain_fees_entry,
-        blackchain_gas_entry,
+        offsideswap_fees_entry,
+        offsideswap_gas_entry,
         f"--from {signing_address}",
         f"--chain-id {chain_id}",
         keyring_backend_entry,
@@ -138,8 +138,8 @@ def create_offline_singlekey_txn(
         chain_id,
     ):
     logging.debug(f"create_unsigned_offline_dispensation_txn")
-    blackchain_fees_entry = f"--fees 150000fury"
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 150000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
     output = 'output.json'
     cmd = " ".join([
         "blackfuryd tx dispensation create",
@@ -147,8 +147,8 @@ def create_offline_singlekey_txn(
         output,
         f"--from {signing_address}",
         f"--chain-id {chain_id}",
-        blackchain_fees_entry,
-        blackchain_gas_entry,
+        offsideswap_fees_entry,
+        offsideswap_gas_entry,
         f"--generate-only", 
         f"--yes -o json"  
     ])
@@ -204,8 +204,8 @@ def create_online_singlekey_txn_with_runner(
         chain_id
 ):
     logging.debug(f"create_online_dispensation")
-    blackchain_fees_entry = f"--fees 150000fury"
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 150000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
     keyring_backend_entry = f"--keyring-backend test"
     output = 'output.json'
     cmd = " ".join([
@@ -213,8 +213,8 @@ def create_online_singlekey_txn_with_runner(
         f"{claimType}",
         output,
         runner_address,
-        blackchain_fees_entry,
-        blackchain_gas_entry,
+        offsideswap_fees_entry,
+        offsideswap_gas_entry,
         f"--from {distributor_address}",
         f"--chain-id {chain_id}",
         keyring_backend_entry,
@@ -234,8 +234,8 @@ def create_offline_singlekey_txn_with_runner(
         chain_id
     ):
     logging.debug(f"create_unsigned_offline_dispensation_txn")
-    blackchain_fees_entry = f"--fees 150000fury"
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 150000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
     keyring_backend_entry = f"--keyring-backend test"
     output = 'output.json'
     cmd = " ".join([
@@ -245,8 +245,8 @@ def create_offline_singlekey_txn_with_runner(
         runner_address,
         f"--from {distributor_address}",
         f"--chain-id {chain_id}",
-        blackchain_fees_entry,
-        blackchain_gas_entry,
+        offsideswap_fees_entry,
+        offsideswap_gas_entry,
         keyring_backend_entry,
         f"--generate-only", 
         f"--yes -o json"
@@ -265,8 +265,8 @@ def run_dispensation(
         chain_id
     ):
     logging.debug(f"RUN DISPENSATION CLI LOGGING")
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
-    blackchain_fees_entry = f"--fees 200000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 200000fury"
     keyring_backend_entry = f"--keyring-backend test"
     cmd = " ".join([
         "blackfuryd tx dispensation run",
@@ -275,8 +275,8 @@ def run_dispensation(
         distribution_count,
         f"--from {runner_address}",
         f"--chain-id {chain_id}",
-        blackchain_gas_entry,
-        blackchain_fees_entry,
+        offsideswap_gas_entry,
+        offsideswap_fees_entry,
         keyring_backend_entry,
         f"--yes -o json"
     ])
@@ -300,21 +300,21 @@ def query_created_claim(claimType):
 
 #CODE TO CREATE A NEW CLAIM
 def create_claim(
-        blackchain_address,
+        offsideswap_address,
         claimType,
         keyring_backend,
         chain_id
     ):
     logging.debug(f"create_claim")
     keyring_backend_entry = f"--keyring-backend {keyring_backend}"
-    blackchain_gas_entry = f"--gas auto --gas-adjustment=1.5"
-    blackchain_fees_entry = f"--fees 100000000000000000fury"
+    offsideswap_gas_entry = f"--gas auto --gas-adjustment=1.5"
+    offsideswap_fees_entry = f"--fees 100000000000000000fury"
     cmd = " ".join([
         "blackfuryd tx dispensation claim",
         f"{claimType}",
-        f"--from {blackchain_address}",
-        blackchain_fees_entry,
-        blackchain_gas_entry,
+        f"--from {offsideswap_address}",
+        offsideswap_fees_entry,
+        offsideswap_gas_entry,
         f"--chain-id {chain_id}",
         keyring_backend_entry,
         f"--yes -o json"

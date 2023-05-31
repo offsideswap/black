@@ -3,11 +3,11 @@ package ibctransfer_test
 import (
 	"testing"
 
-	blackapp "github.com/Blackchain/blackfury/app"
-	"github.com/Blackchain/blackfury/x/ethbridge/test"
-	"github.com/Blackchain/blackfury/x/ibctransfer/keeper/testhelpers"
-	tokenregistrytest "github.com/Blackchain/blackfury/x/tokenregistry/test"
-	tokenregistrytypes "github.com/Blackchain/blackfury/x/tokenregistry/types"
+	blackapp "github.com/Offsideswap/blackfury/app"
+	"github.com/Offsideswap/blackfury/x/ethbridge/test"
+	"github.com/Offsideswap/blackfury/x/ibctransfer/keeper/testhelpers"
+	tokenregistrytest "github.com/Offsideswap/blackfury/x/tokenregistry/test"
+	tokenregistrytypes "github.com/Offsideswap/blackfury/x/tokenregistry/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	transfertypes "github.com/cosmos/ibc-go/v2/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v2/modules/core/04-channel/types"

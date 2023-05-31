@@ -7,7 +7,7 @@ blackfuryd tx clp liquidity-protection-params --isActive=true \
 	--from $ADMIN_KEY \
 	--gas=500000 \
 	--gas-prices=0.5fury \
-	--chain-id $BLACKCHAIN_ID \
+	--chain-id $OFFSIDESWAP_ID \
 	--node $BLACKFURY \
 	--broadcast-mode block \
 	--yes
