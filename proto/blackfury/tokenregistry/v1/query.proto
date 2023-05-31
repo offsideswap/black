@@ -1,0 +1,18 @@
+syntax = "proto3";
+package blackfury.tokenregistry.v1;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "blackfury/tokenregistry/v1/types.proto";
+
+option go_package = "github.com/Blackchain/blackfury/x/tokenregistry/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  rpc Entries(QueryEntriesRequest) returns (QueryEntriesResponse) {
+    option (google.api.http).get = "/blackchain/tokenregistry/v1beta1/entries";
+  }
+}
+
+message QueryEntriesResponse { Registry registry = 1; }
+message QueryEntriesRequest {}
